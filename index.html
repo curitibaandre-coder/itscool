@@ -23,7 +23,7 @@ html,body{margin:0;background:var(--bege);color:var(--ink);font-family:var(--san
 .bg{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;transition:opacity .4s}
 .bg .b1{position:absolute;right:-12vw;top:-14vh;width:min(62vw,900px);height:110vh;background:var(--terra);opacity:.14;border-radius:46% 54% 42% 58%/58% 42% 58% 42%}
 .bg .b2{position:absolute;left:-16vw;bottom:-30vh;width:min(50vw,700px);height:70vh;background:var(--rosa);opacity:.16;border-radius:55% 45% 50% 50%/45% 55% 45% 55%}
-.bg .mao{position:absolute;right:4vw;top:50%;transform:translateY(-50%) rotate(-8deg);width:min(38vw,540px);aspect-ratio:1;background:url("simbolo.png?v=1") center/contain no-repeat;opacity:.08}
+.bg .mao{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) rotate(-8deg);width:min(38vw,540px);aspect-ratio:1;background:url("simbolo.png?v=1") center/contain no-repeat;opacity:.08}
 body.res .bg .mao{opacity:.04}
 @media (max-width:900px){.bg .mao{width:70vw;right:-20vw;top:auto;bottom:-10vh;transform:rotate(-8deg)}}
 
@@ -36,7 +36,6 @@ header{display:flex;align-items:center;justify-content:space-between;gap:12px;ma
 
 .card{background:var(--white);border:1px solid var(--line);border-radius:22px;padding:28px 26px;box-shadow:0 14px 40px rgba(120,60,50,.08)}
 .qwrap{max-width:660px;width:100%;margin:8px auto 0}
-@media (min-width:1000px){.qwrap{margin:24px 0 0 0}}
 .progress{height:6px;background:var(--bege-esc);border-radius:999px;overflow:hidden;margin:0 0 22px}
 .progress i{display:block;height:100%;background:var(--cereja);border-radius:999px;transition:width .35s ease}
 .step{font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--terra);font-weight:600;margin-bottom:10px}
@@ -88,17 +87,16 @@ h1 i{font-style:italic;color:var(--terra)}
 @media (prefers-reduced-motion:reduce){.fade{animation:none}.progress i{transition:none}}
 
 /* boas-vindas */
-.hero{max-width:580px;width:100%;margin:26px auto 0;padding:34px 30px 30px}
-@media (min-width:1000px){.hero{margin:44px 0 0 0}}
+.hero{max-width:620px;width:100%;margin:36px auto 0;padding:34px 30px 30px;text-align:center}
 .selo{width:96px;height:96px;margin:0 0 18px}
 .selo img{width:96px;height:96px;display:block;border-radius:50%;box-shadow:0 8px 20px rgba(169,18,49,.22)}
 .hero h1{font-size:clamp(2rem,5vw,2.7rem);margin-bottom:12px}
 .hero .lead{color:var(--muted);margin:0 0 16px;font-size:.97rem}
 .hero .topicos{list-style:none;padding:0;margin:0 0 24px;display:grid;grid-template-columns:repeat(3,1fr);gap:10px;font-size:.82rem;line-height:1.35}
-.hero .topicos li{padding:14px 12px;border-radius:12px;font-weight:500;color:#fff}
+.hero .topicos li{padding:14px 12px;border-radius:12px;font-weight:500;color:#fff;text-align:left}
 .hero .topicos li.c1{background:var(--cereja)}.hero .topicos li.c2{background:var(--terra)}.hero .topicos li.c3{background:var(--rosa)}
 @media (max-width:520px){.hero .topicos{grid-template-columns:1fr}}
-.hero .cta{display:inline-flex;width:auto;flex:none;padding:17px 28px}
+.hero .cta{display:inline-flex;width:auto;flex:none;padding:17px 28px;margin:0 auto}
 .hero .selos{display:flex;gap:18px;flex-wrap:wrap;margin-top:20px;font-size:.76rem;color:var(--muted)}
 .hero .selos span::before{content:"✓";color:var(--terra);margin-right:6px;font-weight:700}
 
@@ -150,7 +148,7 @@ h1 i{font-style:italic;color:var(--terra)}
     <a class="logo" href="#" onclick="refazer();return false" aria-label="it's COOL, prazer e bem-estar íntimo"><img src="logo.png?v=1" alt="it's COOL"></a>
     <button class="btn ghost" id="btnBack" type="button">Voltar</button>
   </header>
-  <div class="stamp">versão 13 · identidade oficial</div>
+  <div class="stamp">versão 14 · centralizado</div>
   <main id="view"></main>
 </div>
 
@@ -582,7 +580,6 @@ const SELO=`<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-l
 </svg>`;
 function welcome(){
   return `<div class="card hero">
-    <div class="selo"><img src="simbolo.png?v=1" alt=""></div>
     <div class="step">O quiz mais cool da internet</div>
     <h1>Não sabe por onde começar? <i>Normal.</i> Quase ninguém sabe.</h1>
     <p class="lead">A gente monta um guia pra você em menos de dois minutos: o que faz sentido pro seu momento, o que cada coisa é e pra que serve.</p>
@@ -592,7 +589,6 @@ function welcome(){
       <li class="c3">Feito pra quem nunca entrou numa loja.</li>
     </ul>
     <button class="btn primary cta" onclick="go(0)">Descobrir o que combina comigo</button>
-    <div class="selos"><span>Compra 100% segura</span><span>Envio discreto</span><span>Especialistas por trás</span></div>
   </div>`;
 }
 const ICONS={
