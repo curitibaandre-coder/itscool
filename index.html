@@ -23,7 +23,7 @@ html,body{margin:0;background:var(--bege);color:var(--ink);font-family:var(--san
 .bg{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;transition:opacity .4s}
 .bg .b1{position:absolute;right:-12vw;top:-14vh;width:min(62vw,900px);height:110vh;background:var(--terra);opacity:.14;border-radius:46% 54% 42% 58%/58% 42% 58% 42%}
 .bg .b2{position:absolute;left:-16vw;bottom:-30vh;width:min(50vw,700px);height:70vh;background:var(--rosa);opacity:.16;border-radius:55% 45% 50% 50%/45% 55% 45% 55%}
-.bg .mao{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) rotate(-8deg);width:min(38vw,540px);aspect-ratio:1;background:url("simbolo.png?v=1") center/contain no-repeat;opacity:.08}
+.bg .mao{position:absolute;right:4vw;top:50%;transform:translateY(-50%) rotate(-8deg);width:min(38vw,540px);aspect-ratio:1;background:url("simbolo.png?v=1") center/contain no-repeat;opacity:.08}
 body.res .bg .mao{opacity:.04}
 @media (max-width:900px){.bg .mao{width:70vw;right:-20vw;top:auto;bottom:-10vh;transform:rotate(-8deg)}}
 
@@ -93,7 +93,7 @@ h1 i{font-style:italic;color:var(--terra)}
 .hero h1{font-size:clamp(2rem,5vw,2.7rem);margin-bottom:12px}
 .hero .lead{color:var(--muted);margin:0 0 16px;font-size:.97rem}
 .hero .topicos{list-style:none;padding:0;margin:0 0 24px;display:grid;grid-template-columns:repeat(3,1fr);gap:10px;font-size:.82rem;line-height:1.35}
-.hero .topicos li{padding:14px 12px;border-radius:12px;font-weight:500;color:#fff;text-align:left}
+.hero .topicos li{padding:14px 12px;border-radius:12px;font-weight:500;color:#fff;text-align:center;display:flex;align-items:center;justify-content:center}
 .hero .topicos li.c1{background:var(--cereja)}.hero .topicos li.c2{background:var(--terra)}.hero .topicos li.c3{background:var(--rosa)}
 @media (max-width:520px){.hero .topicos{grid-template-columns:1fr}}
 .hero .cta{display:inline-flex;width:auto;flex:none;padding:17px 28px;margin:0 auto}
@@ -148,7 +148,7 @@ h1 i{font-style:italic;color:var(--terra)}
     <a class="logo" href="#" onclick="refazer();return false" aria-label="it's COOL, prazer e bem-estar íntimo"><img src="logo.png?v=1" alt="it's COOL"></a>
     <button class="btn ghost" id="btnBack" type="button">Voltar</button>
   </header>
-  <div class="stamp">versão 14 · centralizado</div>
+  <div class="stamp">versão 15</div>
   <main id="view"></main>
 </div>
 
