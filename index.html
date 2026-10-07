@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>it's COOL · Seu guia</title>
+<title>it's COOL · Qual é o seu match?</title>
 <link rel="icon" href="simbolo.png?v=1">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap">
@@ -19,7 +19,6 @@ html,body{margin:0;background:var(--bege);color:var(--ink);font-family:var(--san
 .topbar{background:var(--cereja);color:#fff;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;text-align:center;padding:7px 12px;display:flex;justify-content:center;gap:22px;flex-wrap:wrap;position:relative;z-index:2;font-weight:500}
 .topbar span::after{content:"·";margin-left:22px;opacity:.7}
 .topbar span:last-child::after{content:""}
-/* fundo quente: blob terracota, blob rosa e a mão OK como marca d'água */
 .bg{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;transition:opacity .4s}
 .bg .b1{position:absolute;right:-12vw;top:-14vh;width:min(62vw,900px);height:110vh;background:var(--terra);opacity:.14;border-radius:46% 54% 42% 58%/58% 42% 58% 42%}
 .bg .b2{position:absolute;left:-16vw;bottom:-30vh;width:min(50vw,700px);height:70vh;background:var(--rosa);opacity:.16;border-radius:55% 45% 50% 50%/45% 55% 45% 55%}
@@ -27,7 +26,7 @@ html,body{margin:0;background:var(--bege);color:var(--ink);font-family:var(--san
 body.res .bg .mao{opacity:.04}
 @media (max-width:900px){.bg .mao{width:70vw;right:-20vw;top:auto;bottom:-10vh;transform:rotate(-8deg)}}
 
-.app{position:relative;z-index:1;max-width:1180px;margin:0 auto;min-height:100vh;display:flex;flex-direction:column;padding:16px 22px 48px}
+.app{position:relative;z-index:1;max-width:1100px;margin:0 auto;min-height:100vh;display:flex;flex-direction:column;padding:16px 22px 48px}
 header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:10px;min-height:64px}
 .logo{display:block;line-height:0}
 .logo img{height:64px;width:auto;display:block}
@@ -35,7 +34,7 @@ header{display:flex;align-items:center;justify-content:space-between;gap:12px;ma
 .stamp{font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);text-align:right;margin:-4px 2px 8px;opacity:.7}
 
 .card{background:var(--white);border:1px solid var(--line);border-radius:22px;padding:28px 26px;box-shadow:0 14px 40px rgba(120,60,50,.08)}
-.qwrap{max-width:660px;width:100%;margin:8px auto 0}
+.qwrap{max-width:680px;width:100%;margin:8px auto 0}
 .progress{height:6px;background:var(--bege-esc);border-radius:999px;overflow:hidden;margin:0 0 22px}
 .progress i{display:block;height:100%;background:var(--cereja);border-radius:999px;transition:width .35s ease}
 .step{font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--terra);font-weight:600;margin-bottom:10px}
@@ -67,10 +66,10 @@ h1 i{font-style:italic;color:var(--terra)}
 .btn{font-family:var(--sans);font-size:.8rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;border:0;border-radius:12px;padding:16px 26px;cursor:pointer;flex:1;transition:transform .12s, box-shadow .15s, background .15s;text-align:center;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:10px;color:var(--ink);position:relative}
 .btn:hover{transform:translateY(-1px)}
 .btn:active{transform:translateY(1px);box-shadow:none!important}
-.btn.primary,.btn.blue{background:var(--cereja);color:#fff;box-shadow:0 5px 0 var(--cereja-esc), 0 12px 22px rgba(169,18,49,.25)}
-.btn.primary::after,.btn.blue::after{content:"→";font-size:1.05rem;line-height:1}
-.btn.primary:hover,.btn.blue:hover{background:var(--cereja-claro)}
-.btn.primary:active,.btn.blue:active{transform:translateY(4px);box-shadow:0 1px 0 var(--cereja-esc)!important}
+.btn.primary{background:var(--cereja);color:#fff;box-shadow:0 5px 0 var(--cereja-esc), 0 12px 22px rgba(169,18,49,.25)}
+.btn.primary::after{content:"→";font-size:1.05rem;line-height:1}
+.btn.primary:hover{background:var(--cereja-claro)}
+.btn.primary:active{transform:translateY(4px);box-shadow:0 1px 0 var(--cereja-esc)!important}
 .btn.primary:disabled{opacity:.45;cursor:default;box-shadow:0 3px 0 var(--rosa);transform:none}
 .btn.primary:disabled::after{content:""}
 .btn.ghost{background:#fff;color:var(--cereja);border:1.5px solid var(--cereja);flex:0 0 auto;padding:11px 16px;font-size:.72rem;border-radius:999px}
@@ -78,7 +77,6 @@ h1 i{font-style:italic;color:var(--terra)}
 .btn.ghost:hover{background:var(--cereja-soft)}
 .btn.soft{background:#fff;color:var(--cereja);border:1.5px solid var(--cereja);box-shadow:0 4px 0 var(--cereja-soft)}
 .btn.soft:hover{background:var(--cereja-soft)}
-.btn.big{font-size:.9rem;padding:20px 30px}
 .btn:focus-visible{outline:3px solid var(--terra-soft);outline-offset:2px}
 .note{font-size:.82rem;color:var(--muted);margin-top:10px}
 .hidden{display:none!important}
@@ -88,451 +86,367 @@ h1 i{font-style:italic;color:var(--terra)}
 
 /* boas-vindas */
 .hero{max-width:620px;width:100%;margin:36px auto 0;padding:34px 30px 30px;text-align:center}
-.selo{width:96px;height:96px;margin:0 0 18px}
-.selo img{width:96px;height:96px;display:block;border-radius:50%;box-shadow:0 8px 20px rgba(169,18,49,.22)}
 .hero h1{font-size:clamp(2rem,5vw,2.7rem);margin-bottom:12px}
 .hero .lead{color:var(--muted);margin:0 0 16px;font-size:.97rem}
 .hero .topicos{list-style:none;padding:0;margin:0 0 24px;display:grid;grid-template-columns:repeat(3,1fr);gap:10px;font-size:.82rem;line-height:1.35}
 .hero .topicos li{padding:14px 12px;border-radius:12px;font-weight:500;color:#fff;text-align:center;display:flex;align-items:center;justify-content:center}
 .hero .topicos li.c1{background:var(--cereja)}.hero .topicos li.c2{background:var(--terra)}.hero .topicos li.c3{background:var(--rosa)}
 @media (max-width:520px){.hero .topicos{grid-template-columns:1fr}}
-.hero .cta{display:inline-flex;width:auto;flex:none;padding:18px 30px;margin:0 auto;background:#F5B52E;color:#3a2a10;text-shadow:none;box-shadow:0 5px 0 #C48A12, 0 12px 24px rgba(196,138,18,.35);font-size:.86rem}
+.hero .cta{display:inline-flex;width:auto;flex:none;padding:18px 30px;margin:0 auto;background:#F5B52E;color:#3a2a10;box-shadow:0 5px 0 #C48A12, 0 12px 24px rgba(196,138,18,.35);font-size:.86rem}
 .hero .cta:hover{background:#FFC43D}
 .hero .cta:active{box-shadow:0 1px 0 #C48A12!important}
-.hero .selos{display:flex;gap:18px;flex-wrap:wrap;margin-top:20px;font-size:.76rem;color:var(--muted)}
-.hero .selos span::before{content:"✓";color:var(--terra);margin-right:6px;font-weight:700}
 
 /* resultado */
-.r-head{display:grid;gap:14px;margin-bottom:18px}
-@media (min-width:900px){.r-head{grid-template-columns:1.4fr 1fr;align-items:stretch}}
-.r-open{font-family:var(--serif);font-size:clamp(1.55rem,3.4vw,2.1rem);font-weight:400;color:var(--cereja);line-height:1.18;margin:0 0 8px;text-wrap:balance}
-.r-sub{color:var(--muted);margin:0 0 8px;font-size:.95rem}
-.warn{background:var(--terra-soft);border-left:3px solid var(--terra);border-radius:0 14px 14px 0;padding:16px 18px;font-size:.92rem}
-.warn b{display:block;color:var(--terra);margin-bottom:4px;font-weight:600}
-.lbl{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);font-weight:600;margin:6px 0 12px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-.chip{display:inline-block;font-weight:600;font-size:.62rem;letter-spacing:.12em;padding:4px 10px;border-radius:999px;white-space:nowrap;line-height:1.5}
-.c-conheca{background:var(--rosa-soft);color:#8c4358}.c-cuide{background:var(--terra-soft);color:#9a3a18}.c-vibre{background:var(--cereja-soft);color:var(--cereja)}
-.c-dela{background:var(--rosa-soft);color:#8c4358}.c-dele{background:var(--bege-esc);color:#6b4a3a}.c-dagente{background:var(--terra-soft);color:#9a3a18}
-.c-cool{background:var(--cereja);color:#fff}.c-match{background:var(--rosa);color:#fff}.c-sale{background:var(--terra);color:#fff}
-.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));margin-bottom:16px}
-.gcard{background:var(--white);border:1px solid var(--line);border-radius:18px;padding:16px;display:flex;flex-direction:column;gap:10px;box-shadow:0 10px 28px rgba(120,60,50,.06)}
-.gcard .top{display:flex;gap:14px;align-items:flex-start}
-.gcard .art{flex:none;width:84px;height:84px;border-radius:14px;overflow:hidden;background:var(--bege)}
-.gcard .art img,.gcard .art svg{width:100%;height:100%;display:block;object-fit:cover}
-.gcard .nm{font-family:var(--serif);font-weight:400;font-size:1.18rem;color:var(--cereja);line-height:1.2;margin:6px 0 2px}
-.gcard .why{font-size:.82rem;color:var(--terra);font-weight:500}
-.gcard .tem{font-size:.72rem;color:var(--muted);background:var(--bege);border-radius:999px;padding:2px 9px;display:inline-block;margin-top:4px}
-.gcard dl{margin:0;display:grid;gap:6px;font-size:.88rem}
-.gcard dt{font-size:.64rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-weight:600}
-.gcard dd{margin:0}
-.gcard .bottom{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:auto;padding-top:6px}
-.gcard .faixa{font-size:.76rem;color:var(--muted)}
-.gcard .buy{flex:0 0 auto;font-size:.68rem;padding:12px 16px;box-shadow:0 4px 0 var(--cereja-esc), 0 8px 14px rgba(169,18,49,.2)}
-.duo{display:grid;gap:14px;margin-bottom:16px}
-@media (min-width:900px){.duo{grid-template-columns:1fr 1.3fr}}
-.block{background:var(--white);border:1px solid var(--line);border-radius:18px;padding:18px}
-.content{display:flex;gap:12px;align-items:center}
-.content .ic{flex:none;width:46px;height:46px;border-radius:12px;background:var(--rosa-soft);display:grid;place-items:center;color:var(--cereja);font-weight:600;font-size:.64rem;letter-spacing:.1em}
-.content b{display:block;font-family:var(--serif);font-weight:400;color:var(--cereja)}
-.content span{font-size:.84rem;color:var(--muted)}
-.foot{display:grid;gap:10px;margin-top:6px}
-@media (min-width:640px){.foot{grid-template-columns:1fr 1fr}}
+.rwrap{max-width:1000px;width:100%;margin:8px auto 0}
+.rhead{text-align:center;max-width:720px;margin:10px auto 26px}
+.rhead h1{font-size:clamp(1.9rem,4.6vw,2.6rem)}
+.rhead p{color:var(--muted);margin:0;font-size:.98rem}
+.warn{background:var(--terra-soft);border-left:3px solid var(--terra);border-radius:0 14px 14px 0;padding:14px 18px;font-size:.9rem;max-width:720px;margin:0 auto 22px;text-align:left}
+.warn b{color:var(--terra);font-weight:600}
+.rgrid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));margin-bottom:26px}
+.rcard{background:var(--white);border:1px solid var(--line);border-radius:22px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 14px 40px rgba(120,60,50,.08)}
+.rcard .band{height:130px;display:grid;place-items:center;position:relative}
+.rcard .band svg{width:88px;height:88px}
+.rcard .band .cat{position:absolute;top:12px;left:12px;font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;background:rgba(255,255,255,.85);color:var(--cereja);border-radius:999px;padding:4px 10px}
+.rcard .band .n{position:absolute;top:10px;right:14px;font-family:var(--serif);font-size:1.5rem;color:rgba(255,255,255,.9)}
+.rcard .body{padding:18px 20px 20px;display:flex;flex-direction:column;gap:8px;flex:1}
+.rcard h2{font-family:var(--serif);font-weight:400;font-size:1.35rem;line-height:1.2;color:var(--cereja);margin:0}
+.rcard .why{font-size:.8rem;color:var(--terra);font-weight:600}
+.rcard p{margin:0;font-size:.9rem;color:var(--ink)}
+.rcard .btn{margin-top:auto;font-size:.74rem;padding:14px 18px}
+.band-cereja{background:linear-gradient(135deg,var(--cereja),var(--cereja-claro))}
+.band-terra{background:linear-gradient(135deg,var(--terra),#ea7a52)}
+.band-rosa{background:linear-gradient(135deg,var(--rosa),#cf8294)}
+.band-bege{background:linear-gradient(135deg,var(--bege-esc),var(--bege))}
+.extras{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));margin-bottom:26px}
+.xcard{background:var(--white);border:1px solid var(--line);border-radius:16px;padding:14px 16px;display:flex;gap:14px;align-items:center}
+.xcard .ic{flex:none;width:56px;height:56px;border-radius:14px;overflow:hidden;background:var(--bege)}
+.xcard .ic svg{width:100%;height:100%;display:block}
+.xcard b{display:block;font-weight:600;font-size:.95rem;color:var(--cinza);line-height:1.25}
+.xcard span{display:block;font-size:.8rem;color:var(--muted);margin-top:2px}
+.xcard a{flex:none;font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--cereja);text-decoration:none;border-bottom:1.5px solid var(--cereja);padding-bottom:1px;white-space:nowrap}
+.lbl{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);font-weight:600;margin:6px 0 12px}
+.rfoot{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:8px}
+.rfoot .btn{flex:0 1 320px}
 .debug{margin-top:26px;font-size:.76rem;color:var(--muted)}
 .debug summary{cursor:pointer;font-weight:600}
 .debug pre{background:var(--bege);padding:10px;border-radius:10px;overflow-x:auto;font-size:.7rem;line-height:1.4}
 </style>
 </head>
 <body>
-<div class="topbar"><span>Frete discreto</span><span>Embalagem neutra</span><span>Parcelamento em até 6x sem juros</span></div>
+<div class="topbar"><span>Compra segura</span><span>Embalagem discreta</span><span>Privacidade respeitada</span></div>
 <div class="bg" aria-hidden="true"><div class="b1"></div><div class="b2"></div><div class="mao"></div></div>
 <div class="app">
   <header>
     <a class="logo" href="#" onclick="refazer();return false" aria-label="it's COOL, prazer e bem-estar íntimo"><img src="logo.png?v=1" alt="it's COOL"></a>
     <button class="btn ghost" id="btnBack" type="button">Voltar</button>
   </header>
-  <div class="stamp">versão 16</div>
+  <div class="stamp">versão 17 · categorias do site</div>
   <main id="view"></main>
 </div>
 
 <script>
 /* ============================================================
-   LINKS (trocar pelos reais)
+   LINKS DO SITE (trocar pelos endereços reais do Wix)
    ============================================================ */
 const URL_SITE='https://itscool.com.br/';
-const linkSite=slug=>URL_SITE+'categoria/'+slug;
+const link=slug=>URL_SITE+slug;
 
 /* ============================================================
-   CATEGORIAS DO SITE
+   CATEGORIAS PRINCIPAIS DO MENU
    ============================================================ */
 const CAT={
-  CONHECA:{nome:'CONHEÇA!',chip:'c-conheca',slug:'conheca'},
-  CUIDE:{nome:'CUIDE!',chip:'c-cuide',slug:'cuide'},
-  VIBRE:{nome:'VIBRE!',chip:'c-vibre',slug:'vibre'},
-  DELA:{nome:'DELA!',chip:'c-dela',slug:'dela'},
-  DELE:{nome:'DELE!',chip:'c-dele',slug:'dele'},
-  DAGENTE:{nome:'DA GENTE!',chip:'c-dagente',slug:'da-gente'},
-  COOL:{nome:'COOL',chip:'c-cool',slug:'cool'},
-  MATCH:{nome:'COOL MATCH',chip:'c-match',slug:'cool-match'},
-  SALE:{nome:'ITS SALE',chip:'c-sale',slug:'its-sale'},
+  PRAZER:{nome:'Prazer',band:'band-cereja',slug:'prazer'},
+  CUIDADO:{nome:'Cuidado íntimo',band:'band-rosa',slug:'cuidado-intimo'},
+  ANAL:{nome:'Anal',band:'band-terra',slug:'anal'},
+  KITS:{nome:'Kits',band:'band-bege',slug:'kits'},
+  SALE:{nome:'Sale',band:'band-terra',slug:'sale'},
 };
 
 /* ============================================================
-   ILUSTRAÇÕES (SVG). Se um grupo tiver campo img, a foto substitui.
+   ILUSTRAÇÕES
    ============================================================ */
-const C={t:'#bc657b',r:'#f2cfc3',rs:'#fbe9e1',b:'#a91231',s:'#e7a98f',ss:'#f6dccd',y:'#e25a2f',ys:'#f8dccb',g:'#bc657b',gs:'#f3d9dc',bg:'#f6e9dd',bs:'#fbf3ea',w:'#FFFDFA'};
-const svg=(bg,inner)=>`<svg viewBox="0 0 84 84" xmlns="http://www.w3.org/2000/svg"><rect width="84" height="84" fill="${bg}"/>${inner}</svg>`;
+const K={c:'#a91231',t:'#e25a2f',r:'#bc657b',b:'#f6e9dd',w:'#fffdfb',rs:'#f3dadf',ts:'#f7d9cb',bs:'#efdccb'};
+const svg=(bg,inner)=>`<svg viewBox="0 0 84 84" xmlns="http://www.w3.org/2000/svg"><rect width="84" height="84" rx="20" fill="${bg}"/>${inner}</svg>`;
 const ART={
-  frasco:svg(C.ys,`<rect x="30" y="10" width="24" height="10" rx="3" fill="${C.t}"/><rect x="26" y="20" width="32" height="54" rx="10" fill="${C.w}"/><rect x="32" y="34" width="20" height="18" rx="4" fill="${C.r}"/>`),
-  tubo:svg(C.rs,`<path d="M30 14h24l4 16v40a6 6 0 0 1-6 6H32a6 6 0 0 1-6-6V30z" fill="${C.w}"/><rect x="34" y="8" width="16" height="8" rx="2" fill="${C.b}"/><rect x="32" y="40" width="20" height="16" rx="4" fill="${C.s}"/>`),
-  gota:svg(C.ss,`<path d="M42 12c10 16 20 26 20 40a20 20 0 0 1-40 0c0-14 10-24 20-40z" fill="${C.b}"/><circle cx="35" cy="56" r="5" fill="${C.w}" opacity=".7"/>`),
-  oleo:svg(C.bs,`<rect x="28" y="24" width="28" height="50" rx="8" fill="${C.w}"/><rect x="34" y="10" width="16" height="16" rx="3" fill="${C.t}"/><path d="M28 46h28v20a8 8 0 0 1-8 8H36a8 8 0 0 1-8-8z" fill="${C.y}"/>`),
-  camisinha:svg(C.gs,`<circle cx="42" cy="44" r="24" fill="${C.w}"/><circle cx="42" cy="44" r="12" fill="${C.g}"/><circle cx="42" cy="44" r="5" fill="${C.w}"/>`),
-  espelho:svg(C.rs,`<circle cx="42" cy="34" r="20" fill="${C.w}" stroke="${C.t}" stroke-width="4"/><rect x="38" y="54" width="8" height="22" rx="4" fill="${C.t}"/><path d="M32 30a12 12 0 0 1 10-8" stroke="${C.s}" stroke-width="3" stroke-linecap="round" fill="none"/>`),
-  cartas:svg(C.ys,`<rect x="18" y="22" width="34" height="46" rx="6" fill="${C.w}" transform="rotate(-10 35 45)"/><rect x="32" y="18" width="34" height="46" rx="6" fill="${C.w}" stroke="${C.t}" stroke-width="2"/><path d="M49 32l4 8 8 1-6 6 2 8-8-4-8 4 2-8-6-6 8-1z" fill="${C.t}"/>`),
-  livro:svg(C.gs,`<path d="M16 22h24a4 4 0 0 1 4 4v42a4 4 0 0 0-4-4H16z" fill="${C.w}"/><path d="M68 22H44a4 4 0 0 0-4 4v42a4 4 0 0 1 4-4h24z" fill="${C.g}"/><rect x="20" y="30" width="14" height="3" rx="1.5" fill="${C.s}"/><rect x="20" y="38" width="16" height="3" rx="1.5" fill="${C.s}"/>`),
-  cones:svg(C.ss,`<path d="M30 18a6 6 0 0 1 12 0v10a12 12 0 0 1-12 0z" fill="${C.w}"/><ellipse cx="36" cy="52" rx="14" ry="18" fill="${C.b}"/><ellipse cx="56" cy="54" rx="10" ry="14" fill="${C.s}"/><path d="M36 70v6M56 68v8" stroke="${C.b}" stroke-width="3" stroke-linecap="round"/>`),
-  sugador:svg(C.rs,`<path d="M34 12h16a6 6 0 0 1 6 6v36a14 14 0 0 1-28 0V18a6 6 0 0 1 6-6z" fill="${C.t}"/><circle cx="42" cy="58" r="9" fill="${C.w}"/><circle cx="42" cy="58" r="4" fill="${C.r}"/><circle cx="42" cy="26" r="3" fill="${C.w}"/>`),
-  bullet:svg(C.ys,`<path d="M42 10c10 0 14 8 14 20v30a14 14 0 0 1-28 0V30c0-12 4-20 14-20z" fill="${C.b}"/><circle cx="42" cy="62" r="4" fill="${C.w}"/><path d="M60 22l4-4M62 32h6M24 22l-4-4M22 32h-6" stroke="${C.t}" stroke-width="3" stroke-linecap="round"/>`),
-  varinha:svg(C.ss,`<path d="M36 10h12a6 6 0 0 1 6 6v46a12 12 0 0 1-24 0V16a6 6 0 0 1 6-6z" fill="${C.t}"/><path d="M42 12c8 6 8 20 0 26" stroke="${C.w}" stroke-width="3" stroke-linecap="round" fill="none" opacity=".6"/><circle cx="42" cy="64" r="4" fill="${C.w}"/>`),
-  rabbit:svg(C.rs,`<path d="M36 12h12a6 6 0 0 1 6 6v46a12 12 0 0 1-24 0V18a6 6 0 0 1 6-6z" fill="${C.b}"/><path d="M22 34c-6-6-6-16 0-22 6 6 6 16 0 22z" fill="${C.b}"/><path d="M22 34c4 4 6 10 6 16" stroke="${C.b}" stroke-width="6" stroke-linecap="round"/><circle cx="42" cy="64" r="4" fill="${C.w}"/>`),
-  app:svg(C.gs,`<rect x="18" y="14" width="26" height="52" rx="6" fill="${C.w}"/><rect x="22" y="20" width="18" height="30" rx="3" fill="${C.ss}"/><path d="M56 30c6-4 12-4 14 4s-6 20-14 22c-8-2-16-14-14-22s8-8 14-4z" fill="${C.t}"/><path d="M48 16c6 0 10 4 10 10" stroke="${C.g}" stroke-width="3" stroke-linecap="round" fill="none"/>`),
-  anel:svg(C.ss,`<circle cx="42" cy="44" r="22" fill="none" stroke="${C.b}" stroke-width="10"/><circle cx="42" cy="18" r="7" fill="${C.t}"/>`),
-  ovo:svg(C.ys,`<path d="M42 12c12 0 20 16 20 32a20 20 0 0 1-40 0c0-16 8-32 20-32z" fill="${C.w}"/><path d="M30 44c4-6 8-8 12-8s8 2 12 8" stroke="${C.s}" stroke-width="3" stroke-linecap="round" fill="none"/>`),
-  casal:svg(C.rs,`<path d="M20 30c0-10 10-16 16-8 6-8 16-2 16 8 0 12-16 22-16 22S20 42 20 30z" fill="${C.t}"/><path d="M40 52c0-8 8-12 12-6 4-6 12-2 12 6 0 9-12 16-12 16s-12-7-12-16z" fill="${C.b}"/>`),
-  pena:svg(C.bs,`<path d="M60 16c-20 2-34 18-36 40l-6 12 12-6c22-2 38-16 40-36-2-6-6-8-10-10z" fill="${C.s}"/><path d="M24 56l30-30" stroke="${C.w}" stroke-width="3" stroke-linecap="round"/><path d="M30 68a8 8 0 0 0-8-8" stroke="${C.t}" stroke-width="4" stroke-linecap="round" fill="none"/>`),
-  plug:svg(C.ss,`<path d="M42 10c10 0 16 12 16 26 0 10-8 16-8 22H34c0-6-8-12-8-22 0-14 6-26 16-26z" fill="${C.b}"/><rect x="22" y="58" width="40" height="10" rx="5" fill="${C.t}"/><circle cx="42" cy="26" r="3" fill="${C.w}"/>`),
-  caixa:svg(C.bs,`<rect x="16" y="32" width="52" height="38" rx="6" fill="${C.w}"/><rect x="12" y="24" width="60" height="14" rx="4" fill="${C.t}"/><rect x="38" y="24" width="8" height="46" fill="${C.y}"/><path d="M34 24c0-8 8-10 8-2 0-8 8-6 8 2" stroke="${C.y}" stroke-width="4" fill="none" stroke-linecap="round"/>`),
+  sugador:svg(K.rs,`<path d="M34 12h16a6 6 0 0 1 6 6v36a14 14 0 0 1-28 0V18a6 6 0 0 1 6-6z" fill="${K.c}"/><circle cx="42" cy="58" r="9" fill="${K.w}"/><circle cx="42" cy="58" r="4" fill="${K.rs}"/><circle cx="42" cy="26" r="3" fill="${K.w}"/>`),
+  varinha:svg(K.ts,`<path d="M36 10h12a6 6 0 0 1 6 6v46a12 12 0 0 1-24 0V16a6 6 0 0 1 6-6z" fill="${K.c}"/><path d="M42 12c8 6 8 20 0 26" stroke="${K.w}" stroke-width="3" stroke-linecap="round" fill="none" opacity=".6"/><circle cx="42" cy="64" r="4" fill="${K.w}"/>`),
+  anel:svg(K.bs,`<circle cx="42" cy="44" r="22" fill="none" stroke="${K.c}" stroke-width="10"/><circle cx="42" cy="18" r="7" fill="${K.t}"/>`),
+  casal:svg(K.rs,`<path d="M20 30c0-10 10-16 16-8 6-8 16-2 16 8 0 12-16 22-16 22S20 42 20 30z" fill="${K.c}"/><path d="M40 52c0-8 8-12 12-6 4-6 12-2 12 6 0 9-12 16-12 16s-12-7-12-16z" fill="${K.t}"/>`),
+  bullet:svg(K.ts,`<path d="M42 10c10 0 14 8 14 20v30a14 14 0 0 1-28 0V30c0-12 4-20 14-20z" fill="${K.c}"/><circle cx="42" cy="62" r="4" fill="${K.w}"/><path d="M60 22l4-4M62 32h6M24 22l-4-4M22 32h-6" stroke="${K.t}" stroke-width="3" stroke-linecap="round"/>`),
+  rabbit:svg(K.rs,`<path d="M36 12h12a6 6 0 0 1 6 6v46a12 12 0 0 1-24 0V18a6 6 0 0 1 6-6z" fill="${K.c}"/><path d="M22 34c-6-6-6-16 0-22 6 6 6 16 0 22z" fill="${K.c}"/><path d="M22 34c4 4 6 10 6 16" stroke="${K.c}" stroke-width="6" stroke-linecap="round"/><circle cx="42" cy="64" r="4" fill="${K.w}"/>`),
+  tubo:svg(K.bs,`<path d="M30 14h24l4 16v40a6 6 0 0 1-6 6H32a6 6 0 0 1-6-6V30z" fill="${K.w}"/><rect x="34" y="8" width="16" height="8" rx="2" fill="${K.c}"/><rect x="32" y="40" width="20" height="16" rx="4" fill="${K.r}"/>`),
+  termico:svg(K.ts,`<path d="M30 14h24l4 16v40a6 6 0 0 1-6 6H32a6 6 0 0 1-6-6V30z" fill="${K.w}"/><rect x="34" y="8" width="16" height="8" rx="2" fill="${K.c}"/><path d="M36 46c0-6 6-8 6-14 0 6 6 8 6 14a6 6 0 0 1-12 0z" fill="${K.t}"/>`),
+  gota:svg(K.rs,`<path d="M42 12c10 16 20 26 20 40a20 20 0 0 1-40 0c0-14 10-24 20-40z" fill="${K.c}"/><circle cx="35" cy="56" r="5" fill="${K.w}" opacity=".7"/>`),
+  relogio:svg(K.bs,`<circle cx="42" cy="44" r="24" fill="${K.w}" stroke="${K.c}" stroke-width="4"/><path d="M42 28v16l10 6" stroke="${K.c}" stroke-width="4" stroke-linecap="round" fill="none"/>`),
+  faisca:svg(K.ts,`<path d="M42 10c1 12 8 20 20 22-12 2-19 10-20 22-1-12-8-20-20-22 12-2 19-10 20-22z" fill="${K.c}"/><path d="M62 54l.8 2.6 2.6.8-2.6.8-.8 2.6-.8-2.6-2.6-.8 2.6-.8z" fill="${K.t}"/>`),
+  cartas:svg(K.bs,`<rect x="18" y="22" width="34" height="46" rx="6" fill="${K.w}" transform="rotate(-10 35 45)"/><rect x="32" y="18" width="34" height="46" rx="6" fill="${K.w}" stroke="${K.c}" stroke-width="2"/><path d="M49 32l4 8 8 1-6 6 2 8-8-4-8 4 2-8-6-6 8-1z" fill="${K.c}"/>`),
+  vela:svg(K.rs,`<rect x="30" y="34" width="24" height="38" rx="5" fill="${K.w}"/><path d="M42 14c5 6 7 10 7 14a7 7 0 0 1-14 0c0-4 2-8 7-14z" fill="${K.t}"/><rect x="40" y="26" width="4" height="8" fill="${K.c}"/>`),
+  venda:svg(K.bs,`<path d="M12 40c10-10 20-14 30-14s20 4 30 14c-10 10-20 14-30 14S22 50 12 40z" fill="${K.c}"/><path d="M10 40h6M68 40h6" stroke="${K.c}" stroke-width="4" stroke-linecap="round"/><circle cx="42" cy="40" r="7" fill="${K.w}"/>`),
+  dildo:svg(K.ts,`<path d="M34 16a8 8 0 0 1 16 0v40a8 8 0 0 1-16 0z" fill="${K.c}"/><rect x="24" y="56" width="36" height="12" rx="6" fill="${K.r}"/>`),
+  sabonete:svg(K.rs,`<rect x="18" y="30" width="48" height="30" rx="14" fill="${K.w}"/><circle cx="30" cy="24" r="4" fill="${K.r}" opacity=".7"/><circle cx="40" cy="18" r="3" fill="${K.r}" opacity=".5"/><circle cx="48" cy="24" r="2.5" fill="${K.r}" opacity=".6"/>`),
+  frasco:svg(K.ts,`<rect x="30" y="10" width="24" height="10" rx="3" fill="${K.c}"/><rect x="26" y="20" width="32" height="54" rx="10" fill="${K.w}"/><rect x="32" y="34" width="20" height="18" rx="4" fill="${K.rs}"/>`),
+  cones:svg(K.bs,`<path d="M30 18a6 6 0 0 1 12 0v10a12 12 0 0 1-12 0z" fill="${K.w}"/><ellipse cx="36" cy="52" rx="14" ry="18" fill="${K.c}"/><ellipse cx="56" cy="54" rx="10" ry="14" fill="${K.r}"/><path d="M36 70v6M56 68v8" stroke="${K.c}" stroke-width="3" stroke-linecap="round"/>`),
+  plug:svg(K.rs,`<path d="M42 10c10 0 16 12 16 26 0 10-8 16-8 22H34c0-6-8-12-8-22 0-14 6-26 16-26z" fill="${K.c}"/><rect x="22" y="58" width="40" height="10" rx="5" fill="${K.t}"/><circle cx="42" cy="26" r="3" fill="${K.w}"/>`),
+  plugvib:svg(K.ts,`<path d="M42 10c10 0 16 12 16 26 0 10-8 16-8 22H34c0-6-8-12-8-22 0-14 6-26 16-26z" fill="${K.c}"/><rect x="22" y="58" width="40" height="10" rx="5" fill="${K.t}"/><path d="M62 20l4-4M64 30h6M22 20l-4-4M20 30h-6" stroke="${K.t}" stroke-width="3" stroke-linecap="round"/>`),
+  ducha:svg(K.bs,`<path d="M42 12c-10 0-16 6-16 14h32c0-8-6-14-16-14z" fill="${K.c}"/><path d="M30 32v4M38 32v6M46 32v6M54 32v4" stroke="${K.c}" stroke-width="3" stroke-linecap="round"/><rect x="36" y="44" width="12" height="30" rx="6" fill="${K.w}"/>`),
+  caixa:svg(K.bs,`<rect x="16" y="32" width="52" height="38" rx="6" fill="${K.w}"/><rect x="12" y="24" width="60" height="14" rx="4" fill="${K.c}"/><rect x="38" y="24" width="8" height="46" fill="${K.t}"/><path d="M34 24c0-8 8-10 8-2 0-8 8-6 8 2" stroke="${K.t}" stroke-width="4" fill="none" stroke-linecap="round"/>`),
+  etiqueta:svg(K.ts,`<path d="M16 22h26l26 26-26 26-26-26z" fill="${K.w}" stroke="${K.c}" stroke-width="3"/><circle cx="28" cy="34" r="4" fill="${K.c}"/>`),
 };
 
 /* ============================================================
-   GRUPOS DE PRODUTO. nivel: 1 iniciante, 2 alguma, 3 à vontade.
+   DESTINOS = SUBCATEGORIAS REAIS DO SITE
+   (nome e texto saíram da estrutura de categorias)
    ============================================================ */
-const G=(id,nome,cat,nivel,preco,art,tags,oque,praque,extra={})=>({id,nome,cat,nivel,preco,art,tags,oque,praque,slug:id,...extra});
-const GRUPOS=[
-  G('hidratantes','Hidratantes íntimos','CUIDE',1,[60,120],'frasco',['secura','menopausa','amamentacao','posparto','medicacao','tratamento','dor','seguro'],
-    'Gel de uso contínuo, tipo um creme de rosto pra região íntima. Repõe a umidade da mucosa por dias, não só na hora.',
-    'Secura constante, menopausa, amamentação, pós-parto ou efeito de remédio. Resolve a base do problema.',{tem:'lub'}),
-  G('lubrificantes','Lubrificantes à base de água','CUIDE',1,[30,80],'tubo',['secura','dor','agua','seguro','facil','junto','posparto','medicacao','naosei','custo'],
-    'Gel que se usa na hora, pra deslizar melhor. À base de água não mancha, sai fácil e combina com preservativo e silicone.',
-    'Qualquer relação ou brinquedo fica mais confortável. Todo vibrador pede um.',{tem:'lub'}),
-  G('sem-perfume','Lubrificantes sem perfume e sem glicerina','CUIDE',1,[40,90],'tubo',['secura','dor','posparto','amamentacao','menopausa','tratamento','seguro'],
-    'Lubrificante de fórmula mínima: sem cheiro, sem açúcar (glicerina), sem parabeno. Feito pra mucosa sensível.',
-    'Pós-parto, tratamento de saúde, tendência a candidíase ou qualquer fase em que tudo irrita.',{tem:'lub'}),
-  G('massagem','Géis de massagem e óleos sensoriais','CUIDE',1,[40,90],'oleo',['desejo','rotina','junto','delicado','facil','custo'],
-    'Óleos e géis pro corpo inteiro, com texturas e aromas suaves. Alguns esquentam ou refrescam de leve.',
-    'Reaproximar do corpo e da parceria sem pressão de "ter que acontecer". Bom pra desejo baixo e pra tirar a rotina do automático.'),
-  G('excitacao','Vibradores líquidos (géis de excitação)','CUIDE',1,[50,100],'gota',['orgasmo','desejo','externo','facil','custo','pequeno','naosei','vergonha'],
-    'Gel que se aplica no clitóris e provoca formigamento e pulsação, sem aparelho nenhum. Daí o apelido de vibrador líquido.',
-    'Aumentar a sensibilidade sem comprar brinquedo, ou dar um empurrão discreto pra quem tem dificuldade de chegar ao orgasmo.'),
-  G('geis-anais','Géis anais','CUIDE',1,[40,80],'tubo',['anal','seguro'],
-    'Lubrificante mais espesso e duradouro, alguns com relaxante suave (sem anestesiar, porque dor é sinal importante).',
-    'Obrigatório em qualquer exploração anal. A região não lubrifica sozinha.'),
-  G('preservativos','Preservativos e higiene de brinquedos','CUIDE',1,[20,60],'camisinha',['seguro','junto','custo','anal'],
-    'Preservativos (com e sem látex) e limpadores próprios pra silicone.',
-    'Segurança e durabilidade. Brinquedo bem limpo dura anos e não irrita.'),
-  G('espelhos','Espelhos íntimos e guias de autoexploração','CONHECA',1,[30,80],'espelho',['corpo','vergonha','custo','pequeno','naosei'],
-    'Espelho com haste e guia ilustrado de anatomia, pra olhar o próprio corpo com calma e entender o que é o quê.',
-    'Quem conhece pouco o próprio corpo ou sente vergonha. O ponto de partida mais simples e mais transformador.'),
-  G('cartas','Cartas e jogos de exploração','CONHECA',1,[40,90],'cartas',['corpo','vergonha','orgasmo','facil','divertido','rotina','custo'],
-    'Baralhos com convites, perguntas e pequenos desafios, pra fazer sozinha ou a dois.',
-    'Transformar autoconhecimento em brincadeira. Bom pra quem trava na hora de começar.'),
-  G('livros','Livros e conteúdo educativo','CONHECA',1,[40,100],'livro',['corpo','desejo','delicado','vergonha','saude'],
-    'Livros e guias sobre prazer feminino, anatomia, desejo e ciclo hormonal, sem moralismo.',
-    'Entender antes de comprar. Pra quem quer o porquê das coisas e pra presentear sem constranger.'),
-  G('pelvico','Exercitadores pélvicos e pompoarismo','CONHECA',1,[80,200],'cones',['saude','posparto','dor','corpo','orgasmo','menopausa'],
-    'Cones, bolinhas e aparelhos com peso progressivo que treinam a musculatura do assoalho pélvico.',
-    'Pós-parto, escape de xixi, sensação de "frouxidão" e mais controle na hora do prazer.'),
-  G('dilatadores','Dilatadores vaginais','CONHECA',2,[120,250],'cones',['dor','tratamento','menopausa','seguro','penetracao'],
-    'Peças de silicone em tamanhos crescentes, pra acostumar a musculatura à penetração aos poucos.',
-    'Dor na penetração, vaginismo, atrofia na menopausa ou depois de tratamento. Ideal com fisioterapeuta pélvica.'),
-  G('sugadores','Sugadores clitorianos','VIBRE',1,[150,450],'sugador',['externo','orgasmo','naosei','silencioso','agua','facil','ousado'],
-    'Em vez de vibrar, criam ondas de pressão de ar em volta do clitóris, sem tocar direto. Sensação diferente de tudo, e mais rápida.',
-    'Dificuldade pra chegar ao orgasmo ou primeiro brinquedo. O mais indicado pra começar e o mais elogiado.',{tem:'vibext'}),
-  G('bullets','Bullets e vibradores pequenos','VIBRE',1,[60,150],'bullet',['externo','orgasmo','silencioso','pequeno','facil','custo','naosei','vergonha','agua'],
-    'Vibradores do tamanho de um batom, pra estímulo por fora. Discretos, silenciosos, simples.',
-    'Primeiro brinquedo, viagem, quem divide casa ou quer algo que caiba na bolsa.',{tem:'vibext'}),
-  G('penetracao','Vibradores de penetração','VIBRE',2,[150,350],'varinha',['interno','orgasmo','agua','penetracao'],
-    'Vibradores alongados, alguns com curva pro ponto G, pra estímulo por dentro.',
-    'Quem já sabe que gosta de estímulo interno ou quer explorar sensações diferentes.',{tem:'vibint'}),
-  G('rabbits','Vibradores duplos (rabbit)','VIBRE',2,[200,450],'rabbit',['ambos','interno','externo','orgasmo','agua','penetracao'],
-    'Duas pontas: uma por dentro e uma por fora, no clitóris, ao mesmo tempo.',
-    'Quem quer os dois estímulos juntos. Costuma ser o segundo brinquedo.',{tem:'vibint'}),
-  G('app','Vibradores com controle por app','VIBRE',3,[350,700],'app',['junto','rotina','silencioso','agua','ousado'],
-    'Brinquedos conectados ao celular: a parceria controla à distância, de outro cômodo ou de outra cidade.',
-    'Casais que moram longe, quem gosta de entregar o controle e quem já conhece bem o próprio prazer.'),
-  G('terapeuticos','Massageadores terapêuticos','VIBRE',1,[120,250],'varinha',['menopausa','dor','secura','externo','facil','seguro','tratamento'],
-    'Vibradores de baixa intensidade e formato suave, pensados pra estimular circulação e lubrificação natural.',
-    'Menopausa, secura, dor leve e quem está voltando à intimidade depois de um tempo parada.'),
-  G('dildos','Dildos e produtos sem vibração','DELA',2,[100,250],'varinha',['interno','seguro','penetracao','agua'],
-    'Peças de silicone sem motor, em formatos e tamanhos variados.',
-    'Quem prefere estímulo por dentro sem vibração ou quer combinar com um bullet por fora.',{tem:'vibint'}),
-  G('vestiveis','Vibradores vestíveis','DELA',2,[150,350],'casal',['externo','junto','rotina','silencioso','ousado'],
-    'Vibradores que ficam na calcinha, muitas vezes com controle remoto.',
-    'Prazer discreto fora de casa e brincadeira a dois em que a parceria controla.'),
-  G('aneis','Anéis penianos','DELE',1,[30,80],'anel',['dele','junto','custo','facil','pequeno'],
-    'Anel de silicone que se usa na base do pênis. Mantém a ereção mais firme por mais tempo.',
-    'Pra ele, mas o benefício é do casal. Simples e muito elogiado pra usar junto.',{tem:'casal'}),
-  G('aneis-vibra','Anéis vibratórios','DELE',1,[60,150],'anel',['dele','junto','rotina','facil','ousado','custo'],
-    'Anel com um pequeno motor que vibra encostado no clitóris durante a penetração.',
-    'Estímulo por fora pra ela durante a relação, sem mudar nada no que o casal já faz.',{tem:'casal'}),
-  G('masturbadores','Masturbadores e eggs','DELE',1,[30,250],'ovo',['dele','custo','pequeno','divertido'],
-    'Do egg descartável ao masturbador em silicone com texturas internas.',
-    'Presente pra ele, exploração solo e brincadeira a dois.'),
-  G('casal','Vibradores de casal','DAGENTE',2,[250,600],'casal',['junto','rotina','ousado','agua'],
-    'Formato em C ou U que fica dentro durante a penetração, vibrando pros dois ao mesmo tempo.',
-    'Prazer compartilhado na relação, sem parar pra trocar de brinquedo.',{tem:'casal'}),
-  G('sentidos','Kits sensoriais (venda, pluma, óleo)','DAGENTE',1,[80,180],'pena',['rotina','junto','delicado','ousado','facil','desejo'],
-    'Venda pros olhos, pluma, óleo de massagem e às vezes cartas com roteiros.',
-    'Tirar a relação da rotina com leveza. Primeiro passo pra casais que nunca usaram nada.'),
-  G('cartas-dois','Cartas e jogos a dois','DAGENTE',1,[40,90],'cartas',['rotina','junto','custo','facil','divertido','delicado','desejo'],
-    'Baralhos com perguntas, convites e desafios pra fazer em casal.',
-    'Conversar sobre desejo sem clima de reunião. Bom presente de chá ou aniversário de namoro.'),
-  G('remoto','Brinquedos com controle remoto','DAGENTE',2,[150,400],'app',['junto','rotina','ousado','silencioso'],
-    'Vibradores em que uma pessoa usa e a outra controla, com controle físico ou pelo celular.',
-    'Entregar o controle, jantar fora, viagem. Pra casais já à vontade com brinquedo.'),
-  G('plugs','Plugs anais de entrada','COOL',1,[50,120],'plug',['anal','pequeno','seguro','facil'],
-    'Plugs pequenos, de silicone, com base larga (a base larga é obrigatória, por segurança).',
-    'Primeira exploração anal. Sempre com gel anal, sem pressa e começando pelo menor.',{tem:'anal'}),
-  G('plugs-kit','Kits de plugs progressivos','COOL',2,[120,250],'plug',['anal','seguro'],
-    'Três ou mais plugs em tamanhos crescentes.','Quem já começou e quer avançar no próprio ritmo.',{tem:'anal'}),
-  G('plugs-vibra','Plugs e vibradores anais','COOL',3,[150,350],'plug',['anal','silencioso','agua'],
-    'Plugs com motor, alguns com controle remoto ou app.','Quem já tem intimidade com exploração anal e quer mais sensação.'),
-];
-const KITS={
-  primeira:G('kit-primeira','Kit Primeira Vez','MATCH',1,[150,250],'caixa',[],'Bullet silencioso, lubrificante e cartas de exploração, num só pacote.','Começar sem errar na combinação.'),
-  conforto:G('kit-conforto','Kit Conforto','MATCH',1,[120,200],'caixa',[],'Hidratante diário, lubrificante sem perfume e guia de uso.','Secura e desconforto resolvidos na base e na hora.'),
-  menopausa:G('kit-menopausa','Kit Menopausa','MATCH',1,[180,300],'caixa',[],'Hidratante, lubrificante e massageador terapêutico.','Cuidar e sentir prazer na mesma fase.'),
-  dois:G('kit-dois','Kit A Dois','MATCH',1,[300,550],'caixa',[],'Vibrador de casal, óleo de massagem e cartas a dois.','Reacender com produto, clima e conversa juntos.'),
-  auto:G('kit-auto','Kit Autoconhecimento','MATCH',1,[120,220],'caixa',[],'Espelho, livro e cartas de exploração.','Conhecer o próprio corpo com método e leveza.'),
-};
-const CONTEUDO={
-  tratamento:{t:'Intimidade durante e depois de um tratamento',d:'O que muda no corpo, o que ajuda e quando esperar.'},
-  dor:{t:'Dor na relação não é normal. O que pode estar por trás',d:'Causas comuns, o que aliviar em casa e o que investigar.'},
-  posparto:{t:'Voltar à intimidade depois do parto',d:'Secura, cicatriz, medo e tempo. Um passo de cada vez.'},
-  menopausa:{t:'Menopausa sem secura: hidratante e lubrificante explicados',d:'Qual usar todo dia, qual usar na hora, e por quê.'},
-  amamentacao:{t:'Por que amamentar deixa tudo mais seco',d:'O papel do estrogênio e como compensar sem remédio.'},
-  secura:{t:'Hidratante e lubrificante não são a mesma coisa',d:'Qual usar em cada momento, e o que evitar na fórmula.'},
-  orgasmo:{t:'Mapa do prazer: por onde começar',d:'Anatomia sem aula, com o que fazer na prática.'},
-  desejo:{t:'Desejo baixo: o que é hormônio, o que é rotina, o que é cansaço',d:'Um guia honesto, sem promessa milagrosa.'},
-  rotina:{t:'Reacender sem virar personagem',d:'Como propor novidade a dois sem constrangimento.'},
-  corpo:{t:'Guia de autoexploração em 7 dias',d:'Sete encontros curtos com o seu corpo, no seu ritmo.'},
-  anal:{t:'Primeira vez sem susto',d:'Gel certo, tamanho certo, tempo certo.'},
-  dele:{t:'Como propor sem constranger',d:'O anel como aliado do casal e outras conversas.'},
-  junto:{t:'Como usar um brinquedo com a parceria',d:'Do convite à primeira vez, com leveza.'},
-  primeiro:{t:'Como escolher o seu primeiro',d:'Silencioso, pequeno e simples. O resto vem depois.'},
-  saude:{t:'Assoalho pélvico explicado',d:'O que é, por que importa e como treinar em casa.'},
-  presente:{t:'Como presentear sem constranger',d:'O cartão, a embalagem e a frase certa.'},
+const D=(id,cat,nome,art,desc,slug)=>({id,cat,nome,art,desc,slug});
+const DEST={
+  'vib-externo':D('vib-externo','PRAZER','Vibradores para estímulo externo','sugador','Sugadores, pulsadores, bullets e outros vibradores pensados principalmente para estimular a parte externa da vulva e o clitóris.','prazer/vibradores/estimulo-externo'),
+  'vib-interno':D('vib-interno','PRAZER','Vibradores para estímulo interno','varinha','Vibradores com proposta principal de penetração e estímulo interno. Também podem ser usados por fora, se você preferir.','prazer/vibradores/estimulo-interno'),
+  'vib-peniano':D('vib-peniano','PRAZER','Vibradores para estímulo peniano','anel','Anéis penianos e produtos desenvolvidos para proporcionar diferentes estímulos e sensações na região peniana.','prazer/vibradores/estimulo-peniano'),
+  'vib-dois':D('vib-dois','PRAZER','Vibradores para usar a dois','casal','Vibradores pensados para incluir nas experiências a dois e acrescentar novas formas de estímulo para casais.','prazer/vibradores/para-usar-a-dois'),
+  'vib-comecar':D('vib-comecar','PRAZER','Vibradores para começar a explorar','bullet','Opções mais simples e versáteis para quem está começando a explorar o uso de vibradores e ainda não sabe bem por onde começar.','prazer/vibradores/para-comecar'),
+  'vib-sensacoes':D('vib-sensacoes','PRAZER','Vibradores para diferentes sensações','rabbit','Vibradores que proporcionam diferentes tipos de estímulo, estimulação dupla ou estimulação de outras áreas.','prazer/vibradores/diferentes-sensacoes'),
+  'gel-neutro':D('gel-neutro','PRAZER','Géis para sensações neutras','tubo','Lubrificação e deslizamento sem acrescentar efeitos térmicos ou outras sensações. O básico que combina com tudo.','prazer/geis/sensacoes-neutras'),
+  'gel-termico':D('gel-termico','PRAZER','Géis para sensações térmicas','termico','Produtos que promovem aquecimento, refrescância ou efeito quente e frio.','prazer/geis/sensacoes-termicas'),
+  'gel-agua':D('gel-agua','PRAZER','Géis para usar na água','gota','Opções pensadas para manter melhor o deslizamento quando há contato com água, no banho ou na banheira.','prazer/geis/para-usar-na-agua'),
+  'gel-resistente':D('gel-resistente','PRAZER','Géis de lubrificação mais resistente','relogio','Lubrificação mais duradoura, para quem busca maior resistência e menos necessidade de reaplicação.','prazer/geis/lubrificacao-resistente'),
+  'gel-retardar':D('gel-retardar','PRAZER','Géis para retardar','relogio','Produtos desenvolvidos para diminuir temporariamente a sensibilidade e ajudar a prolongar a experiência.','prazer/geis/para-retardar'),
+  'gel-estimulos':D('gel-estimulos','PRAZER','Géis para estímulos diferentes','faisca','Além do deslizamento, acrescentam diferentes sensações e estímulos à experiência, como formigamento e pulsação.','prazer/geis/estimulos-diferentes'),
+  'jogos':D('jogos','PRAZER','Jogos & Brincadeiras','cartas','Dados, jogos de cartas e tabuleiros de casal pra sair do automático, criar intimidade e trazer novas possibilidades de brincadeira.','prazer/jogos-e-brincadeiras'),
+  'massagem':D('massagem','PRAZER','Massagem & Experiências','vela','Velas, óleos de massagem e sais de banho pra explorar o toque, criar clima e tornar os momentos ainda mais gostosos.','prazer/massagem-e-experiencias'),
+  'aces-explorar':D('aces-explorar','PRAZER','Para explorar, masturbar & estimular','dildo','Masturbadores, pênis realísticos, dildos sem vibração e dilatadores penianos, pra explorar diferentes formas de masturbação, penetração e estímulo.','prazer/acessorios/explorar-masturbar-estimular'),
+  'aces-dominar':D('aces-dominar','PRAZER','Para dominar, fantasiar & brincar','venda','Vendas, chicotes, algemas e kits pra explorar fantasias, jogos de poder, restrição e outras brincadeiras consensuais.','prazer/acessorios/dominar-fantasiar-brincar'),
+  'higiene':D('higiene','CUIDADO','Higiene íntima','sabonete','Sabonetes e outros produtos desenvolvidos para a higiene e o cuidado da região íntima no dia a dia.','cuidado-intimo/higiene-intima'),
+  'cosmeticos':D('cosmeticos','CUIDADO','Cosméticos íntimos','frasco','Perfumes, óleos, cremes e séruns pensados para complementar os cuidados e trazer mais conforto e bem-estar para a região íntima.','cuidado-intimo/cosmeticos-intimos'),
+  'hidratacao':D('hidratacao','CUIDADO','Hidratação','frasco','Hidratantes e produtos de cuidado íntimo pra tratar a secura na base, não só na hora. Essencial na menopausa, na amamentação e no pós-parto.','cuidado-intimo/hidratacao'),
+  'pelvica':D('pelvica','CUIDADO','Saúde pélvica','cones','Produtos de assoalho pélvico, pompoarismo, dilatadores e materiais educativos, voltados ao conhecimento do próprio corpo e à musculatura pélvica.','cuidado-intimo/saude-pelvica'),
+  'anal-plugs':D('anal-plugs','ANAL','Plugs','plug','Plugs de diferentes tamanhos, formatos e propostas para explorar o prazer anal com conforto e segurança. Sempre com base larga.','anal/plugs'),
+  'anal-vib':D('anal-vib','ANAL','Vibradores & Estimuladores anais','plugvib','Produtos com vibração e outros tipos de estímulo pensados especialmente para a região anal.','anal/vibradores-e-estimuladores'),
+  'anal-gel':D('anal-gel','ANAL','Géis & Lubrificantes anais','tubo','Produtos que ajudam a proporcionar mais deslizamento e conforto durante as práticas anais. Indispensável: a região não lubrifica sozinha.','anal/geis-e-lubrificantes'),
+  'anal-higiene':D('anal-higiene','ANAL','Higiene anal','ducha','Produtos e acessórios desenvolvidos para a higiene da região anal, antes e depois.','anal/higiene-anal'),
+  'kits':D('kits','KITS','Kits','caixa','Combinações de produtos selecionadas para facilitar a escolha e ajudar você a criar diferentes experiências de prazer e cuidado.','kits'),
+  'sale':D('sale','SALE','Sale','etiqueta','Todos os produtos com condições especiais e preços promocionais. Boas descobertas, melhores preços.','sale'),
 };
 
 /* ============================================================
-   TELAS
+   PERGUNTAS
    ============================================================ */
 const M=a=>a.motivo||[];
-const isPresente=a=>M(a).includes('presente')||a.paraQuem==='presente';
-const temMotivo=(a,...ms)=>ms.some(m=>M(a).includes(m));
+const has=(a,k,v)=>(a[k]||[]).includes(v);
+const isPresente=a=>M(a).includes('presente');
+const vibPath=a=>M(a).some(m=>['vibrador','dois','comecar','curiosa'].includes(m));
+const analPath=a=>M(a).includes('anal')||has(a,'praticas','anal');
 const SCREENS=[
-  {id:'motivo',type:'multi',max:3,exclusive:['presente'],two:true,icons:true,q:'Como podemos <i>te ajudar</i> hoje?',sub:'Pode marcar até três. Não precisa ter certeza de nada.',opts:[
-    ['conforto','Quero mais conforto','Secura, dor ou desconforto na hora da relação. Primeiro o corpo, depois o resto.'],
-    ['conhecer','Quero conhecer melhor meu corpo','Descobrir do que eu gosto, sozinha, sem pressa e sem plateia.'],
-    ['prazer','Quero explorar mais prazer','Chegar ao orgasmo com mais facilidade, ou de um jeito que eu ainda não conheço.'],
-    ['dois','Quero reacender a relação a dois','Sair da rotina e trazer novidade pro casal, sem virar personagem.'],
-    ['saude','Quero cuidar da minha saúde íntima','Assoalho pélvico, pós-parto, menopausa. Cuidado que também é prazer.'],
-    ['curiosa','Só curiosa, quero dar uma olhada','Sem objetivo definido. Só entender o que existe e o que faz sentido.'],
-    ['presente','Quero um presente','Pra parceria, amiga ou casal. Eu pergunto o resto depois.'],
+  {id:'motivo',type:'multi',max:3,icons:true,exclusive:['presente'],q:'Como podemos <i>te ajudar</i> hoje?',sub:'Pode marcar até três. Não precisa ter certeza de nada.',opts:[
+    ['vibrador','Quero um vibrador','Pra mim, pra começar ou pra trocar o que já tenho.'],
+    ['dois','Quero algo pra usar a dois','Vibradores, jogos e experiências pro casal.'],
+    ['cuidado','Quero cuidar da região íntima','Conforto, hidratação, higiene e saúde pélvica.'],
+    ['anal','Quero explorar o prazer anal','Com calma, do jeito certo e com os produtos certos.'],
+    ['brincar','Quero sair da rotina','Massagem, jogos, fantasias e novas sensações.'],
+    ['comecar','Nunca comprei nada e quero começar','Me mostra o caminho mais simples.'],
+    ['presente','Quero um presente','Pra parceria, amiga ou casal. Eu te ajudo a acertar.'],
   ]},
-  {id:'paraQuem',type:'single',q:'Pra <i>quem</i> é?',when:a=>!M(a).includes('presente'),opts:[
-    ['mim','Só pra mim','Uso individual. O que eu escolher fica entre mim e eu.'],
-    ['parceria','Pra mim e pra quem divide a cama comigo','Pensando em usar a dois, ou em algo que a outra pessoa também sinta.'],
-    ['presente','Pra outra pessoa, é um presente','Vou presentear alguém e quero acertar.'],
+  {id:'paraQuem',type:'single',q:'Pra <i>quem</i> é?',when:a=>!isPresente(a),opts:[
+    ['mim','Só pra mim','Uso individual, no meu ritmo.'],
+    ['nos','Pra mim e pra quem divide a cama comigo','Pensando em algo que a outra pessoa também sinta ou participe.'],
   ]},
-  {id:'parceria',type:'single',q:'E essa pessoa é...',when:a=>a.paraQuem==='parceria',opts:[
+  {id:'parceria',type:'single',q:'E essa pessoa é...',when:a=>a.paraQuem==='nos',opts:[
     ['mulher','Uma mulher',''],['homem','Um homem',''],['nd','Prefiro não dizer',''],
   ]},
-  {id:'presenteQuem',type:'single',q:'Pra quem é o <i>presente</i>?',when:isPresente,two:true,opts:[
+  // presente
+  {id:'presQuem',type:'single',two:true,q:'Pra quem é o <i>presente</i>?',when:isPresente,opts:[
     ['parceira','Minha parceira',''],['parceiro','Meu parceiro',''],['amiga','Uma amiga',''],['casal','Um casal','Chá, casamento, aniversário de namoro.'],
   ]},
-  {id:'presenteClima',type:'single',q:'Qual o <i>clima</i> do presente?',when:isPresente,opts:[
-    ['delicado','Delicado e de cuidado','Óleos, massagem, livro. Nada que vibre.'],['divertido','Divertido e leve','Cartas, jogos, kit com humor.'],['ousado','Ousado, mas com classe','Algo pra usar a dois, com elegância.'],
+  {id:'presClima',type:'single',q:'Qual o <i>clima</i> do presente?',when:isPresente,opts:[
+    ['delicado','Delicado e de cuidado','Velas, óleos, cosméticos. Nada que vibre.'],
+    ['divertido','Divertido e leve','Jogos, cartas, dados.'],
+    ['ousado','Ousado, mas com classe','Algo pra usar a dois ou uma fantasia.'],
+    ['completo','Um kit completo','Combinação pronta, sem risco de errar.'],
   ]},
-  {id:'presenteNivel',type:'single',q:'Essa pessoa já tem intimidade com esse tipo de produto?',when:isPresente,opts:[
-    ['1','Acho que nunca usou',''],['2','Já tem algum',''],['0','Não sei','Vou considerar iniciante, por segurança.'],
+  // vibrador
+  {id:'vibExp',type:'single',q:'Qual é a sua experiência com <i>vibradores</i>?',sub:'Não tem resposta certa. Isso muda o que faz sentido indicar.',when:a=>!isPresente(a)&&vibPath(a),opts:[
+    ['nunca','Nunca usei um','Quero começar pelo mais simples e versátil.'],
+    ['naogostei','Já experimentei e não era bem aquilo','Talvez o tipo de estímulo não era o meu.'],
+    ['tenho','Já tenho um e quero outro tipo','Quero explorar uma sensação diferente da que já conheço.'],
+    ['sei','Sei bem do que gosto','Quero algo mais específico ou mais potente.'],
   ]},
-  {id:'experiencia',type:'single',q:'Como você se sente em relação a <i>produtos íntimos</i>?',sub:'Não tem resposta certa. Isso só muda o quanto a gente explica e o que indica.',when:a=>!isPresente(a),opts:[
-    ['1','Totalmente iniciante','Nunca entrei numa loja, nem física nem online, e não sei o nome das coisas.'],
-    ['2','Curiosa','Já pesquisei ou vi por aí, talvez já tenha falado com uma amiga, mas nunca comprei.'],
-    ['3','Tenho alguma experiência','Já usei ou tenho um ou dois produtos. Sei mais ou menos o que gosto.'],
-    ['4','À vontade','Sei bem do que gosto e quero ir além do básico.'],
+  {id:'estimulo',type:'multi',two:true,exclusive:['naosei'],q:'Que tipo de <i>estímulo</i> você gosta ou quer experimentar?',sub:'Pode marcar mais de um. As explicações estão aí pra quem nunca pensou nisso.',when:a=>!isPresente(a)&&vibPath(a),opts:[
+    ['externo','Por fora','No clitóris, a parte mais sensível, na frente e acima da entrada. É por onde a maioria das mulheres chega ao orgasmo.'],
+    ['interno','Por dentro','Na vagina, com penetração. Alguns alcançam o ponto G, uma área mais sensível na parede da frente.'],
+    ['ambos','Os dois ao mesmo tempo','Por fora e por dentro juntos, como nos vibradores de duas pontas.'],
+    ['succao','Sucção ou pulsação de ar','Em vez de vibrar, criam ondas de pressão em volta do clitóris, sem encostar direto. Sensação diferente e rápida.'],
+    ['peniano','Estímulo peniano','Anéis e produtos pensados pro corpo masculino, muitos bons pra usar a dois.'],
+    ['naosei','Ainda não sei','Me mostra o mais simples pra começar que eu descubro no caminho.'],
   ]},
-  {id:'tem',type:'multi',two:true,exclusive:['nenhum'],q:'O que você <i>já tem</i> em casa?',sub:'Assim a gente não indica o que você já tem, e sugere o que combina com o que você usa.',when:a=>!isPresente(a),opts:[
-    ['nenhum','Nada ainda','Tudo por aqui seria novidade.'],
-    ['lub','Lubrificante ou hidratante','Qualquer gel que você use na hora ou no dia a dia.'],
-    ['vibext','Vibrador de uso por fora','Bullet, sugador, qualquer um que se usa no clitóris, sem penetração.'],
-    ['vibint','Vibrador ou dildo de uso por dentro','Algo que se usa com penetração.'],
-    ['casal','Algo pra usar a dois','Anel, vibrador de casal, jogos, óleo de massagem.'],
-    ['anal','Plug ou produto anal',''],
-    ['outros','Outra coisa','Vale tudo. A gente leva em conta do mesmo jeito.'],
-  ]},
-  {id:'corpo',type:'multi',two:true,exclusive:['nada'],q:'Tem alguma situação do <i>corpo ou da vida</i> que a gente deve levar em conta?',sub:'Aqui é sobre o que acontece com você hoje, não sobre o que você quer. Pode marcar várias. Ninguém está avaliando.',when:a=>!isPresente(a),opts:[
-    ['secura','Secura ou falta de lubrificação','Sensação de atrito ou de "não molhar" mesmo com vontade.'],
-    ['dor','Dor ou desconforto na penetração','Ardência, aperto ou dor na entrada ou no fundo.'],
-    ['orgasmo','Dificuldade pra chegar ao orgasmo','Sozinha, a dois ou nas duas situações.'],
-    ['desejo','Pouca vontade, desejo baixo','A cabeça até quer, mas o corpo não acompanha. Ou o contrário.'],
-    ['vergonha','Vergonha ou ansiedade na hora','Trava, pensa demais, não consegue relaxar.'],
-    ['posparto','Gravidez ou pós-parto','Até um ano depois do parto conta aqui.'],
-    ['amamentacao','Amamentação','A queda de hormônio deixa tudo mais seco. É esperado.'],
-    ['menopausa','Perimenopausa ou menopausa','Calor, secura, mudança no desejo ou na sensibilidade.'],
-    ['medicacao','Uso anticoncepcional ou antidepressivo','Alguns remédios mexem na lubrificação e no desejo.'],
-    ['tratamento','Tratamento de saúde','Cirurgia, quimio, radioterapia ou hormonal. Aqui a gente só indica o mais suave.'],
-    ['nada','Nada disso, tá tudo bem por aqui',''],
-  ]},
-  {id:'explorar',type:'multi',two:true,exclusive:['naosei'],q:'O que você tem vontade de <i>explorar</i>?',sub:'Pode marcar mais de uma. Se não souber, a última opção é pra você, sem problema nenhum.',
-    when:a=>!isPresente(a)&&(temMotivo(a,'prazer','dois','curiosa')||(a.corpo||[]).includes('orgasmo')),opts:[
-    ['externo','Estímulo por fora','No clitóris, a parte mais sensível do corpo, que fica na frente, em cima da entrada. É por onde a maioria das mulheres chega ao orgasmo.'],
-    ['interno','Estímulo por dentro','Na vagina, com penetração. Alguns produtos alcançam o ponto G, uma área mais sensível na parede da frente, uns dedos pra dentro.'],
-    ['ambos','Os dois ao mesmo tempo','Por fora e por dentro juntos, como fazem os vibradores de duas pontas.'],
-    ['anal','Prazer anal','Exploração da região anal, com produtos pequenos e gel próprio. Vale pra qualquer pessoa e não define nada sobre você.'],
-    ['dele','Prazer dele','Produtos pensados pro corpo masculino: anéis, masturbadores. Muitos são bons pra usar junto.'],
-    ['junto','Algo pra usar a dois','Produtos que os dois sentem ao mesmo tempo, ou que um controla e o outro usa.'],
-    ['naosei','Ainda não sei','Me mostra o mais simples pra começar, que eu descubro no caminho.'],
-  ]},
-  {id:'prefs',type:'multi',max:3,two:true,q:'O que faz <i>diferença</i> pra você num produto?',sub:'Escolha até três.',opts:[
-    ['silencioso','Discreto e silencioso','Pra quem divide casa, parede ou quarto.'],
-    ['facil','Fácil de usar','Um botão, sem app, sem manual.'],
+  {id:'prio',type:'multi',max:3,two:true,q:'O que é <i>mais importante</i> pra você num produto?',sub:'Escolha até três.',when:a=>!isPresente(a)&&(vibPath(a)||analPath(a)),opts:[
+    ['silencioso','Ser silencioso e discreto','Divido casa, parede ou quarto.'],
     ['custo','Bom custo-benefício','Quero começar sem gastar muito.'],
-    ['seguro','Material seguro, sem cheiro','Silicone médico, sem ftalato, sem perfume forte.'],
-    ['agua',"À prova d'água e recarregável",'Pra usar no banho e não ficar trocando pilha.'],
-    ['pequeno','Tamanho pequeno','Cabe na bolsa, na gaveta, e ninguém percebe.'],
+    ['agua','À prova d\'água e recarregável','Pra usar no banho e não trocar pilha.'],
+    ['pequeno','Tamanho pequeno','Cabe na bolsa, na gaveta, ninguém percebe.'],
+    ['controle','Controle a dois ou por app','A parceria controla, de perto ou de longe.'],
+    ['potente','Potência e variedade de modos','Quero intensidade e opções.'],
+  ]},
+  // práticas
+  {id:'praticas',type:'multi',two:true,exclusive:['nada'],q:'Tem alguma dessas <i>experiências</i> que você quer incluir?',sub:'Pode marcar várias. Tudo aqui é sobre vontade, não sobre obrigação.',when:a=>!isPresente(a),opts:[
+    ['massagem','Massagem e clima','Velas, óleos, sais de banho. Começar pelo toque.'],
+    ['jogos','Jogos e brincadeiras','Cartas, dados, tabuleiro. Sair do automático rindo.'],
+    ['dominar','Fantasias e jogos de poder','Vendas, algemas, chicotes. Sempre consensual e combinado.'],
+    ['explorar','Masturbação e penetração sem vibração','Dildos, masturbadores, pênis realísticos.'],
+    ['anal','Prazer anal','Com produtos próprios e gel específico.'],
+    ['nada','Nada disso por agora',''],
+  ]},
+  {id:'analExp',type:'single',q:'E a sua experiência com <i>prazer anal</i>?',when:a=>!isPresente(a)&&analPath(a),opts:[
+    ['nunca','Nunca experimentei','Quero começar pelo menor, sem pressa e com segurança.'],
+    ['pouca','Já experimentei um pouco','Quero evoluir com conforto.'],
+    ['sim','Já tenho intimidade','Quero mais sensação e variedade.'],
+  ]},
+  // gel
+  {id:'gel',type:'multi',two:true,exclusive:['nao'],q:'Que tipo de <i>gel ou lubrificante</i> faria sentido pra você?',sub:'Todo vibrador pede um, e eles mudam muito a experiência. Pode marcar mais de um.',when:a=>!isPresente(a),opts:[
+    ['neutro','Neutro, só pra deslizar melhor','Sem cheiro, sem efeito. O básico que combina com tudo.'],
+    ['termico','Com sensação térmica','Esquenta, refresca ou faz quente e frio.'],
+    ['agua','Pra usar no banho','Mantém o deslizamento mesmo com água.'],
+    ['resistente','Mais duradouro','Pra não ficar reaplicando.'],
+    ['retardar','Pra prolongar a relação','Diminui um pouco a sensibilidade dele por um tempo.'],
+    ['estimulos','Com formigamento ou pulsação','Acrescenta sensação além do deslizamento.'],
+    ['nao','Não preciso agora',''],
+  ]},
+  // cuidado
+  {id:'cuidado',type:'multi',two:true,exclusive:['nada'],q:'E no <i>cuidado íntimo</i>, tem algo que você gostaria de incluir?',sub:'Aqui é sobre o corpo e a rotina. Pode marcar várias. Ninguém está avaliando.',when:a=>!isPresente(a),opts:[
+    ['secura','Secura ou falta de lubrificação','Sensação de atrito mesmo com vontade.'],
+    ['dor','Dor ou desconforto na penetração','Ardência, aperto ou dor na entrada ou no fundo.'],
+    ['higiene','Higiene íntima do dia a dia','Sabonetes e produtos próprios pra região.'],
+    ['cosmeticos','Cosméticos íntimos','Perfumes, óleos, cremes, séruns.'],
+    ['pelvico','Fortalecer o assoalho pélvico','Pompoarismo, pós-parto, escape de xixi, mais controle no prazer.'],
+    ['fase','Menopausa, amamentação ou pós-parto','Fases em que a secura é esperada e tem solução.'],
+    ['nada','Nada por agora',''],
   ]},
   {id:'resultado',type:'result'},
 ];
 
 /* ============================================================
-   MOTOR
+   MOTOR: cada resposta soma pontos nas subcategorias do site
    ============================================================ */
-const FASES=['posparto','amamentacao','menopausa','medicacao','tratamento'];
-// wanted: lista de tags; PESO diz quanto cada tag vale (situação do corpo pesa mais que preferência)
-let PESO={};
-function rank(list,wanted,nivel,excl=[],owned=[]){
-  const w=new Set(wanted);
-  return list.filter(g=>g.nivel<=nivel&&!excl.some(t=>g.tags.includes(t)))
-    .map(g=>{const own=g.tem&&owned.includes(g.tem); const raw=g.tags.reduce((n,t)=>n+(w.has(t)?(PESO[t]||1):0),0); return {g,own,s:own?raw/2:raw};})
-    .filter(x=>x.s>0||wanted.length===0)
-    .sort((x,y)=>(y.s-x.s)||(x.own-y.own)||(x.g.preco[0]-y.g.preco[0]));
-}
-function why(g,wanted){
-  const W={secura:'ajuda na secura que você marcou',dor:'pensado pra desconforto na penetração',orgasmo:'o caminho mais curto pro orgasmo',
-    desejo:'pra reaproximar do corpo sem pressão',rotina:'novidade a dois sem virar personagem',corpo:'pra conhecer seu corpo com calma',
-    vergonha:'discreto, pra começar sem ansiedade',externo:'estímulo por fora, como você pediu',interno:'estímulo por dentro, como você pediu',ambos:'os dois estímulos juntos',
-    anal:'feito pra isso, com segurança',dele:'pensado pra ele, e bom pra usar a dois',junto:'pensado pra usar a dois',naosei:'o mais simples pra começar',
-    menopausa:'pensado pra menopausa',posparto:'seguro pro pós-parto',amamentacao:'compensa a secura da amamentação',tratamento:'suave e seguro durante o tratamento',medicacao:'alivia o efeito da medicação',
-    saude:'treino do assoalho pélvico',silencioso:'silencioso de verdade',facil:'simples, sem manual',custo:'melhor custo-benefício do grupo',seguro:'material seguro, sem cheiro',agua:"à prova d'água",pequeno:'pequeno e discreto',
-    delicado:'delicado, de cuidado',divertido:'leve e divertido',ousado:'ousado com classe'};
-  const hit=wanted.find(t=>W[t]&&g.tags.includes(t));
-  return hit?W[hit].replace(/^./,c=>c.toUpperCase()):'Um bom lugar pra começar';
-}
-const NIVEL={1:1,2:1,3:2,4:3};
-
 function montar(a){
-  const R={principal:null,ordem:[],grupos:[],kit:null,conteudo:null,alerta:null,abertura:'',sub:'',pontos:{}};
-  const motivos=M(a), corpo=a.corpo||[], exp=a.explorar||[], prefs=a.prefs||[], owned=(a.tem||[]).filter(x=>x!=='nenhum');
-  const fase=corpo.filter(x=>FASES.includes(x)), inc=corpo.filter(x=>!FASES.includes(x)&&x!=='nada');
-  const extra=[]; if(motivos.includes('conhecer')) extra.push('corpo'); if(motivos.includes('dois')) extra.push('rotina','junto'); if(motivos.includes('saude')) extra.push('saude');
-  const wanted=[...fase,...inc,...exp,...extra,...prefs];
-  PESO={}; fase.forEach(t=>PESO[t]=3); inc.forEach(t=>PESO[t]=2); exp.forEach(t=>PESO[t]=2); extra.forEach(t=>PESO[t]=1); prefs.forEach(t=>PESO[t]=.5);
+  const P={}; const add=(id,n)=>{P[id]=(P[id]||0)+n};
+  const m=M(a), est=a.estimulo||[], prio=a.prio||[], pr=a.praticas||[], gel=a.gel||[], cu=a.cuidado||[];
+  const why={};
+  const W=(id,t)=>{if(!why[id]) why[id]=t};
 
   if(isPresente(a)){
-    const q=a.presenteQuem,c=a.presenteClima,nivel=Math.max(+a.presenteNivel||1,c==='ousado'?2:1);
-    R.principal=c==='delicado'?'CUIDE':c==='divertido'?'CONHECA':'DAGENTE';
-    const vit=q==='parceira'?'DELA':q==='parceiro'?'DELE':q==='amiga'?'CONHECA':'DAGENTE';
-    const w=[c,q==='parceiro'?'dele':'','junto','rotina',...prefs].filter(Boolean);
-    const p1=rank(GRUPOS.filter(g=>g.cat===R.principal),w,nivel).slice(0,3);
-    const p2=rank(GRUPOS.filter(g=>g.cat===vit&&!p1.some(x=>x.g.id===g.id)),w,nivel).slice(0,2);
-    R.grupos=[...p1,...p2].map(x=>({...x.g,why:why(x.g,w)}));
-    if(!R.grupos.some(g=>g.id==='lubrificantes')&&R.grupos.some(g=>['VIBRE','DAGENTE','DELE','DELA'].includes(g.cat))) R.grupos.push({...GRUPOS.find(g=>g.id==='lubrificantes'),why:'Todo brinquedo pede um. Vai junto no presente.'});
-    R.kit=q==='casal'||c==='ousado'?KITS.dois:c==='divertido'?KITS.primeira:q==='amiga'?KITS.auto:KITS.conforto;
-    R.conteudo=CONTEUDO.presente;
-    const quem={parceira:'sua parceira',parceiro:'seu parceiro',amiga:'sua amiga',casal:'o casal'}[q];
-    R.abertura=`Um presente ${c==='delicado'?'de cuidado':c==='divertido'?'leve e divertido':'ousado com classe'} pra ${quem}.`;
-    R.sub='Toda seleção de presente vai com um cartão com QR pra quem recebe montar o próprio guia.';
-    R.ordem=[...new Set([R.principal,vit])];
-    return R;
+    const q=a.presQuem,c=a.presClima;
+    add('kits',4); W('kits','Combinação pronta, sem risco de errar');
+    if(c==='delicado'){add('massagem',5);W('massagem','Clima e cuidado, nada que vibre');add('cosmeticos',3);W('cosmeticos','Presente delicado, de cuidado');}
+    if(c==='divertido'){add('jogos',5);W('jogos','Leve, divertido e quebra o gelo');add('massagem',2);}
+    if(c==='ousado'){add('vib-dois',5);W('vib-dois','Ousado, elegante e pra usar junto');add('aces-dominar',3);W('aces-dominar','Uma fantasia com classe');add('gel-termico',2);}
+    if(c==='completo'){add('kits',4);add('vib-comecar',2);}
+    if(q==='parceiro'){add('vib-peniano',3);W('vib-peniano','Pensado pra ele, e bom a dois');}
+    if(q==='amiga'){add('cosmeticos',2);add('vib-comecar',2);W('vib-comecar','Simples e versátil pra quem nunca usou');}
+    if(q==='casal'){add('vib-dois',2);add('jogos',2);}
+    return finalizar(a,P,why,`Um presente ${c==='delicado'?'de cuidado':c==='divertido'?'leve e divertido':c==='ousado'?'ousado com classe':'completo'} pra ${({parceira:'sua parceira',parceiro:'seu parceiro',amiga:'sua amiga',casal:'o casal'})[q]}.`,'Pra presentear, a gente aponta as categorias com embalagem e proposta que não erram.');
   }
 
-  const pts={CONHECA:0,CUIDE:0,VIBRE:0,DELA:0,DELE:0,DAGENTE:0,COOL:0};
-  const add=(c,n)=>{pts[c]+=n};
-  motivos.forEach(m=>({conforto:()=>add('CUIDE',3),conhecer:()=>add('CONHECA',3),prazer:()=>add('VIBRE',3),dois:()=>add('DAGENTE',3),
-    saude:()=>{add('CONHECA',3);add('CUIDE',2)},curiosa:()=>{}})[m]());
-  inc.forEach(t=>({secura:()=>add('CUIDE',2),dor:()=>add('CUIDE',2),orgasmo:()=>{add('VIBRE',2);add('CONHECA',1)},desejo:()=>{add('CUIDE',2);add('CONHECA',1)},
-    vergonha:()=>add('CONHECA',2)})[t]());
-  fase.forEach(()=>add('CUIDE',1));
-  exp.forEach(t=>({externo:()=>add('VIBRE',2),interno:()=>add('VIBRE',2),ambos:()=>add('VIBRE',2),anal:()=>add('COOL',2),dele:()=>add('DELE',2),
-    junto:()=>add('DAGENTE',2),naosei:()=>add('VIBRE',1)})[t]());
-  if(a.paraQuem==='mim') add('DELA',1);
-  if(a.paraQuem==='parceria'){add('DAGENTE',1); if(a.parceria==='mulher') add('DELA',1); if(a.parceria==='homem') add('DELE',1);}
-  R.pontos=pts;
+  // motivo
+  if(m.includes('vibrador')) add('vib-comecar',1);
+  if(m.includes('dois')){add('vib-dois',3);W('vib-dois','Pra sentir junto, como você pediu');add('jogos',1);add('massagem',1);}
+  if(m.includes('cuidado')){add('hidratacao',2);add('higiene',1);add('cosmeticos',1);}
+  if(m.includes('anal')){add('anal-plugs',2);add('anal-gel',2);}
+  if(m.includes('brincar')){add('massagem',2);add('jogos',2);add('aces-dominar',1);}
+  if(m.includes('comecar')){add('vib-comecar',3);W('vib-comecar','Simples e versátil pra começar');add('gel-neutro',1);add('kits',1);}
+  if(m.includes('curiosa')){add('vib-comecar',2);}
+  if(a.paraQuem==='nos'){add('vib-dois',2);W('vib-dois','Pra usar a dois'); if(a.parceria==='homem'){add('vib-peniano',2);W('vib-peniano','Pensado pra ele, e bom a dois');}}
 
-  let ordem=Object.entries(pts).sort((x,y)=>y[1]-x[1]).map(x=>x[0]);
-  if(!exp.includes('anal')) ordem=ordem.filter(c=>c!=='COOL');
-  if(inc.includes('dor')) ordem=['CUIDE',...ordem.filter(c=>c!=='CUIDE')];
-  const soCuriosa=motivos.length===1&&motivos[0]==='curiosa'&&pts.VIBRE===0&&pts.CONHECA===0&&pts.CUIDE===0;
-  if(soCuriosa) ordem=['VIBRE','CONHECA',...ordem.filter(c=>c!=='VIBRE'&&c!=='CONHECA')];
-  ordem=ordem.filter((c,i)=>i===0||(soCuriosa&&i<2)||(i<2?pts[c]>0:pts[c]>=2));
-  R.ordem=ordem; R.principal=ordem[0];
+  // experiência com vibrador
+  const nivel=vibPath(a)?(a.vibExp||'nunca'):'none';
+  if(nivel==='nunca'){add('vib-comecar',3);W('vib-comecar','Você nunca usou: aqui estão os mais simples e versáteis');}
+  if(nivel==='naogostei'){add('vib-sensacoes',1);add('vib-externo',1);}
+  if(nivel==='tenho'){add('vib-sensacoes',2);W('vib-sensacoes','Uma sensação diferente da que você já conhece');}
+  if(nivel==='sei'){add('vib-sensacoes',1);}
 
-  let nivel=NIVEL[a.experiencia]||1; if(owned.length) nivel=Math.max(nivel,2);
-  const excl=[]; if(fase.includes('tratamento')) excl.push('penetracao'); if(inc.includes('dor')&&nivel<2) excl.push('penetracao');
-  const base=wanted.length?wanted:['naosei','facil'];
-  const usados=new Set();
-  const pega=(cat,n)=>{
-    let r=rank(GRUPOS.filter(g=>g.cat===cat&&!usados.has(g.id)),base,nivel,excl,owned);
-    if(!r.length) r=rank(GRUPOS.filter(g=>g.cat===cat&&!usados.has(g.id)),[],nivel,excl,owned);
-    return r.slice(0,n).map(x=>{usados.add(x.g.id); return {...x.g,own:x.own,why:x.own?'Você já tem algo assim. Fica como referência.':why(x.g,base)};});
-  };
-  const cotas=[3,2,1,1];
-  ordem.slice(0,4).forEach((c,i)=>{R.grupos.push(...pega(c,cotas[i]));});
-  const temBrinquedo=R.grupos.some(g=>['VIBRE','DELA','DAGENTE','DELE','COOL'].includes(g.cat)&&!g.own);
-  const temLub=R.grupos.some(g=>g.tem==='lub');
-  if(temBrinquedo&&!temLub){
-    const id=fase.length?'sem-perfume':'lubrificantes'; const g=GRUPOS.find(x=>x.id===id);
-    R.grupos.push({...g,own:owned.includes('lub'),why:owned.includes('lub')?'Você já tem. Só lembrando que brinquedo pede lubrificante.':'Todo vibrador pede um. Vai junto.'});
+  // estímulo
+  if(est.includes('externo')){add('vib-externo',3);W('vib-externo','Estímulo por fora, como você pediu');}
+  if(est.includes('succao')){add('vib-externo',3);W('vib-externo','Os sugadores e pulsadores de ar ficam aqui');}
+  if(est.includes('interno')){add('vib-interno',3);W('vib-interno','Estímulo por dentro, como você pediu');}
+  if(est.includes('ambos')){add('vib-sensacoes',3);W('vib-sensacoes','Estimulação dupla, por fora e por dentro ao mesmo tempo');}
+  if(est.includes('peniano')){add('vib-peniano',3);W('vib-peniano','Estímulo peniano, como você marcou');}
+  if(est.includes('naosei')){add('vib-comecar',3);W('vib-comecar','Pra descobrir no caminho, começando pelo simples');}
+  // iniciante não vai direto pra interno
+  if(nivel==='nunca'&&P['vib-interno']) P['vib-interno']-=1;
+
+  // prioridades (afetam o "por quê" e alguns destinos)
+  if(prio.includes('controle')){add('vib-dois',2);W('vib-dois','Com controle a dois ou por app');}
+  if(prio.includes('silencioso')){add('vib-externo',1);add('vib-comecar',1);}
+  if(prio.includes('pequeno')){add('vib-comecar',1);add('vib-externo',1);}
+  if(prio.includes('potente')){add('vib-sensacoes',1);add('vib-interno',1);}
+  if(prio.includes('custo')){add('sale',2);W('sale','Você pediu custo-benefício: olha as condições especiais');add('kits',1);}
+
+  // práticas
+  if(pr.includes('massagem')){add('massagem',3);W('massagem','Começar pelo toque e pelo clima');}
+  if(pr.includes('jogos')){add('jogos',3);W('jogos','Sair do automático rindo');}
+  if(pr.includes('dominar')){add('aces-dominar',3);W('aces-dominar','Fantasias e jogos de poder, sempre consensuais');}
+  if(pr.includes('explorar')){add('aces-explorar',3);W('aces-explorar','Masturbação e penetração sem vibração');}
+  if(pr.includes('anal')){add('anal-plugs',2);add('anal-gel',2);}
+
+  // anal
+  if(analPath(a)){
+    const ax=a.analExp||'nunca';
+    if(ax==='nunca'){add('anal-plugs',3);W('anal-plugs','Começar pelo menor, com base larga e sem pressa');add('anal-gel',3);W('anal-gel','Indispensável: a região não lubrifica sozinha');add('anal-higiene',1);}
+    if(ax==='pouca'){add('anal-plugs',2);W('anal-plugs','Evoluir de tamanho com conforto');add('anal-vib',2);W('anal-vib','Vibração pensada pra região anal');add('anal-gel',2);W('anal-gel','Indispensável: a região não lubrifica sozinha');}
+    if(ax==='sim'){add('anal-vib',3);W('anal-vib','Mais sensação e variedade pra quem já tem intimidade');add('anal-plugs',1);add('anal-gel',1);W('anal-gel','Indispensável, mesmo pra quem já tem prática');}
   }
-  if((inc.includes('secura')||fase.length)&&!R.grupos.some(g=>g.id==='hidratantes')){
-    const g=GRUPOS.find(x=>x.id==='hidratantes'); const own=owned.includes('lub');
-    R.grupos.push({...g,own,why:own?'Se o que você tem é lubrificante, o hidratante é o outro lado da secura.':'Resolve a secura na base, não só na hora.'});
-  }
-  if(exp.includes('anal')&&!R.grupos.some(g=>g.id==='geis-anais')) R.grupos.push({...GRUPOS.find(x=>x.id==='geis-anais'),why:'Obrigatório pra explorar anal com conforto.'});
-  R.grupos=R.grupos.slice(0,8);
 
-  if(fase.includes('menopausa')||fase.includes('amamentacao')) R.kit=KITS.menopausa;
-  else if(motivos.includes('conforto')||inc.includes('dor')||inc.includes('secura')) R.kit=KITS.conforto;
-  else if(motivos.includes('dois')||exp.includes('junto')) R.kit=KITS.dois;
-  else if(motivos.includes('conhecer')||motivos.includes('saude')) R.kit=KITS.auto;
-  else if(nivel===1||exp.includes('naosei')||motivos.includes('curiosa')) R.kit=KITS.primeira;
-  const ordemConteudo=['tratamento','dor','posparto','menopausa','amamentacao','secura','orgasmo','desejo','vergonha','anal','dele','junto'];
-  const chave=ordemConteudo.find(k=>fase.includes(k)||inc.includes(k)||exp.includes(k));
-  R.conteudo=chave?CONTEUDO[chave==='vergonha'?'corpo':chave]:(motivos.includes('saude')?CONTEUDO.saude:motivos.includes('dois')?CONTEUDO.rotina:motivos.includes('conhecer')?CONTEUDO.corpo:CONTEUDO.primeiro);
-  const criticas=['posparto','menopausa','tratamento'];
-  if(inc.includes('dor')&&(fase.some(f=>criticas.includes(f))||nivel===1)) R.alerta='dor';
-  else if(fase.includes('tratamento')) R.alerta='tratamento';
-  R.abertura=abertura(motivos,fase,inc);
-  R.sub=nivel===1?'Como é sua primeira vez, tudo aqui é simples de começar e vem explicado.':'Montamos com base no que você contou. Nada aqui é obrigação.';
-  return R;
+  // gel
+  const GM={neutro:['gel-neutro','Só deslizar melhor, combina com tudo'],termico:['gel-termico','Quente, frio ou os dois'],agua:['gel-agua','Mantém o deslizamento no banho'],resistente:['gel-resistente','Dura mais, sem reaplicar'],retardar:['gel-retardar','Pra prolongar a relação'],estimulos:['gel-estimulos','Formigamento e pulsação além do deslizamento']};
+  gel.forEach(g=>{if(GM[g]){add(GM[g][0],3);W(GM[g][0],GM[g][1]);}});
+
+  // cuidado
+  if(cu.includes('secura')){add('hidratacao',3);W('hidratacao','Trata a secura na base, não só na hora');add('gel-neutro',1);}
+  if(cu.includes('dor')){add('hidratacao',2);W('hidratacao','Conforto pra começar, e dor merece atenção');add('pelvica',2);W('pelvica','Dilatadores e cuidado pélvico, com orientação');}
+  if(cu.includes('higiene')){add('higiene',3);W('higiene','Cuidado da região no dia a dia');}
+  if(cu.includes('cosmeticos')){add('cosmeticos',3);W('cosmeticos','Perfumes, óleos e séruns pra região íntima');}
+  if(cu.includes('pelvico')){add('pelvica',3);W('pelvica','Assoalho pélvico, pompoarismo e autoconhecimento');}
+  if(cu.includes('fase')){add('hidratacao',3);W('hidratacao','Na menopausa, amamentação e pós-parto a secura é esperada, e tem solução');add('pelvica',1);}
+
+  const alerta=cu.includes('dor')?'dor':null;
+  return finalizar(a,P,why,abertura(a,m,est,cu),subtitulo(a,nivel),alerta);
 }
-function abertura(m,f,inc){
-  if(m.includes('conforto')){
-    if(f.includes('menopausa')) return 'Você quer mais conforto e está na menopausa. Secura nessa fase é esperada, e tem solução.';
-    if(f.includes('posparto')) return 'Você quer mais conforto depois do parto. O corpo tem o tempo dele, e dá pra ajudar.';
-    if(f.includes('amamentacao')) return 'Amamentar deixa tudo mais seco. Não é você, é hormônio, e dá pra compensar.';
-    if(f.includes('tratamento')) return 'Você quer conforto durante um tratamento. Aqui só entra o que é suave e seguro.';
-    if(inc.includes('dor')) return 'Dor na relação não é normal e não é frescura. Vamos começar pelo conforto.';
-    return m.length>1?'Conforto primeiro, e o resto que você marcou vem junto, no seu ritmo.':'Você quer mais conforto. Começamos por aí, e o resto vem quando você quiser.';
+
+function finalizar(a,P,why,titulo,sub,alerta){
+  const vibs=['vib-externo','vib-interno','vib-peniano','vib-dois','vib-comecar','vib-sensacoes'];
+  const geis=['gel-neutro','gel-termico','gel-agua','gel-resistente','gel-retardar','gel-estimulos'];
+  let ordem=Object.entries(P).filter(([,v])=>v>0).sort((x,y)=>y[1]-x[1]).map(x=>x[0]);
+  // principais: até 3, no máximo 2 vibradores e 1 gel, sale nunca é principal
+  const principais=[]; let nv=0,ng=0;
+  for(const id of ordem){
+    if(principais.length>=3) break;
+    if(id==='sale') continue;
+    if(vibs.includes(id)){ if(nv>=2) continue; nv++; }
+    if(geis.includes(id)){ if(ng>=1) continue; ng++; }
+    principais.push(id);
   }
-  if(m.includes('saude')) return f.includes('posparto')?'Cuidar do assoalho pélvico depois do parto muda tudo, inclusive o prazer.':'Saúde íntima é saúde. Esse guia ensina antes de vender.';
-  if(m.includes('prazer')&&m.includes('dois')) return 'Mais prazer pra você e novidade a dois. Dá pra fazer as duas coisas com o mesmo guia.';
-  if(m.includes('conhecer')) return 'Conhecer o próprio corpo é o melhor investimento que existe. Comece devagar.';
-  if(m.includes('prazer')) return inc.includes('orgasmo')?'Chegar lá é uma questão de caminho, não de defeito. Esse é o mais curto.':'Explorar prazer no seu ritmo. Sem pressa, sem receita.';
-  if(m.includes('dois')) return 'A rotina engole o desejo de todo casal. Reacender é mais simples do que parece.';
-  return 'Só dar uma olhada já é um começo. Separamos o que faz mais sentido pra começar leve.';
+  // complementos: gel se tem vibrador e nenhum gel; gel anal se tem anal; kits pra iniciante; sale se pediu custo
+  const extras=[];
+  const temVib=principais.some(id=>vibs.includes(id)), temGel=principais.some(id=>geis.includes(id));
+  if(temVib&&!temGel){ const g=ordem.find(id=>geis.includes(id))||'gel-neutro'; extras.push(g); if(!why[g]) why[g]='Todo vibrador pede um gel. Vai junto.'; }
+  if(principais.some(id=>id.startsWith('anal'))&&!principais.includes('anal-gel')&&!extras.includes('anal-gel')){ extras.push('anal-gel'); if(!why['anal-gel']) why['anal-gel']='Indispensável pra qualquer prática anal.'; }
+  if((M(a).includes('comecar')||(vibPath(a)&&(a.vibExp||'nunca')==='nunca'))&&!principais.includes('kits')&&!extras.includes('kits')){ extras.push('kits'); if(!why.kits) why.kits='Combinações prontas pra quem está começando.'; }
+  if(P.sale&&!extras.includes('sale')) extras.push('sale');
+  for(const id of ordem){ if(extras.length>=3) break; if(!principais.includes(id)&&!extras.includes(id)&&id!=='sale') extras.push(id); }
+  return {principais:principais.map(id=>({...DEST[id],why:why[id]||''})),extras:extras.slice(0,3).map(id=>({...DEST[id],why:why[id]||''})),titulo,sub,alerta,pontos:P};
+}
+
+function abertura(a,m,est,cu){
+  if(cu.includes('fase')) return 'Secura nessa fase é esperada, e tem solução. Começamos pelo cuidado.';
+  if(cu.includes('dor')) return 'Dor na relação não é normal e não é frescura. Vamos começar pelo conforto.';
+  if(m.includes('comecar')||(vibPath(a)&&(a.vibExp||'nunca')==='nunca')) return 'Começar é a parte mais simples. Separamos o caminho mais leve pra você.';
+  if(m.includes('dois')) return 'Pra sentir junto, sem virar personagem. Essas são as suas categorias.';
+  if(m.includes('anal')) return 'Explorar com calma, do jeito certo. Essas são as suas categorias.';
+  if(m.includes('cuidado')) return 'Prazer também é cuidado. Essas são as suas categorias.';
+  if(m.includes('brincar')) return 'Sair da rotina pode ser leve. Essas são as suas categorias.';
+  if(est.includes('succao')||est.includes('externo')) return 'Você sabe o que quer sentir. Essas são as suas categorias.';
+  return 'Com base no que você contou, essas são as suas categorias.';
+}
+function subtitulo(a,nivel){
+  return nivel==='nunca'?'Cada card é uma categoria do site, não um produto. Abra, leia com calma e escolha no seu ritmo.':'Cada card é uma categoria do site. É só abrir e escolher o que combina com você.';
 }
 
 /* ============================================================
@@ -541,8 +455,8 @@ function abertura(m,f,inc){
 let answers={}; let idx=-1;
 const view=document.getElementById('view'), btnBack=document.getElementById('btnBack');
 const visible=()=>SCREENS.filter(s=>!s.when||s.when(answers));
-try{const saved=JSON.parse(sessionStorage.getItem('itscool-quiz-v3')||'null'); if(saved){answers=saved.answers||{}; idx=saved.idx??-1;}}catch(e){}
-const persist=()=>{try{sessionStorage.setItem('itscool-quiz-v3',JSON.stringify({answers,idx}))}catch(e){}};
+try{const saved=JSON.parse(sessionStorage.getItem('itscool-quiz-v17')||'null'); if(saved){answers=saved.answers||{}; idx=saved.idx??-1;}}catch(e){}
+const persist=()=>{try{sessionStorage.setItem('itscool-quiz-v17',JSON.stringify({answers,idx}))}catch(e){}};
 
 function render(){
   persist();
@@ -555,51 +469,30 @@ function render(){
   const answerable=vis.filter(x=>x.type!=='result').length;
   const pct=s.type==='result'?100:Math.round(idx/answerable*100);
   const bar=`<div class="progress"><i style="width:${pct}%"></i></div>`;
-  document.body.classList.toggle('res',s.type==='result');
-  if(s.type==='result') view.innerHTML=resultado(montar(answers));
-  else if(s.type==='form') view.innerHTML=`<div class="qwrap"><div class="card">${bar}${form(s)}</div></div>`;
+  if(s.type==='result'){document.body.classList.add('res'); view.innerHTML=resultado(montar(answers));}
   else view.innerHTML=`<div class="qwrap"><div class="card">${bar}${question(s,idx+1,answerable)}</div></div>`;
   window.scrollTo(0,0);
 }
-const SELO=`<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-label="it's cool, prazer e bem-estar íntimo">
-  <defs>
-    <path id="arcTop" d="M14 50 A36 36 0 0 1 86 50"/>
-    <path id="arcBot" d="M12 50 A38 38 0 0 0 88 50"/>
-  </defs>
-  <circle cx="50" cy="50" r="50" fill="#8FA08B"/>
-  <text font-family="Jost, Futura, 'Century Gothic', sans-serif" font-size="8.2" font-weight="400" letter-spacing="2.2" fill="#FBF5EE" text-anchor="middle"><textPath href="#arcTop" startOffset="50%">IT'S COOL</textPath></text>
-  <text font-family="Jost, Futura, 'Century Gothic', sans-serif" font-size="5" font-weight="400" letter-spacing="1.2" fill="#FBF5EE" text-anchor="middle"><textPath href="#arcBot" startOffset="50%">PRAZER &amp; BEM-ESTAR ÍNTIMO</textPath></text>
-  <g transform="translate(22 22) scale(.56)" fill="none" stroke="#FBF5EE" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M46 62L48 20a6 6 0 0 1 12 1l-2 41"/>
-    <path d="M58 62l5-34a5.5 5.5 0 0 1 11 2l-4 34"/>
-    <path d="M70 64l6-22a5 5 0 0 1 10 2l-4 22"/>
-    <circle cx="30" cy="58" r="10"/>
-    <path d="M34 49c3-8 10-9 12 3"/>
-    <path d="M39 63c5 4 7 10 7 17"/>
-    <path d="M46 80c4 8 14 10 22 6s14-12 14-20"/>
-    <path d="M88 12l1.6 4.4L94 18l-4.4 1.6L88 24l-1.6-4.4L82 18l4.4-1.6z" fill="#FBF5EE" stroke="none"/>
-  </g>
-</svg>`;
 function welcome(){
   return `<div class="card hero">
     <div class="step">O quiz mais cool da internet</div>
     <h1>Não sabe por onde começar? <i>Normal.</i> Quase ninguém sabe.</h1>
-    <p class="lead">A gente monta um guia pra você em menos de dois minutos: o que faz sentido pro seu momento, o que cada coisa é e pra que serve.</p>
+    <p class="lead">Responda algumas perguntas e a gente te mostra quais categorias do site combinam com o que você procura, e o que cada uma é.</p>
     <ul class="topicos">
       <li class="c1">Você entende antes de comprar.</li>
       <li class="c2">Sem julgamento. Pula o que não quiser responder.</li>
       <li class="c3">Feito pra quem nunca entrou numa loja.</li>
     </ul>
-    <button class="btn primary cta" onclick="go(0)">Descobrir o que combina comigo</button>
+    <button class="btn primary cta" onclick="go(0)">Qual é o meu match?</button>
   </div>`;
 }
 const ICONS={
-  conforto:'<svg viewBox="0 0 48 48"><path d="M24 6c8 11 13 18 13 25a13 13 0 0 1-26 0c0-7 5-14 13-25z"/></svg>',
-  conhecer:'<svg viewBox="0 0 48 48"><path d="M24 41S6 30 6 17a9 9 0 0 1 18-2 9 9 0 0 1 18 2c0 13-18 24-18 24z"/></svg>',
-  prazer:'<svg viewBox="0 0 48 48"><path d="M24 6c1 9 6 16 18 18-12 2-17 9-18 18-1-9-6-16-18-18 12-2 17-9 18-18z"/></svg>',
-  dois:'<svg viewBox="0 0 48 48"><circle cx="17" cy="16" r="6"/><circle cx="31" cy="16" r="6"/><path d="M5 40c1-8 6-13 12-13s11 5 12 13M19 40c1-8 6-13 12-13s11 5 12 13"/></svg>',
-  saude:'<svg viewBox="0 0 48 48"><path d="M40 8C22 8 10 18 8 40c22-2 32-14 32-32zM8 40c8-10 16-18 26-26"/></svg>',
-  curiosa:'<svg viewBox="0 0 48 48"><path d="M4 24s8-13 20-13 20 13 20 13-8 13-20 13S4 24 4 24z"/><circle cx="24" cy="24" r="6"/></svg>',
+  vibrador:'<svg viewBox="0 0 48 48"><path d="M24 6c1 9 6 16 18 18-12 2-17 9-18 18-1-9-6-16-18-18 12-2 17-9 18-18z"/></svg>',
+  dois:'<svg viewBox="0 0 48 48"><path d="M18 36S6 28 6 19a6 6 0 0 1 12-1 6 6 0 0 1 12 1c0 9-12 17-12 17z"/><path d="M30 42s-10-7-10-15a5 5 0 0 1 10-1 5 5 0 0 1 10 1c0 8-10 15-10 15z"/></svg>',
+  cuidado:'<svg viewBox="0 0 48 48"><path d="M40 8C22 8 10 18 8 40c22-2 32-14 32-32zM8 40c8-10 16-18 26-26"/></svg>',
+  anal:'<svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="16"/><circle cx="24" cy="24" r="7"/></svg>',
+  brincar:'<svg viewBox="0 0 48 48"><rect x="8" y="12" width="32" height="26" rx="4"/><circle cx="17" cy="21" r="2"/><circle cx="31" cy="29" r="2"/><circle cx="24" cy="25" r="2"/></svg>',
+  comecar:'<svg viewBox="0 0 48 48"><path d="M24 6c8 11 13 18 13 25a13 13 0 0 1-26 0c0-7 5-14 13-25z"/></svg>',
   presente:'<svg viewBox="0 0 48 48"><rect x="6" y="18" width="36" height="8" rx="2"/><path d="M9 26v16h30V26M24 18v24M24 18c-4-8-12-8-12-3s8 3 12 3zm0 0c4-8 12-8 12-3s-8 3-12 3z"/></svg>',
 };
 function question(s,n,total){
@@ -611,14 +504,6 @@ function question(s,n,total){
   }).join('');
   const cont=isMulti?`<div class="actions"><button class="btn primary" id="btnNext" onclick="next()" ${(cur||[]).length?'':'disabled'}>Continuar</button></div>`:'';
   return `<div class="step">Pergunta ${n} de ${total}</div><h1>${s.q}</h1><p class="sub">${s.sub||''}</p><ul class="opts ${s.icons?'icons':(s.two?'two':'')}">${opts}</ul>${cont}`;
-}
-function form(s){
-  const c=answers.contato||{};
-  return `<div class="step">Quase lá</div><h1>${s.q}</h1><p class="sub">${s.sub}</p>
-    <div class="field"><label>Seu nome</label><input id="fNome" value="${c.nome||''}" placeholder="Como quer ser chamada"></div>
-    <div class="field"><label>WhatsApp ou e-mail</label><input id="fContato" value="${c.contato||''}" placeholder="(41) 9 9999-9999"></div>
-    <div class="actions"><button class="btn soft" onclick="next()">Pular e ver meu guia</button><button class="btn primary" onclick="salvarContato()">Enviar e ver meu guia</button></div>
-    <p class="note">Sem newsletter chata. Só o guia e, se você quiser, um "como foi?" daqui a um mês.</p>`;
 }
 function pick(id,v){
   const s=SCREENS.find(x=>x.id===id);
@@ -632,38 +517,31 @@ function pick(id,v){
   persist();
 }
 function limpar(id){
-  if(id==='motivo') ['paraQuem','parceria','presenteQuem','presenteClima','presenteNivel','explorar'].forEach(k=>delete answers[k]);
+  if(id==='motivo') ['paraQuem','parceria','presQuem','presClima','vibExp','estimulo','prio','analExp'].forEach(k=>delete answers[k]);
   if(id==='paraQuem') delete answers.parceria;
-}
-function salvarContato(){
-  answers.contato={nome:document.getElementById('fNome').value.trim(),contato:document.getElementById('fContato').value.trim()};
-  try{const leads=JSON.parse(localStorage.getItem('itscool-leads')||'[]'); leads.push({...answers,em:new Date().toISOString()}); localStorage.setItem('itscool-leads',JSON.stringify(leads));}catch(e){}
-  next();
+  if(id==='praticas') delete answers.analExp;
 }
 function go(i){idx=i; render();}
 function next(){idx=Math.min(idx+1,visible().length-1); render();}
 btnBack.onclick=()=>{idx=Math.max(-1,idx-1); render();};
 function refazer(){answers={}; idx=-1; render();}
 
-const chip=c=>`<span class="chip ${CAT[c].chip}">${CAT[c].nome}</span>`;
-function gcard(g){
-  const art=g.img?`<img src="${g.img}" alt="">`:(ART[g.art]||ART.caixa);
-  return `<div class="gcard"><div class="top"><div class="art">${art}</div><div style="flex:1">${chip(g.cat)}<div class="nm">${g.nome}</div><div class="why">${g.why||''}</div>${g.own?'<span class="tem">você já tem</span>':''}</div></div>
-    <dl><dt>O que é</dt><dd>${g.oque}</dd></dl>
-    <div class="bottom"><span class="faixa">R$ ${g.preco[0]} a R$ ${g.preco[1]}</span><a class="btn blue buy" href="${linkSite(g.slug)}" target="_blank" rel="noopener">Ver no site</a></div></div>`;
+function rcard(d,i){
+  const c=CAT[d.cat];
+  return `<article class="rcard"><div class="band ${c.band}"><span class="cat">${c.nome}</span><span class="n">0${i+1}</span>${ART[d.art]||ART.caixa}</div>
+    <div class="body"><h2>${d.nome}</h2>${d.why?`<div class="why">${d.why}</div>`:''}<p>${d.desc}</p>
+    <a class="btn primary" href="${link(d.slug)}" target="_blank" rel="noopener">Ver no site</a></div></article>`;
+}
+function xcard(d){
+  return `<div class="xcard"><div class="ic">${ART[d.art]||ART.caixa}</div><div style="flex:1"><b>${d.nome}</b><span>${d.why||d.desc}</span></div><a href="${link(d.slug)}" target="_blank" rel="noopener">Ver</a></div>`;
 }
 function resultado(R){
-  let h=`<div class="r-head"><div class="card"><div class="step">Seu guia</div><p class="r-open">${R.abertura}</p><p class="r-sub">${R.sub}</p></div>`;
-  if(R.alerta==='dor') h+=`<div class="warn"><b>Isso merece atenção</b>Dor na relação não é normal e não é frescura. Os grupos abaixo ajudam no conforto, e vale muito uma conversa com ginecologista ou fisioterapeuta pélvica pra entender a causa.</div>`;
-  else if(R.alerta==='tratamento') h+=`<div class="warn"><b>Um cuidado a mais</b>Durante um tratamento, combine qualquer produto com quem acompanha você. Aqui só entra o que é suave e sem perfume.</div>`;
-  else h+=`<div class="block"><div class="step">Próximo passo</div><p class="r-open" style="font-size:1.3rem">Esse guia é um ponto de partida.</p><p class="r-sub">Abra o grupo que mais fez sentido, leia a descrição de cada produto no site e escolha no seu ritmo. Se mudar de ideia, refaz o quiz em um minuto.</p><a class="btn primary" href="${linkSite(CAT[R.principal].slug)}" target="_blank" rel="noopener">Ver minha seleção no site</a></div>`;
-  h+=`</div>`;
-  h+=`<div class="lbl">Pra você agora ${R.ordem.slice(0,3).map(chip).join(' ')}</div>`;
-  const cards=R.grupos.slice(0,6);
-  h+=`<div class="grid">${cards.map(gcard).join('')}${R.kit?gcard({...R.kit,why:'Combinação pronta, pra não errar'}):''}</div>`;
-  h+=`<div class="foot"><a class="btn primary big" href="${linkSite(CAT[R.principal].slug)}" target="_blank" rel="noopener">Ver ${CAT[R.principal].nome} no site</a>
-    <button class="btn soft" onclick="refazer()">Não era bem isso? Refazer o quiz</button></div>`;
-  h+=`<details class="debug"><summary>Ver a lógica (pra quem está construindo)</summary><pre>${JSON.stringify({respostas:answers,pontos:R.pontos,ordem:R.ordem,kit:R.kit&&R.kit.nome,alerta:R.alerta},null,1)}</pre></details>`;
+  let h=`<div class="rwrap"><div class="rhead"><div class="step">Seu match</div><h1>${R.titulo}</h1><p>${R.sub}</p></div>`;
+  if(R.alerta==='dor') h+=`<div class="warn"><b>Isso merece atenção.</b> Dor na relação não é normal. Os produtos ajudam no conforto, e vale muito uma conversa com ginecologista ou fisioterapeuta pélvica pra entender a causa.</div>`;
+  h+=`<div class="rgrid">${R.principais.map(rcard).join('')}</div>`;
+  if(R.extras.length) h+=`<div class="lbl">Combina com isso</div><div class="extras">${R.extras.map(xcard).join('')}</div>`;
+  h+=`<div class="rfoot"><button class="btn soft" onclick="refazer()">Refazer o quiz</button></div>`;
+  h+=`<details class="debug"><summary>Ver a lógica (pra quem está construindo)</summary><pre>${JSON.stringify({respostas:answers,pontos:R.pontos},null,1)}</pre></details></div>`;
   return h;
 }
 render();
