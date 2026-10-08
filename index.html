@@ -97,6 +97,20 @@ h1 i{font-style:italic;color:var(--terra)}
 .hero .cta:active{box-shadow:0 1px 0 #C48A12!important}
 
 /* resultado */
+.recs{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));margin-bottom:26px}
+.recs.two{max-width:760px;margin-left:auto;margin-right:auto}
+.rec{background:var(--white);border:1px solid var(--line);border-radius:22px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 14px 40px rgba(120,60,50,.08)}
+.rec .band{height:120px;display:grid;place-items:center;position:relative}
+.rec .band svg{width:84px;height:84px}
+.rec .band .cat{position:absolute;top:12px;left:12px;font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;background:rgba(255,255,255,.88);color:var(--cereja);border-radius:999px;padding:4px 10px}
+.rec .band .n{position:absolute;top:8px;right:14px;font-family:var(--serif);font-size:1.5rem;color:rgba(255,255,255,.9)}
+.rec .body{padding:18px 20px 20px;display:flex;flex-direction:column;gap:10px;flex:1}
+.rec h2{font-family:var(--serif);font-weight:400;font-size:1.3rem;line-height:1.2;color:var(--cereja);margin:0}
+.rec .desc{margin:0;font-size:.88rem;color:var(--muted)}
+.rec .porque{background:var(--bege-claro);border-left:3px solid var(--terra);border-radius:0 12px 12px 0;padding:10px 14px;font-size:.88rem}
+.rec .porque b{display:block;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--terra);font-weight:600;margin-bottom:4px}
+.rec .porque p{margin:0}
+.rec .btn{margin-top:auto;font-size:.74rem;padding:14px 18px}
 .rmain{background:var(--white);border:1px solid var(--line);border-radius:24px;overflow:hidden;display:grid;box-shadow:0 14px 40px rgba(120,60,50,.1);margin-bottom:26px}
 @media (min-width:760px){.rmain{grid-template-columns:300px 1fr}}
 .rmain .band{min-height:180px;display:grid;place-items:center;position:relative}
@@ -155,7 +169,7 @@ h1 i{font-style:italic;color:var(--terra)}
     <a class="logo" href="#" onclick="refazer();return false" aria-label="it's COOL, prazer e bem-estar íntimo"><img src="logo.png?v=1" alt="it's COOL"></a>
     <button class="btn ghost" id="btnBack" type="button">Voltar</button>
   </header>
-  <div class="stamp">versão 20 · fluxo vibrador</div>
+  <div class="stamp">versão 21 · fluxo a dois</div>
   <main id="view"></main>
 </div>
 
@@ -220,6 +234,7 @@ const DEST={
   'vib-dois':D('vib-dois','PRAZER','Vibradores para usar a dois','casal','Vibradores pensados para incluir nas experiências a dois e acrescentar novas formas de estímulo para casais.','prazer/vibradores/para-usar-a-dois'),
   'vib-comecar':D('vib-comecar','PRAZER','Vibradores para começar a explorar','bullet','Opções mais simples e versáteis para quem está começando a explorar o uso de vibradores e ainda não sabe bem por onde começar.','prazer/vibradores/para-comecar'),
   'vib-sensacoes':D('vib-sensacoes','PRAZER','Vibradores para diferentes sensações','rabbit','Vibradores que proporcionam diferentes tipos de estímulo, estimulação dupla ou estimulação de outras áreas.','prazer/vibradores/diferentes-sensacoes'),
+  'geis':D('geis','PRAZER','Géis & Lubrificantes','tubo','Géis, cremes, lubrificantes e outros produtos pra melhorar o conforto, facilitar o deslizamento e acrescentar novas sensações. Tem neutros, térmicos, com formigamento, pra água e retardantes.','prazer/geis'),
   'gel-neutro':D('gel-neutro','PRAZER','Géis para sensações neutras','tubo','Lubrificação e deslizamento sem acrescentar efeitos térmicos ou outras sensações. O básico que combina com tudo.','prazer/geis/sensacoes-neutras'),
   'gel-termico':D('gel-termico','PRAZER','Géis para sensações térmicas','termico','Produtos que promovem aquecimento, refrescância ou efeito quente e frio.','prazer/geis/sensacoes-termicas'),
   'gel-agua':D('gel-agua','PRAZER','Géis para usar na água','gota','Opções pensadas para manter melhor o deslizamento quando há contato com água, no banho ou na banheira.','prazer/geis/para-usar-na-agua'),
@@ -328,12 +343,12 @@ const SCREENS=[
     ['pontog','Alcançar o ponto G','Formato curvo, que pressiona a parede da frente.'],
     ['preenchimento','Sensação de preenchimento','Formato mais reto e encorpado.'],
     ['movimento','Movimento ou pulsação por dentro','Além de vibrar, alguns se movem ou pulsam.'],
-    ['naosei','Não sei, quero descobrir',''],
+    ['naosei','Não sei, quero descobrir','Te mostramos a categoria e as diferenças entre os formatos.'],
   ]},
   {id:'duplo',type:'single',q:'Dos dois estímulos, qual <i>pesa mais</i> pra você?',when:a=>isVib(a)&&a.estimulo==='ambos',opts:[
     ['fora','O de fora, no clitóris','Quero que a parte externa seja a protagonista.'],
     ['dentro','O de dentro','Quero que a penetração seja a protagonista.'],
-    ['igual','Os dois por igual',''],
+    ['igual','Os dois por igual','Os de estimulação dupla equilibrada são a maioria.'],
   ]},
   {id:'intensidade',type:'single',q:'Como você gosta do <i>estímulo</i>?',when:isVib,opts:[
     ['suave','Suave e gradual','Prefiro começar devagar e ir subindo.'],
@@ -346,7 +361,7 @@ const SCREENS=[
     ['cama','Na cama, sozinha','O uso mais comum.'],
     ['relacao','Com a parceria, durante a relação','Então precisa caber entre os dois.'],
     ['fora','Em viagem ou fora de casa','Pequeno, discreto e com trava.'],
-    ['naosei','Ainda não pensei nisso',''],
+    ['naosei','Ainda não pensei nisso','Sem problema, a indicação fica versátil.'],
   ]},
   {id:'recursos',type:'multi',max:2,two:true,exclusive:['tanto'],q:'Que <i>recursos</i> fazem diferença pra você?',sub:'Até dois.',when:isVib,opts:[
     ['recarregavel','Recarregável por USB','Sem pilha.'],
@@ -354,13 +369,13 @@ const SCREENS=[
     ['controle','Controle remoto ou por app','Pra brincar a dois também.'],
     ['modos','Vários modos e intensidades','Quero regular e variar.'],
     ['pequeno','Tamanho pequeno','Cabe na bolsa, ninguém percebe.'],
-    ['tanto','Tanto faz, me surpreende',''],
+    ['tanto','Tanto faz, me surpreende','A gente indica pelo que você contou até aqui.'],
   ]},
   {id:'parceria',type:'single',q:'Você também está buscando produtos de prazer pra usar com a <i>parceria</i>?',when:isVib,opts:[
     ['mim','Não, esse é só pra mim','Uso individual, no meu ritmo.'],
     ['levar','Sim, quero poder levar este vibrador pra relação','Então um formato que caiba entre os dois faz diferença.'],
     ['alem','Sim, e quero também algo pensado pra usar a dois','Além deste vibrador, algo que a parceria participe.'],
-    ['sem','Não tenho parceria no momento',''],
+    ['sem','Não tenho parceria no momento','A indicação fica focada em você.'],
   ]},
   {id:'acessorios',type:'multi',two:true,exclusive:['nao'],q:'Quer incluir mais algum <i>acessório de prazer</i> junto?',sub:'Lubrificantes são muito indicados na compra de um vibrador: tiram o atrito, protegem o silicone e deixam a sensação mais confortável. Pode marcar mais de um.',when:isVib,opts:[
     ['gelneutro','Gel lubrificante neutro','Sem cheiro e sem efeito. O básico que combina com qualquer vibrador.'],
@@ -368,7 +383,7 @@ const SCREENS=[
     ['gelagua','Gel pra usar na água','Mantém o deslizamento no banho.'],
     ['jogos','Jogos ou cartas','Pra sair do automático, sozinha ou a dois.'],
     ['massagem','Óleo ou vela de massagem','Pra criar clima antes.'],
-    ['nao','Não agora',''],
+    ['nao','Não agora','Dá pra incluir depois. A gente só lembra do gel no resultado.'],
   ]},
   {id:'cuidadoVib',type:'multi',two:true,exclusive:['nao'],q:'Quer incluir algum <i>cuidado íntimo</i> junto?',sub:'Prazer também é cuidado. Esses produtos cuidam da região e do brinquedo no dia a dia. Pode marcar mais de um.',when:isVib,opts:[
     ['higiene','Higiene íntima','Sabonete próprio pra região, com pH adequado.'],
@@ -376,16 +391,16 @@ const SCREENS=[
     ['hidratante','Hidratante íntimo','De uso contínuo, trata a secura na base.'],
     ['cosmeticos','Cosméticos íntimos','Óleos, séruns e perfumes pensados pra região.'],
     ['pelvico','Conhecer meu corpo e o assoalho pélvico','Exercitadores, pompoarismo, materiais educativos.'],
-    ['nao','Não agora',''],
+    ['nao','Não agora','Dá pra incluir depois.'],
   ]},
   Q_MOMENTO(isVib),
   {id:'interesses',type:'multi',two:true,exclusive:['nao'],q:'Você também tem <i>outros interesses</i> nesse momento?',sub:'Pode marcar mais de um. A gente sugere outras categorias junto com o vibrador.',when:isVib,opts:[
-    ['apimentar','Apimentar e trazer novidade pra relação',''],
+    ['apimentar','Apimentar e trazer novidade pra relação','Algo pra usar a dois ou pra sair da rotina.'],
     ['novos','Testar produtos novos e diferentes','Sensações que ainda não conheço.'],
     ['autocuidado','Momentos de autocuidado sozinha','Massagem, banho, clima só pra mim.'],
-    ['corpo','Conhecer melhor meu corpo',''],
-    ['anal','Explorar o prazer anal',''],
-    ['nao','Não, só o vibrador por agora',''],
+    ['corpo','Conhecer melhor meu corpo','Materiais educativos, espelho, assoalho pélvico.'],
+    ['anal','Explorar o prazer anal','Com calma, começando pelo menor e com gel próprio.'],
+    ['nao','Não, só o vibrador por agora','A indicação fica focada no vibrador.'],
   ]},
 
   /* ---------- A DOIS (9 perguntas) ---------- */
@@ -398,27 +413,27 @@ const SCREENS=[
     ['descobrir','Descobrir algo novo, sem saber o quê','Me mostra por onde começar.'],
   ]},
   {id:'gostam',type:'multi',two:true,exclusive:['descobrindo'],q:'O que vocês <i>já gostam</i> de fazer juntos?',sub:'Pode marcar várias. Ajuda a indicar algo que encaixe no que já funciona.',when:isDois,opts:[
-    ['preliminares','Preliminares longas e massagem',''],
-    ['brincar','Brincadeiras e provocações',''],
-    ['fantasias','Falar sobre fantasias',''],
-    ['oral','Sexo oral',''],
+    ['preliminares','Preliminares longas e massagem','Toque, carícias e tempo antes de qualquer outra coisa.'],
+    ['brincar','Brincadeiras e provocações','Provocar, rir, criar clima no dia a dia.'],
+    ['fantasias','Falar sobre fantasias','Conversar sobre o que cada um imagina.'],
+    ['oral','Sexo oral','Um bom lugar pra incluir novidades pequenas.'],
     ['penetracao','Penetração','Variar posições, ritmos e lugares.'],
-    ['descobrindo','Ainda estamos descobrindo',''],
+    ['descobrindo','Ainda estamos descobrindo','Normal. A indicação fica mais aberta.'],
   ]},
   {id:'queixa',type:'multi',two:true,exclusive:['nada'],q:'Tem algo que <i>incomoda</i> nos momentos a dois?',sub:'Pode marcar mais de um, ou nenhum. Ninguém está avaliando.',when:isDois,opts:[
     ['rotina','Caiu na rotina','Sempre igual, no automático.'],
-    ['atrito','Falta de lubrificação ou atrito',''],
-    ['rapido','Ele termina antes do que gostaríamos',''],
+    ['atrito','Falta de lubrificação ou atrito','A relação fica desconfortável ou arde.'],
+    ['rapido','Ele termina antes do que gostaríamos','Muito comum. Tem produto que ajuda a prolongar.'],
     ['orgasmo','Dificuldade dela em chegar ao orgasmo na relação','Muito comum: a maioria precisa de estímulo por fora.'],
-    ['tempo','Pouco tempo ou cansaço',''],
-    ['vergonha','Vergonha de propor novidades',''],
-    ['nada','Nada, está tudo bem',''],
+    ['tempo','Pouco tempo ou cansaço','A indicação prioriza o que é simples de incluir.'],
+    ['vergonha','Vergonha de propor novidades','Tem produto que faz o convite por vocês.'],
+    ['nada','Nada, está tudo bem','Ótimo. A indicação fica só no que vocês querem acrescentar.'],
   ]},
   {id:'foco',type:'single',q:'O estímulo novo seria mais <i>pra quem</i>?',when:isDois,opts:[
     ['mim','Mais pra mim','Quero sentir algo novo durante a relação.'],
     ['parceria','Mais pra minha parceria','Quero proporcionar algo novo pra ela ou pra ele.'],
-    ['dois','Pros dois ao mesmo tempo',''],
-    ['tanto','Não importa, o que fizer sentido',''],
+    ['dois','Pros dois ao mesmo tempo','Algo que os dois sintam ao mesmo tempo.'],
+    ['tanto','Não importa, o que fizer sentido','A gente indica pelo que combina com o resto das respostas.'],
   ]},
   {id:'d5',type:'single',q:'Vocês já usaram algum <i>produto</i> juntos?',when:isDois,opts:[
     ['nunca','Nunca','Seria a primeira vez. Quero algo simples de incluir.'],
@@ -437,20 +452,23 @@ const SCREENS=[
     ['termico','Com sensação térmica','Esquenta, refresca ou faz quente e frio.'],
     ['retardar','Pra prolongar a relação','Diminui um pouco a sensibilidade dele por um tempo.'],
     ['estimulos','Com formigamento ou pulsação','Acrescenta sensação além do deslizamento.'],
-    ['nao','Não agora',''],
+    ['nao','Não agora','Dá pra incluir depois. Todo brinquedo pede um.'],
   ]},
   {id:'abertura',type:'single',q:'Como vocês estão pra <i>experimentar</i> coisas novas?',when:isDois,opts:[
-    ['abertos','Bem abertos, topamos quase tudo',''],
+    ['abertos','Bem abertos, topamos quase tudo','Dá pra ir direto ao ponto.'],
     ['calma','Curiosos, mas com calma','Um passo de cada vez.'],
     ['desigual','Um está mais animado que o outro','Quero algo que não assuste.'],
     ['primeira','É a primeira vez que falamos sobre isso','Quero algo que ajude a conversar.'],
   ]},
-  {id:'prioDois',type:'multi',max:2,two:true,exclusive:['tanto'],q:'O que é <i>mais importante</i> pra vocês num produto?',sub:'Até dois.',when:isDois,opts:[
-    ['silencioso','Ser silencioso e discreto','Dividimos casa com outras pessoas.'],
-    ['facil','Ser simples de usar','Sem app, sem manual.'],
-    ['agua','À prova d\'água e recarregável',''],
-    ['custo','Bom custo-benefício',''],
-    ['tanto','Tanto faz',''],
+  {id:'prioDois',type:'multi',max:3,two:true,exclusive:['tanto'],q:'O que é <i>mais importante</i> pra vocês num produto?',sub:'Até três.',when:isDois,opts:[
+    ['facil','Facilidade de uso','Sem app, sem manual, sem complicação na hora.'],
+    ['custo','Bom custo-benefício','Começar sem gastar muito.'],
+    ['ambos','Que sirva pros dois','Que ela e ele sintam ou usem.'],
+    ['versatil','Versátil, um coringa','Que sirva pra várias situações e momentos.'],
+    ['viagem','Prático pra levar em viagem','Pequeno, discreto, com trava.'],
+    ['silencioso','Silencioso e discreto','Dividimos casa com outras pessoas.'],
+    ['agua','À prova d\'água e recarregável','Pra usar no banho e não trocar pilha.'],
+    ['tanto','Tanto faz','A gente indica pelo que vocês contaram até aqui.'],
   ]},
 
   /* ---------- CUIDADO ÍNTIMO (9 perguntas; 8 no atalho "conforto") ---------- */
@@ -460,7 +478,7 @@ const SCREENS=[
     ['conforto','Conforto e deslizamento nas relações','Lubrificantes pra hora, sem atrito.'],
     ['cosmeticos','Cosméticos e perfumes íntimos','Óleos, cremes, séruns e perfumes pensados pra região, com segurança.'],
     ['pelvico','Conhecer meu corpo e o assoalho pélvico','Pompoarismo, exercitadores, materiais educativos.'],
-    ['naosei','Ainda não sei, quero conhecer as possibilidades',''],
+    ['naosei','Ainda não sei, quero conhecer as possibilidades','A gente explica as diferenças no resultado.'],
   ]},
   {id:'c2',type:'multi',two:true,exclusive:['nenhuma','naosei'],q:'Existe algum <i>desconforto</i> que você gostaria de cuidar melhor?',sub:'Muita gente sente e não sabe dar nome. Pode marcar mais de uma, ou nenhuma.',when:isCuid,opts:[
     ['secura','Sensação de secura ou falta de lubrificação','Atrito ou "não molhar" mesmo com vontade.'],
@@ -468,50 +486,50 @@ const SCREENS=[
     ['sensivel','Sensibilidade ou irritação na região','Coceira, ardência ou reação a produtos.'],
     ['pelvico','Questões do assoalho pélvico','Escape de xixi, sensação de peso, menos controle, pós-parto.'],
     ['odor','Preocupação com odor ou com a higiene','Querer se sentir mais tranquila no dia a dia.'],
-    ['nenhuma','Não tenho nenhuma queixa',''],
+    ['nenhuma','Não tenho nenhuma queixa','Ótimo. A indicação fica só na rotina de cuidado.'],
     ['naosei','Não sei identificar','Normal. A gente indica o que ajuda a conhecer.'],
   ]},
   {id:'quando',type:'single',q:'Esse desconforto, quando aparece, acontece <i>quando</i>?',when:a=>isCuid(a)&&(a.c2||[]).some(x=>['secura','dor','sensivel'].includes(x)),opts:[
     ['relacao','Só durante ou depois das relações','Aponta mais pra lubrificação e atrito.'],
     ['diaadia','No dia a dia, mesmo sem relação','Aponta mais pra hidratação e pra pele.'],
-    ['ambos','Nas duas situações',''],
-    ['naosei','Não reparei',''],
+    ['ambos','Nas duas situações','Então vale cuidar na base e na hora.'],
+    ['naosei','Não reparei','Sem problema, a indicação cobre as duas situações.'],
   ]},
   {id:'c3',type:'multi',two:true,exclusive:['nenhuma'],q:'Alguma dessas situações faz parte do seu <i>momento</i>?',sub:'Sem detalhes. Só pra indicar com mais cuidado.',when:isCuid,opts:[
     ['menopausa','Perimenopausa ou menopausa','Calor, secura, mudança no desejo ou na sensibilidade.'],
     ['posparto','Gravidez, pós-parto ou amamentação','Fases em que a secura é esperada e tem solução.'],
     ['saude','Passei por mudanças na saúde que afetaram minha vida íntima','Tratamento, cirurgia, medicação ou outra situação.'],
     ['medicacao','Uso remédio que mexe na lubrificação ou no desejo','Anticoncepcional, antidepressivo e outros.'],
-    ['nenhuma','Nenhuma dessas',''],
+    ['nenhuma','Nenhuma dessas','A indicação segue pelo que você contou.'],
   ]},
   {id:'frequencia',type:'single',q:'Com que <i>frequência</i> você imagina usar?',sub:'Hidratante é pro dia a dia. Lubrificante é pra hora. Isso define qual indicar primeiro.',when:isCuid,opts:[
-    ['diario','Todo dia, como parte da rotina',''],
-    ['semana','Algumas vezes por semana',''],
-    ['relacao','Só na hora da relação',''],
-    ['naosei','Não sei, depende do produto',''],
+    ['diario','Todo dia, como parte da rotina','Hidratante e sabonete íntimo são pra isso.'],
+    ['semana','Algumas vezes por semana','Hidratante íntimo costuma ser usado assim.'],
+    ['relacao','Só na hora da relação','Então o lubrificante entra primeiro.'],
+    ['naosei','Não sei, depende do produto','A gente explica qual é pra quê.'],
   ]},
   {id:'pele',type:'single',q:'Como a sua pele íntima <i>reage</i> a produtos?',when:isCuid,opts:[
     ['sensivel','Sensível, qualquer coisa irrita','Então só sem perfume e sem corante.'],
-    ['normal','Normal, nunca tive problema',''],
-    ['naosei','Nunca reparei',''],
+    ['normal','Normal, nunca tive problema','Dá pra escolher com mais liberdade.'],
+    ['naosei','Nunca reparei','Por segurança, a gente indica os suaves.'],
   ]},
   {id:'prefCuidado',type:'multi',max:2,two:true,exclusive:['naosei'],q:'O que você <i>prefere</i> num produto de cuidado?',sub:'Até dois.',when:isCuid,opts:[
-    ['semperfume','Sem perfume',''],
-    ['natural','Ingredientes naturais ou veganos',''],
-    ['leve','Textura leve, que absorve rápido',''],
-    ['dure','Que dure bastante',''],
-    ['naosei','Não sei, quero uma indicação',''],
+    ['semperfume','Sem perfume','Menos chance de irritar.'],
+    ['natural','Ingredientes naturais ou veganos','Fórmulas com menos química.'],
+    ['leve','Textura leve, que absorve rápido','Sem sensação pegajosa.'],
+    ['dure','Que dure bastante','Menos reaplicação.'],
+    ['naosei','Não sei, quero uma indicação','A gente indica pelo que você contou.'],
   ]},
   {id:'conhece',type:'single',q:'Você sabe a diferença entre <i>hidratante íntimo</i> e <i>lubrificante</i>?',when:isCuid,opts:[
-    ['sei','Sei bem',''],
-    ['maisoumenos','Mais ou menos',''],
+    ['sei','Sei bem','Então vamos direto ao ponto.'],
+    ['maisoumenos','Mais ou menos','A gente reforça a diferença no resultado.'],
     ['nao','Não, achava que era a mesma coisa','Muita gente acha. A gente explica no resultado.'],
   ]},
   {id:'prazerJunto',type:'single',q:'Quer incluir algo de <i>prazer</i> junto com o cuidado?',when:isCuid,opts:[
     ['simples','Sim, algo simples pra mim','Um vibrador de entrada ou um gel com sensação.'],
-    ['dois','Sim, algo pra usar a dois',''],
-    ['depois','Talvez depois',''],
-    ['nao','Não, só cuidado agora',''],
+    ['dois','Sim, algo pra usar a dois','Um vibrador de casal ou um jogo.'],
+    ['depois','Talvez depois','A indicação fica só no cuidado, com uma porta aberta.'],
+    ['nao','Não, só cuidado agora','A indicação fica só no cuidado.'],
   ]},
 
   /* ---------- ANAL (9 perguntas) ---------- */
@@ -521,52 +539,52 @@ const SCREENS=[
     ['sim','Já tenho intimidade','Quero mais sensação e variedade.'],
   ]},
   {id:'analQuem',type:'single',q:'Isso é <i>só pra você</i> ou com a parceria?',when:isAnal,opts:[
-    ['mim','Só pra mim, explorando sozinha',''],
-    ['dois','Com a parceria',''],
-    ['ambos','Os dois',''],
+    ['mim','Só pra mim, explorando sozinha','A indicação prioriza o que dá pra controlar sozinha.'],
+    ['dois','Com a parceria','Entram opções em que a parceria participa.'],
+    ['ambos','Os dois','A indicação cobre os dois usos.'],
   ]},
   {id:'a2',type:'multi',two:true,exclusive:['naosei'],q:'O que você quer <i>explorar</i>?',sub:'Pode marcar mais de uma.',when:isAnal,opts:[
     ['plugs','Plugs','Pra começar, acostumar ou evoluir de tamanho.'],
     ['vibracao','Vibração e estímulo anal','Produtos com motor pensados pra região.'],
     ['conforto','Mais conforto e deslizamento','Géis específicos, mais espessos e duradouros.'],
     ['higiene','Higiene e preparação','Pra se sentir tranquila antes e depois.'],
-    ['naosei','Não sei, me mostra por onde começar',''],
+    ['naosei','Não sei, me mostra por onde começar','A gente monta o começo mais seguro.'],
   ]},
   {id:'analSensacao',type:'single',q:'Que <i>sensação</i> te chama mais?',when:isAnal,opts:[
     ['pressao','Pressão e preenchimento','A sensação do plug, parado no lugar.'],
     ['vibracao','Vibração','Movimento e estímulo contínuo.'],
-    ['ambos','As duas',''],
-    ['naosei','Não sei ainda',''],
+    ['ambos','As duas','Plug e vibração, cada um na sua hora.'],
+    ['naosei','Não sei ainda','Começar pelo plug costuma ser o caminho.'],
   ]},
   {id:'preocupa',type:'multi',two:true,exclusive:['nada'],q:'O que mais te <i>preocupa</i>?',sub:'Pode marcar mais de um. A gente responde no resultado.',when:isAnal,opts:[
     ['dor','Sentir dor','Com gel certo, tamanho certo e tempo certo, não dói.'],
     ['higiene','Higiene','Tem produto pra isso e a preparação é simples.'],
     ['tamanho','Escolher o tamanho errado','Começa sempre pelo menor.'],
     ['errado','Fazer algo errado','A base larga e o gel resolvem quase tudo.'],
-    ['nada','Nada, estou tranquila',''],
+    ['nada','Nada, estou tranquila','Ótimo. Vamos direto à indicação.'],
   ]},
   {id:'analGel',type:'single',q:'E o <i>gel</i>?',sub:'A região não lubrifica sozinha, então gel não é opcional.',when:isAnal,opts:[
-    ['espesso','Quero um específico, mais espesso e duradouro',''],
+    ['espesso','Quero um específico, mais espesso e duradouro','O mais indicado pra começar.'],
     ['relaxante','Com relaxante suave','Sem anestesiar, porque dor é um sinal importante.'],
-    ['tenho','Já tenho um gel anal',''],
-    ['naosei','Não sei a diferença, me indica',''],
+    ['tenho','Já tenho um gel anal','A gente confere se é o tipo certo.'],
+    ['naosei','Não sei a diferença, me indica','A gente explica no resultado.'],
   ]},
   Q_CASA(isAnal),
   {id:'a3',type:'multi',max:2,two:true,exclusive:['tanto'],q:'O que é <i>mais importante</i> pra você?',sub:'Até duas.',when:isAnal,opts:[
     ['pequeno','Tamanho pequeno','Começar devagar.'],
     ['controle','Controle remoto ou por app','Pra brincar a dois.'],
     ['agua','À prova d\'água','Pra lavar fácil.'],
-    ['custo','Bom custo-benefício',''],
-    ['tanto','Tanto faz, me surpreende',''],
+    ['custo','Bom custo-benefício','Quero começar sem gastar muito.'],
+    ['tanto','Tanto faz, me surpreende','A gente indica pelo que você contou até aqui.'],
   ]},
   Q_MOMENTO(isAnal),
 
   /* ---------- PRESENTE (8 perguntas) ---------- */
   {id:'p1',type:'single',two:true,q:'Pra quem é o <i>presente</i>?',when:isPres,opts:[
-    ['parceira','Minha parceira',''],['parceiro','Meu parceiro',''],['amiga','Uma amiga',''],['casal','Um casal','Chá, casamento, aniversário de namoro.'],
+    ['parceira','Minha parceira','Pra ela usar sozinha ou com você.'],['parceiro','Meu parceiro','Pra ele usar sozinho ou com você.'],['amiga','Uma amiga','Algo que não constranja e tenha a cara dela.'],['casal','Um casal','Chá, casamento, aniversário de namoro.'],
   ]},
   {id:'ocasiao',type:'single',q:'Qual é a <i>ocasião</i>?',when:isPres,opts:[
-    ['aniversario','Aniversário',''],['data','Data do casal ou dia dos namorados',''],['cha','Chá, despedida ou casamento',''],['semmotivo','Sem motivo, só porque quis',''],
+    ['aniversario','Aniversário','Algo que seja presente de verdade, bonito de abrir.'],['data','Data do casal ou dia dos namorados','Algo pra usar juntos, com clima.'],['cha','Chá, despedida ou casamento','Leve, divertido, bom de abrir na frente de gente.'],['semmotivo','Sem motivo, só porque quis','Então pode ser algo pequeno e carinhoso.'],
   ]},
   {id:'p2',type:'single',q:'Qual o <i>clima</i> do presente?',when:isPres,opts:[
     ['delicado','Delicado e de cuidado','Velas, óleos, cosméticos. Nada que vibre.'],
@@ -575,21 +593,21 @@ const SCREENS=[
     ['completo','Um kit completo','Combinação pronta, sem risco de errar.'],
   ]},
   {id:'p3',type:'single',q:'Essa pessoa já tem <i>intimidade</i> com produtos íntimos?',when:isPres,opts:[
-    ['nunca','Acho que nunca usou',''],['algum','Já tem algum',''],['naosei','Não sei','Vou considerar iniciante, por segurança.'],
+    ['nunca','Acho que nunca usou','A indicação fica simples e fácil de incluir.'],['algum','Já tem algum','Dá pra ir além do básico.'],['naosei','Não sei','Vou considerar iniciante, por segurança.'],
   ]},
   {id:'curte',type:'multi',max:2,two:true,exclusive:['naosei'],q:'O que essa pessoa <i>curte</i>?',sub:'Até dois.',when:isPres,opts:[
-    ['bemestar','Cuidado, bem-estar, autocuidado',''],['humor','Humor e brincadeira',''],['sensualidade','Sensualidade e clima',''],['tech','Novidades e tecnologia',''],['naosei','Não sei bem',''],
+    ['bemestar','Cuidado, bem-estar, autocuidado','Velas, óleos, cosméticos.'],['humor','Humor e brincadeira','Jogos e cartas.'],['sensualidade','Sensualidade e clima','Clima, toque, algo pra usar a dois.'],['tech','Novidades e tecnologia','Produtos com app ou controle remoto.'],['naosei','Não sei bem','A gente indica pelo clima do presente.'],
   ]},
   {id:'intimidadeCom','type':'single',q:'Qual a sua <i>intimidade</i> com a pessoa pra esse tipo de presente?',when:isPres,opts:[
-    ['muita','Muita, a gente fala de tudo',''],
+    ['muita','Muita, a gente fala de tudo','Pode ser direto.'],
     ['razoavel','Razoável, mas é um passo novo','Melhor algo elegante e sem exagero.'],
     ['delicada','É meio delicado','Melhor algo de cuidado, que não constranja.'],
   ]},
   {id:'usoPres',type:'single',q:'É pra pessoa usar <i>sozinha</i> ou com alguém?',when:isPres,opts:[
-    ['sozinha','Sozinha',''],['comigo','Comigo',''],['parceria','Com a parceria dela ou dele',''],['tanto','Tanto faz',''],
+    ['sozinha','Sozinha','A indicação fica em produtos individuais.'],['comigo','Comigo','Entram produtos pra usar a dois.'],['parceria','Com a parceria dela ou dele','Entram produtos pra usar a dois.'],['tanto','Tanto faz','A gente indica pelo clima e pela pessoa.'],
   ]},
   {id:'embalagem',type:'single',q:'Quer que venha <i>embalado</i> pra presente?',when:isPres,opts:[
-    ['sim','Sim, pronto pra entregar',''],['nao','Não precisa',''],
+    ['sim','Sim, pronto pra entregar','A gente lembra de pedir na finalização.'],['nao','Não precisa','Nossa caixa já é discreta e bonita.'],
   ]},
 
   /* ---------- SÓ CURIOSIDADE (8 perguntas) ---------- */
@@ -601,21 +619,21 @@ const SCREENS=[
   ]},
   {id:'curExp',type:'single',q:'Você já <i>comprou</i> algo assim antes?',when:isCur,opts:[
     ['nunca','Nunca','Tudo seria novidade.'],
-    ['uma','Uma ou duas vezes',''],
-    ['sim','Sim, algumas vezes',''],
+    ['uma','Uma ou duas vezes','Já tem uma referência.'],
+    ['sim','Sim, algumas vezes','Dá pra ir além do básico.'],
   ]},
   {id:'curiosa',type:'multi',max:2,two:true,q:'O que te deixa mais <i>curiosa</i>?',sub:'Até duas.',when:isCur,opts:[
-    ['sensacoes','Sensações que nunca senti',''],['brincadeiras','Brincadeiras e jogos',''],['corpo','Entender melhor meu corpo',''],['cuidado','Cuidado íntimo e bem-estar',''],['relacao','Algo pra relação',''],
+    ['sensacoes','Sensações que nunca senti','Vibradores, géis com efeito.'],['brincadeiras','Brincadeiras e jogos','Cartas, dados, desafios.'],['corpo','Entender melhor meu corpo','Educativos, espelho, assoalho pélvico.'],['cuidado','Cuidado íntimo e bem-estar','Hidratação, higiene, massagem.'],['relacao','Algo pra relação','Algo pra usar a dois.'],
   ]},
   {id:'curQuem',type:'single',q:'Isso seria mais <i>pra você</i> ou pra dividir?',when:isCur,opts:[
-    ['mim','Só pra mim',''],['dois','Pra dividir com alguém',''],['tanto','Tanto faz',''],
+    ['mim','Só pra mim','A indicação fica individual.'],['dois','Pra dividir com alguém','Entram opções pra usar a dois.'],['tanto','Tanto faz','A gente indica pelo que te chama mais.'],
   ]},
   Q_CASA(isCur),
   {id:'curBrinquedo',type:'single',q:'Se fosse um <i>brinquedo</i>, que tipo faria sentido?',when:isCur,opts:[
     ['fora','Algo por fora, no clitóris','O estímulo mais direto e mais comum.'],
-    ['dentro','Algo por dentro',''],
-    ['naosei','Não sei, o mais simples',''],
-    ['nao','Prefiro não começar por brinquedo',''],
+    ['dentro','Algo por dentro','Com penetração.'],
+    ['naosei','Não sei, o mais simples','Os versáteis, que funcionam por fora e por dentro.'],
+    ['nao','Prefiro não começar por brinquedo','Então a indicação vai por clima, jogos ou cuidado.'],
   ]},
   Q_CUIDADO_JUNTO(isCur),
   Q_MOMENTO(isCur),
@@ -633,9 +651,11 @@ const lista=arr=>arr.length<=1?arr.join(''):arr.slice(0,-1).join(', ')+' e '+arr
 
 function montar(a){
   const p=pathOf(a);
-  const R={intro:'',main:null,comps:[],avisos:[],dicas:[]};
-  const main=(id,why)=>{R.main={...DEST[id],why}};
-  const comp=(id,why)=>{if(!R.comps.some(c=>c.id===id)&&(!R.main||R.main.id!==id)&&R.comps.length<6) R.comps.push({...DEST[id],why})};
+  const R={intro:'',recs:[],avisos:[]};
+  const rec=(id,why)=>{if(!R.recs.some(c=>c.id===id)&&R.recs.length<6) R.recs.push({...DEST[id],why})};
+  const main=rec, comp=rec;
+  Object.defineProperty(R,'main',{get(){return R.recs[0]||null}});
+  Object.defineProperty(R,'comps',{get(){return R.recs.slice(1)}});
   const casa=a.casa||'', mom=a.momento||[], cj=a.cuidadoJunto||[];
   const casaTxt=casa==='dividida'?'Você mora com outras pessoas, então procure os descritos como silenciosos e com formato discreto.':casa==='parede'?'Como as paredes são finas, dê preferência aos silenciosos.':'';
   const momentoComps=()=>{
@@ -715,35 +735,49 @@ function montar(a){
     const d1=a.d1||[], gostam=a.gostam||[], qx=a.queixa||[], foco=a.foco||'tanto', d5=a.d5||'', d2=a.d2||'', d3=a.d3||'', ab=a.abertura||'', pr=a.prioDois||[];
     const quer=[]; if(d1.includes('sensacoes')) quer.push('novas sensações durante a relação'); if(d1.includes('rotina')) quer.push('sair da rotina'); if(d1.includes('fantasias')) quer.push('explorar fantasias'); if(d1.includes('conforto')) quer.push('mais conforto'); if(d1.includes('clima')) quer.push('clima e toque'); if(d1.includes('descobrir')) quer.push('descobrir algo novo');
     const qTxt=[]; if(qx.includes('rotina')) qTxt.push('caiu na rotina'); if(qx.includes('atrito')) qTxt.push('falta lubrificação'); if(qx.includes('rapido')) qTxt.push('ele termina antes do que gostariam'); if(qx.includes('orgasmo')) qTxt.push('ela tem dificuldade de chegar ao orgasmo na relação'); if(qx.includes('vergonha')) qTxt.push('dá vergonha de propor novidades'); if(qx.includes('tempo')) qTxt.push('falta tempo');
-    const abTxt={abertos:' Vocês topam quase tudo, então dá pra ir direto ao ponto.',calma:' Vocês querem ir com calma, então a indicação é um passo de cada vez.',desigual:' Como um está mais animado que o outro, a indicação é algo que não assuste e que convide.',primeira:' Como é a primeira conversa sobre isso, a indicação é algo que ajude a conversar antes de fazer.'}[ab]||'';
-    R.intro=`Pelas suas respostas, vocês querem ${lista(quer)||'viver algo novo a dois'}${qTxt.length?', e hoje '+lista(qTxt):''}.${d5==='nunca'?' Seria a primeira vez usando algo juntos, então a indicação é simples de incluir.':d5==='intimidade'?' Vocês já têm intimidade com brinquedos, então dá pra ir além do básico.':''}${abTxt}`;
-    const gelMap={neutro:['gel-neutro','Pra deslizar melhor, sem cheiro e sem efeito. Combina com tudo.'],termico:['gel-termico','Vocês querem sensação térmica: esquenta, refresca ou faz quente e frio.'],retardar:['gel-retardar','Pra prolongar a relação: diminui um pouco a sensibilidade dele por um tempo.'],estimulos:['gel-estimulos','Formigamento e pulsação além do deslizamento.']};
-    const silTxt=pr.includes('silencioso')?' Vocês dividem casa, então procure os silenciosos.':'';
-    const facTxt=pr.includes('facil')?' Vocês pediram simplicidade: fuja dos com app.':'';
+    const abTxt={abertos:' Vocês topam quase tudo, então dá pra ir direto ao ponto.',calma:' Vocês querem ir com calma, então a indicação é um passo de cada vez.',desigual:' Como um está mais animado que o outro, priorizamos o que convida sem assustar.',primeira:' Como é a primeira conversa sobre isso, priorizamos o que ajuda a conversar antes de fazer.'}[ab]||'';
+    R.intro=`Pelas suas respostas, vocês querem ${lista(quer)||'viver algo novo a dois'}${qTxt.length?', e hoje '+lista(qTxt):''}.${d5==='nunca'?' Seria a primeira vez usando algo juntos, então tudo aqui é simples de incluir.':d5==='intimidade'?' Vocês já têm intimidade com brinquedos, então dá pra ir além do básico.':''}${abTxt} Em vez de uma só, separamos as categorias que conversam com tudo isso.`;
+    const filtro=[]; if(pr.includes('silencioso')) filtro.push('silencioso'); if(pr.includes('facil')) filtro.push('simples de usar, sem app'); if(pr.includes('viagem')) filtro.push('pequeno e com trava de viagem'); if(pr.includes('agua')) filtro.push('à prova d\'água'); if(pr.includes('ambos')) filtro.push('que os dois sintam'); if(pr.includes('versatil')) filtro.push('versátil, que sirva pra mais de um momento');
+    const fTxt=filtro.length?` Dentro da categoria, procurem algo ${lista(filtro)}.`:'';
     const gostTxt=gostam.includes('penetracao')?' Como vocês gostam de penetração, um que fique no lugar durante a relação encaixa no que já funciona.':gostam.includes('oral')?' Como vocês gostam de sexo oral, um vibrador de casal pequeno também entra bem nas preliminares.':'';
 
-    // 1. queixas clínicas ou práticas têm prioridade
-    if(qx.includes('rapido')&&(d1.includes('conforto')||ab!=='primeira')){ main('gel-retardar',`Vocês contaram que ele termina antes do que gostariam. Este gel diminui um pouco a sensibilidade dele por um tempo e ajuda a prolongar a relação, sem anestesiar. É o ajuste mais simples antes de qualquer brinquedo.`); if(d2!=='sem') comp('vib-dois','Um anel vibratório também ajuda ele a durar mais e ainda estimula ela durante a relação.'); }
-    else if(qx.includes('orgasmo')&&d2!=='sem'){ main('vib-dois',`Vocês contaram que ela tem dificuldade de chegar ao orgasmo na relação. É muito comum, porque a maioria precisa de estímulo por fora, no clitóris, e a penetração sozinha não dá isso. Nesta categoria ficam os anéis vibratórios e vibradores de casal que estimulam o clitóris sem atrapalhar a penetração.${gostTxt}${silTxt}${facTxt}`); }
-    else if(d1.includes('sensacoes')||(foco!=='tanto'&&d2&&d2!=='sem')){
-      if(d2==='ele') main('vib-peniano',`Vocês querem estímulo pra ele. Anéis penianos e produtos pensados pro corpo masculino, e boa parte deles também estimula a parceira durante a relação.${silTxt}`);
-      else if(d2==='ela') main('vib-dois',`Vocês querem estímulo pra ela durante a relação. Nesta categoria ficam os que estimulam o clitóris sem atrapalhar a penetração, como anéis vibratórios e vibradores de casal.${gostTxt}${silTxt}${facTxt}`);
-      else if(d2==='remoto') main('vib-dois',`Um controla, o outro sente. Nesta categoria ficam os vibradores de casal com controle remoto ou por app, pra brincar de perto ou de longe.${silTxt}`);
-      else if(d2==='juntos') main('vib-dois',`Vocês querem algo que os dois sintam durante a penetração. É exatamente isso que esta categoria reúne: vibradores de casal e anéis vibratórios que ficam no lugar e estimulam os dois.${gostTxt}${silTxt}${facTxt}`);
-      else if(d2==='sem'){ if(d1.includes('rotina')||qx.includes('rotina')||ab==='primeira') main('jogos','Vocês querem novas sensações mas preferem começar sem brinquedo. Um jogo de casal faz os convites por vocês e mostra do que os dois gostam, sem pressão.'); else main('massagem','Vocês querem novas sensações mas preferem começar sem brinquedo. Velas de massagem e óleos pro corpo inteiro são o caminho mais sensorial pra isso.'); }
-      else main('vib-dois',`Vocês querem novas sensações durante a relação. Esta categoria reúne os vibradores pensados pra usar a dois: alguns os dois sentem, outros um controla e o outro sente. Leiam as descrições e escolham juntos.${gostTxt}${silTxt}${facTxt}`);
+    // vibradores a dois
+    const querVib=d1.includes('sensacoes')||qx.includes('orgasmo')||(d2&&d2!=='sem')||foco==='dois';
+    if(querVib){
+      if(d2==='ele') rec('vib-peniano',`Vocês querem estímulo pra ele. Anéis penianos e produtos pensados pro corpo masculino, e boa parte deles também estimula a parceira durante a relação.${qx.includes('rapido')?' Os anéis ainda ajudam ele a durar mais.':''}${fTxt}`);
+      else {
+        let w='';
+        if(qx.includes('orgasmo')) w=`Vocês contaram que ela tem dificuldade de chegar ao orgasmo na relação. É muito comum, porque a maioria precisa de estímulo por fora, no clitóris. Aqui ficam anéis vibratórios e vibradores de casal que estimulam o clitóris sem atrapalhar a penetração.`;
+        else if(d2==='remoto') w='Um controla, o outro sente. Aqui ficam os vibradores de casal com controle remoto ou por app, pra brincar de perto ou de longe.';
+        else if(d2==='ela') w='Vocês querem estímulo pra ela durante a relação: anéis vibratórios e vibradores de casal que estimulam o clitóris sem atrapalhar a penetração.';
+        else if(d2==='juntos'||foco==='dois') w='Vocês querem algo que os dois sintam durante a penetração. É isso que esta categoria reúne: vibradores de casal e anéis vibratórios que ficam no lugar e estimulam os dois.';
+        else w='Vocês querem novas sensações durante a relação. Aqui ficam os vibradores pensados pra usar a dois: alguns os dois sentem, outros um controla e o outro sente.';
+        rec('vib-dois',w+gostTxt+(qx.includes('rapido')?' Os anéis vibratórios também ajudam ele a durar mais.':'')+fTxt);
+      }
     }
-    if(d1.includes('rotina')||qx.includes('rotina')){ if(!R.main) main('jogos','Vocês querem sair da rotina. Cartas, dados e tabuleiros de casal criam o convite e tiram a pressão de "ter que acontecer".'); else comp('jogos','Pra sair da rotina: cartas e dados que fazem o convite por vocês.'); }
-    if(qx.includes('vergonha')&&R.main&&R.main.id!=='jogos') comp('jogos','Vocês contaram que dá vergonha de propor novidades. Um jogo de casal faz a proposta por vocês.');
-    if(d1.includes('fantasias')||gostam.includes('fantasias')){ if(!R.main) main('aces-dominar','Vocês querem explorar fantasias e jogos de poder. Vendas, algemas e kits pra brincar de restrição e controle, sempre combinado antes.'); else if(d1.includes('fantasias')) comp('aces-dominar','Pra explorar fantasias: vendas, algemas e kits, sempre combinados antes.'); }
-    if(d1.includes('clima')||gostam.includes('preliminares')){ if(!R.main) main('massagem','Vocês querem começar pelo clima e pelo toque. Velas de massagem, óleos e sais de banho pro corpo inteiro.'); else if(d1.includes('clima')) comp('massagem','Pra criar clima: velas de massagem e óleos pro corpo inteiro.'); }
-    if(d1.includes('conforto')||qx.includes('atrito')){ const g=gelMap[d3&&d3!=='nao'?d3:'neutro']; if(!R.main) main(g[0],`Vocês querem mais conforto na relação. ${g[1]} Hoje muitos lubrificantes são chamados de deslizantes, mas a função é a mesma.`); else comp(g[0],g[1]); }
-    if(d1.includes('descobrir')){ if(!R.main) main('jogos','Vocês querem descobrir algo novo sem saber o quê. Um jogo de casal é o jeito mais leve de começar: ele faz as perguntas e os convites por vocês.'); comp('massagem','Clima e toque são um começo seguro pra quem ainda não sabe o que quer.'); }
-    if(R.main&&R.main.id.startsWith('vib')&&d3&&d3!=='nao'){ const g=gelMap[d3]; comp(g[0],g[1]); }
-    else if(R.main&&R.main.id.startsWith('vib')) comp('gel-neutro','Todo brinquedo pede um gel. O neutro combina com qualquer um.');
-    if(qx.includes('rapido')&&R.main&&R.main.id!=='gel-retardar') comp('gel-retardar','Vocês contaram que ele termina antes do que gostariam: este gel ajuda a prolongar.');
-    if(d5==='nunca'&&R.main&&R.main.id.startsWith('vib')) comp('kits','Como seria a primeira vez, um kit a dois traz o brinquedo com o gel e evita errar na combinação.');
-    if(!R.main) main('jogos','Vocês querem viver algo novo a dois. Um jogo de casal é o jeito mais leve de começar.');
+    // géis: várias razões, uma indicação ampla
+    const gelMotivos=[]; if(qx.includes('atrito')||d1.includes('conforto')) gelMotivos.push('tirar o atrito'); if(qx.includes('rapido')) gelMotivos.push('ajudar ele a durar mais (os retardantes)'); if(d3==='termico'||d3==='estimulos'||d1.includes('sensacoes')) gelMotivos.push('trazer sensações novas (térmicos e de formigamento)');
+    if(d3&&d3!=='nao'||gelMotivos.length||querVib){
+      const alvo=d3==='retardar'&&!gelMotivos.some(x=>x.includes('sensações'))?'gel-retardar':d3==='termico'&&gelMotivos.length<2?'gel-termico':d3==='estimulos'&&gelMotivos.length<2?'gel-estimulos':d3==='neutro'&&gelMotivos.length<2?'gel-neutro':'geis';
+      const base=gelMotivos.length?`Pelo que vocês contaram, os géis entram pra ${lista(gelMotivos)}.`:'Todo brinquedo pede um gel, e eles mudam muito a experiência.';
+      const extra=alvo==='geis'?' Nesta categoria tem neutros, térmicos, com formigamento, pra água e retardantes: dá pra montar mais de um momento com eles.'+(qx.includes('rapido')?' Comecem pelo retardante.':''):alvo==='gel-retardar'?' Ele diminui um pouco a sensibilidade dele por um tempo, sem anestesiar.':alvo==='gel-termico'?' Esquenta, refresca ou faz quente e frio.':alvo==='gel-estimulos'?' Formigamento e pulsação além do deslizamento.':' Sem cheiro e sem efeito, combina com tudo.';
+      rec(alvo,base+extra);
+    }
+    // jogos
+    if(d1.includes('rotina')||qx.includes('rotina')||qx.includes('vergonha')||d1.includes('descobrir')||ab==='primeira'||gostam.includes('brincar')){
+      const w=qx.includes('vergonha')?'Vocês contaram que dá vergonha de propor novidades. Um jogo de casal faz a proposta por vocês: as cartas e os dados trazem o convite, e ninguém precisa pedir.':ab==='primeira'?'Como é a primeira conversa sobre isso, um jogo de casal ajuda a conversar antes de fazer: cada carta é um assunto.':d1.includes('descobrir')?'Vocês querem descobrir algo novo sem saber o quê. Um jogo de casal faz as perguntas e os convites por vocês, e mostra do que os dois gostam.':'Pra sair da rotina: cartas, dados e tabuleiros de casal criam o convite e tiram a pressão de "ter que acontecer".';
+      rec('jogos',w);
+    }
+    // massagem e clima
+    if(d1.includes('clima')||gostam.includes('preliminares')||d1.includes('descobrir')||qx.includes('tempo')) rec('massagem',qx.includes('tempo')?'Vocês contaram que falta tempo. Uma vela de massagem transforma dez minutos em clima, sem precisar de planejamento.':gostam.includes('preliminares')?'Vocês já gostam de preliminares longas: velas de massagem, óleos e sais de banho levam isso adiante.':'Pra começar pelo clima e pelo toque: velas de massagem, óleos e sais de banho pro corpo inteiro.');
+    // fantasias
+    if(d1.includes('fantasias')||gostam.includes('fantasias')) rec('aces-dominar',gostam.includes('fantasias')&&!d1.includes('fantasias')?'Vocês já conversam sobre fantasias. Vendas e algemas são o jeito mais leve de levar uma delas pra prática, sempre combinado antes.':'Pra explorar fantasias e jogos de poder: vendas, algemas e kits pra brincar de restrição e controle, sempre consensual e combinado antes.');
+    // kits
+    if(d5==='nunca'&&querVib) rec('kits','Como seria a primeira vez usando algo juntos, um kit a dois traz o brinquedo com o gel e evita errar na combinação.');
+    // garante pelo menos três
+    if(R.recs.length<3) rec('massagem','Clima e toque são um começo seguro pra qualquer casal: velas de massagem, óleos e sais de banho.');
+    if(R.recs.length<3) rec('jogos','Um jogo de casal é o jeito mais leve de trazer novidade: ele faz os convites por vocês.');
+    if(R.recs.length<3) rec('geis','Todo casal se beneficia de um gel: tira o atrito e, nas versões térmicas e de formigamento, traz sensação nova.');
     if(pr.includes('custo')) R.sale=true;
   }
 
@@ -821,7 +855,7 @@ function montar(a){
     momentoComps();
   }
 
-  if(!R.main) main('vib-comecar','O caminho mais simples pra começar.');
+  if(!R.recs.length) rec('vib-comecar','O caminho mais simples pra começar.');
   if(!R.intro) R.intro='Pelas suas respostas, esse é o melhor ponto de partida.';
   return R;
 }
@@ -832,8 +866,8 @@ function montar(a){
 let answers={}; let idx=-1;
 const view=document.getElementById('view'), btnBack=document.getElementById('btnBack');
 const visible=()=>SCREENS.filter(s=>!s.when||s.when(answers));
-try{const saved=JSON.parse(sessionStorage.getItem('itscool-quiz-v20')||'null'); if(saved){answers=saved.answers||{}; idx=saved.idx??-1;}}catch(e){}
-const persist=()=>{try{sessionStorage.setItem('itscool-quiz-v20',JSON.stringify({answers,idx}))}catch(e){}};
+try{const saved=JSON.parse(sessionStorage.getItem('itscool-quiz-v21')||'null'); if(saved){answers=saved.answers||{}; idx=saved.idx??-1;}}catch(e){}
+const persist=()=>{try{sessionStorage.setItem('itscool-quiz-v21',JSON.stringify({answers,idx}))}catch(e){}};
 
 function render(){
   persist();
@@ -902,22 +936,20 @@ function next(){idx=Math.min(idx+1,visible().length-1); render();}
 btnBack.onclick=()=>{idx=Math.max(-1,idx-1); render();};
 function refazer(){answers={}; idx=-1; render();}
 
-function mainCard(d){
+function recCard(d,i){
   const c=CAT[d.cat];
-  return `<article class="rmain"><div class="band ${c.band}"><span class="cat">${c.nome}</span>${ART[d.art]||ART.caixa}</div>
-    <div class="body"><div class="step">Nossa indicação principal</div><h2>${d.nome}</h2><p class="desc">${d.desc}</p>
+  return `<article class="rec"><div class="band ${c.band}"><span class="cat">${c.nome}</span><span class="n">0${i+1}</span>${ART[d.art]||ART.caixa}</div>
+    <div class="body"><h2>${d.nome}</h2><p class="desc">${d.desc}</p>
     <div class="porque"><b>Por que pra você</b><p>${d.why}</p></div>
     <a class="btn primary" href="${link(d.slug)}" target="_blank" rel="noopener">Ver os produtos</a></div></article>`;
 }
-function compCard(d){
-  return `<div class="xcard"><div class="ic">${ART[d.art]||ART.caixa}</div><div style="flex:1"><span class="cat">${CAT[d.cat].nome}</span><b>${d.nome}</b><span>${d.why}</span></div><a href="${link(d.slug)}" target="_blank" rel="noopener">Ver</a></div>`;
-}
 function resultado(R){
+  const n=R.recs.length;
   let h=`<div class="rwrap"><div class="rhead"><div class="step">Seu match</div><h1>A gente <i>entendeu</i> o que você procura.</h1><p>${R.intro}</p></div>`;
   R.avisos.forEach(t=>{h+=`<div class="warn">${t}</div>`});
-  h+=mainCard(R.main);
-  if(R.comps.length) h+=`<div class="lbl">Combina com a indicação</div><div class="extras">${R.comps.map(compCard).join('')}</div>`;
-  if(R.sale) h+=`<p class="note" style="text-align:center">Você pediu custo-benefício: vale conferir também a seção <a href="${link('sale')}" target="_blank" rel="noopener" style="color:var(--cereja);font-weight:600">Sale</a>, filtrando pela categoria indicada.</p>`;
+  h+=`<div class="lbl" style="text-align:center;justify-content:center">${n===1?'Nossa indicação':'Nossas indicações'}</div>`;
+  h+=`<div class="recs ${n<=2?'two':''}">${R.recs.map(recCard).join('')}</div>`;
+  if(R.sale) h+=`<p class="note" style="text-align:center">Você pediu custo-benefício: vale conferir também a seção <a href="${link('sale')}" target="_blank" rel="noopener" style="color:var(--cereja);font-weight:600">Sale</a>, filtrando pelas categorias indicadas.</p>`;
   h+=`<div class="rfoot"><button class="btn soft" onclick="refazer()">Refazer o quiz</button></div>`;
   h+=`<details class="debug"><summary>Ver a lógica (pra quem está construindo)</summary><pre>${JSON.stringify({caminho:pathOf(answers),respostas:answers},null,1)}</pre></details></div>`;
   return h;
