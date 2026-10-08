@@ -110,6 +110,10 @@ h1 i{font-style:italic;color:var(--terra)}
 .rec .porque{background:var(--bege-claro);border-left:3px solid var(--terra);border-radius:0 12px 12px 0;padding:10px 14px;font-size:.88rem}
 .rec .porque b{display:block;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--terra);font-weight:600;margin-bottom:4px}
 .rec .porque p{margin:0}
+.rec .itens{font-size:.86rem}
+.rec .itens b{display:block;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:6px}
+.rec .itens ul{margin:0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:6px}
+.rec .itens li{background:var(--bege);border-radius:999px;padding:4px 10px;font-size:.78rem;color:var(--cinza)}
 .rec .btn{margin-top:auto;font-size:.74rem;padding:14px 18px}
 .rmain{background:var(--white);border:1px solid var(--line);border-radius:24px;overflow:hidden;display:grid;box-shadow:0 14px 40px rgba(120,60,50,.1);margin-bottom:26px}
 @media (min-width:760px){.rmain{grid-template-columns:300px 1fr}}
@@ -169,7 +173,7 @@ h1 i{font-style:italic;color:var(--terra)}
     <a class="logo" href="#" onclick="refazer();return false" aria-label="it's COOL, prazer e bem-estar íntimo"><img src="logo.png?v=1" alt="it's COOL"></a>
     <button class="btn ghost" id="btnBack" type="button">Voltar</button>
   </header>
-  <div class="stamp">versão 21 · fluxo a dois</div>
+  <div class="stamp">versão 22 · categorias e tipos de produto</div>
   <main id="view"></main>
 </div>
 
@@ -255,6 +259,38 @@ const DEST={
   'anal-higiene':D('anal-higiene','ANAL','Higiene anal','ducha','Produtos e acessórios desenvolvidos para a higiene da região anal, antes e depois.','anal/higiene-anal'),
   'kits':D('kits','KITS','Kits','caixa','Combinações de produtos selecionadas para facilitar a escolha e ajudar você a criar diferentes experiências de prazer e cuidado.','kits'),
   'sale':D('sale','SALE','Sale','etiqueta','Todos os produtos com condições especiais e preços promocionais. Boas descobertas, melhores preços.','sale'),
+};
+
+
+/* tipos de produto que existem em cada subcategoria; o resultado destaca os que encaixam no perfil */
+const ITENS={
+  'vib-externo':['sugadores','pulsadores de ar','bullets','vibradores externos de formato anatômico'],
+  'vib-interno':['vibradores curvos pro ponto G','vibradores retos e encorpados','vibradores com movimento ou pulsação interna'],
+  'vib-peniano':['anéis penianos simples','anéis vibratórios','estimuladores de glande'],
+  'vib-dois':['vibradores de casal em C ou U','anéis vibratórios','vibradores com controle remoto','vibradores com app'],
+  'vib-comecar':['bullets simples','vibradores pequenos e versáteis','vibradores de um botão'],
+  'vib-sensacoes':['vibradores de dupla estimulação (rabbit)','vibradores com pulsação','estimuladores de outras áreas'],
+  'geis':['géis neutros','géis térmicos','géis com formigamento','géis pra água','géis retardantes'],
+  'gel-neutro':['lubrificantes à base de água','lubrificantes sem perfume','lubrificantes sem glicerina'],
+  'gel-termico':['géis que esquentam','géis que refrescam','géis quente e frio'],
+  'gel-agua':['lubrificantes à base de silicone','lubrificantes híbridos resistentes à água'],
+  'gel-resistente':['lubrificantes à base de silicone','lubrificantes de longa duração'],
+  'gel-retardar':['géis retardantes','sprays retardantes'],
+  'gel-estimulos':['géis com formigamento','géis com pulsação','géis de excitação'],
+  'jogos':['jogos de cartas pra casal','dados eróticos','tabuleiros de casal','desafios'],
+  'massagem':['velas de massagem','óleos de massagem','sais de banho','óleos sensoriais'],
+  'aces-explorar':['masturbadores','pênis realísticos','dildos sem vibração','dilatadores penianos'],
+  'aces-dominar':['vendas','algemas macias','chicotes leves','kits de iniciação'],
+  'higiene':['sabonetes íntimos','lenços íntimos','limpadores de brinquedo'],
+  'cosmeticos':['óleos íntimos','séruns','cremes','perfumes íntimos'],
+  'hidratacao':['hidratantes íntimos de uso contínuo','hidratantes em gel','hidratantes pra menopausa e pós-parto'],
+  'pelvica':['exercitadores pélvicos','bolinhas de pompoarismo','dilatadores vaginais','espelho íntimo e materiais educativos'],
+  'anal-plugs':['plugs pequenos de silicone','kits de plugs progressivos','plugs com joia'],
+  'anal-vib':['plugs vibratórios','estimuladores anais','plugs com controle remoto'],
+  'anal-gel':['géis anais espessos','géis anais com relaxante suave'],
+  'anal-higiene':['duchas higiênicas','lenços','sabonetes suaves'],
+  'kits':['kits pra começar','kits a dois','kits de cuidado','kits presente'],
+  'sale':['produtos de todas as categorias com preço especial'],
 };
 
 /* ============================================================
@@ -642,7 +678,7 @@ const SCREENS=[
 ];
 
 /* ============================================================
-   RECOMENDAÇÃO: uma principal fundamentada, até três complementos
+   RECOMENDAÇÃO: 3 a 6 categorias igualmente indicadas, cada uma com o porquê
    com relação direta, avisos responsáveis.
    ============================================================ */
 const AVISO_DOR='Dor nas relações não é normal e não é frescura. Os produtos ajudam no conforto, mas vale uma conversa com ginecologista ou fisioterapeuta pélvica pra entender a causa.';
@@ -652,7 +688,7 @@ const lista=arr=>arr.length<=1?arr.join(''):arr.slice(0,-1).join(', ')+' e '+arr
 function montar(a){
   const p=pathOf(a);
   const R={intro:'',recs:[],avisos:[]};
-  const rec=(id,why)=>{if(!R.recs.some(c=>c.id===id)&&R.recs.length<6) R.recs.push({...DEST[id],why})};
+  const rec=(id,why,itens)=>{if(!R.recs.some(c=>c.id===id)&&R.recs.length<6) R.recs.push({...DEST[id],why,itens:itens||ITENS[id]||[]})};
   const main=rec, comp=rec;
   Object.defineProperty(R,'main',{get(){return R.recs[0]||null}});
   Object.defineProperty(R,'comps',{get(){return R.recs.slice(1)}});
@@ -687,20 +723,20 @@ function montar(a){
     const gelWhy=uso.includes('banho')?'Você vai usar no banho: este gel mantém o deslizamento mesmo com água, o neutro comum sai.':null;
 
     if(est==='externo'){
-      if(sen==='succao'){ main('vib-externo',`Você pediu sucção ou pulsação de ar. Os sugadores ficam nesta categoria: eles criam ondas de pressão em volta do clitóris, sem encostar direto. Ignore os bullets aqui e procure os descritos como sugador ou pulsador.${filtroTxt} ${casaTxt}`); R.intro=`Pelas suas respostas, ${expTxt} e tem curiosidade por uma sensação específica: a sucção no clitóris.${intensTxt}${usoTxt}`; }
-      else if(sen==='vibracao'){ main('vib-externo',`Você quer estímulo por fora, com vibração. Esta categoria reúne bullets e vibradores externos, do mais simples ao mais potente.${filtroTxt} ${casaTxt}`); R.intro=`Pelas suas respostas, ${expTxt} e quer estímulo por fora, no clitóris, com vibração clássica.${intensTxt}${usoTxt}`; }
-      else { main('vib-externo',`Você quer estímulo por fora e quer conhecer tanto vibração quanto sucção. As duas ficam nesta categoria: bullets e vibradores externos de um lado, sugadores e pulsadores de outro.${filtroTxt} ${casaTxt}`); R.intro=`Pelas suas respostas, ${expTxt} e quer explorar o estímulo por fora, no clitóris, sem fechar ainda entre vibração e sucção.${intensTxt}${usoTxt}`; }
+      if(sen==='succao'){ main('vib-externo',`Você pediu sucção ou pulsação de ar. Os sugadores ficam nesta categoria: eles criam ondas de pressão em volta do clitóris, sem encostar direto.${filtroTxt} ${casaTxt}`,['sugadores','pulsadores de ar']); R.intro=`Pelas suas respostas, ${expTxt} e tem curiosidade por uma sensação específica: a sucção no clitóris.${intensTxt}${usoTxt}`; }
+      else if(sen==='vibracao'){ main('vib-externo',`Você quer estímulo por fora, com vibração, do mais simples ao mais potente.${filtroTxt} ${casaTxt}`,intz==='intenso'?['vibradores externos potentes','vibradores de formato anatômico']:['bullets','vibradores externos de formato anatômico']); R.intro=`Pelas suas respostas, ${expTxt} e quer estímulo por fora, no clitóris, com vibração clássica.${intensTxt}${usoTxt}`; }
+      else { main('vib-externo',`Você quer estímulo por fora e quer conhecer tanto vibração quanto sucção. As duas ficam nesta categoria.${filtroTxt} ${casaTxt}`,['sugadores','bullets','vibradores externos de formato anatômico']); R.intro=`Pelas suas respostas, ${expTxt} e quer explorar o estímulo por fora, no clitóris, sem fechar ainda entre vibração e sucção.${intensTxt}${usoTxt}`; }
     }else if(est==='interno'){
       const it={pontog:' Procure os de formato curvo, feitos pra pressionar a parede da frente.',preenchimento:' Procure os mais retos e encorpados.',movimento:' Procure os que se movem ou pulsam, além de vibrar.',naosei:''}[intn]||'';
-      main('vib-interno',`Você quer estímulo por dentro. Esta categoria reúne os vibradores pensados pra penetração.${it}${filtroTxt} ${casaTxt}`);
+      main('vib-interno',`Você quer estímulo por dentro. Esta categoria reúne os vibradores pensados pra penetração.${filtroTxt} ${casaTxt}`,intn==='pontog'?['vibradores curvos pro ponto G']:intn==='preenchimento'?['vibradores retos e encorpados']:intn==='movimento'?['vibradores com movimento ou pulsação interna']:undefined);
       R.intro=`Pelas suas respostas, ${expTxt} e quer estímulo interno, com penetração${intn==='pontog'?', alcançando o ponto G':intn==='preenchimento'?', com sensação de preenchimento':''}.${intensTxt}${usoTxt}`;
       if(exp==='nunca') comp('vib-comecar','Como é a sua primeira vez, vale olhar também os mais simples antes de decidir.');
     }else if(est==='ambos'){
       const dt={fora:' Procure os que têm a ponta externa mais encorpada, já que o clitóris é a sua prioridade.',dentro:' Procure os de haste interna mais marcada.',igual:''}[dup]||'';
-      main('vib-sensacoes',`Você quer os dois estímulos ao mesmo tempo. Esta categoria reúne os vibradores de estimulação dupla, com uma ponta por dentro e outra no clitóris.${dt}${filtroTxt} ${casaTxt}`);
+      main('vib-sensacoes',`Você quer os dois estímulos ao mesmo tempo. Esta categoria reúne os vibradores de estimulação dupla, com uma ponta por dentro e outra no clitóris.${filtroTxt} ${casaTxt}`,dup==='fora'?['rabbits com ponta externa encorpada','vibradores de dupla estimulação']:dup==='dentro'?['rabbits de haste interna marcada','vibradores de dupla estimulação']:['vibradores de dupla estimulação (rabbit)']);
       R.intro=`Pelas suas respostas, ${expTxt} e quer sentir por fora e por dentro ao mesmo tempo${dup==='fora'?', com o de fora como protagonista':dup==='dentro'?', com o de dentro como protagonista':''}.${intensTxt}${usoTxt}`;
     }else{
-      main('vib-comecar',`Você ainda não sabe que estímulo prefere, e isso é normal. Esta categoria reúne os vibradores mais simples e versáteis, que funcionam por fora e dão pra experimentar por dentro.${filtroTxt} ${casaTxt}`);
+      main('vib-comecar',`Você ainda não sabe que estímulo prefere, e isso é normal. Esta categoria reúne os vibradores mais simples e versáteis, que funcionam por fora e dão pra experimentar por dentro.${filtroTxt} ${casaTxt}`,intz==='suave'?['vibradores pequenos de intensidade regulável','bullets simples']:['bullets simples','vibradores pequenos e versáteis']);
       R.intro=`Pelas suas respostas, ${expTxt} e ainda não sabe que tipo de estímulo prefere. Então o caminho é começar pelo simples e versátil.${intensTxt}${usoTxt}`;
     }
     momentoComps();
@@ -752,7 +788,7 @@ function montar(a){
         else if(d2==='ela') w='Vocês querem estímulo pra ela durante a relação: anéis vibratórios e vibradores de casal que estimulam o clitóris sem atrapalhar a penetração.';
         else if(d2==='juntos'||foco==='dois') w='Vocês querem algo que os dois sintam durante a penetração. É isso que esta categoria reúne: vibradores de casal e anéis vibratórios que ficam no lugar e estimulam os dois.';
         else w='Vocês querem novas sensações durante a relação. Aqui ficam os vibradores pensados pra usar a dois: alguns os dois sentem, outros um controla e o outro sente.';
-        rec('vib-dois',w+gostTxt+(qx.includes('rapido')?' Os anéis vibratórios também ajudam ele a durar mais.':'')+fTxt);
+        rec('vib-dois',w+gostTxt+(qx.includes('rapido')?' Os anéis vibratórios também ajudam ele a durar mais.':'')+fTxt,d2==='remoto'?['vibradores com controle remoto','vibradores com app']:(qx.includes('orgasmo')||d2==='ela'||qx.includes('rapido'))?['anéis vibratórios','vibradores de casal em C ou U']:['vibradores de casal em C ou U','anéis vibratórios']);
       }
     }
     // géis: várias razões, uma indicação ampla
@@ -792,17 +828,18 @@ function montar(a){
     const peleTxt=pele==='sensivel'||pref.includes('semperfume')?' Como a sua pele é sensível, só sem perfume e sem corante.':'';
     const natTxt=pref.includes('natural')?' Você prefere ingredientes naturais: filtre por isso dentro da categoria.':'';
     R.intro=`Pelas suas respostas, você quer ${quer.length?lista(quer):'conhecer as possibilidades do cuidado íntimo'}${partes.length?' e '+lista(partes):''}.${ctx}${edu}`;
+    const hidrItens=(pele==='sensivel'||pref.includes('semperfume'))?['hidratantes íntimos sem perfume','hidratantes em gel de uso contínuo']:fase?['hidratantes pra menopausa e pós-parto','hidratantes de uso contínuo']:undefined;
     const hidrWhy=(base)=>`${base}${qd==='relacao'?' Como o desconforto aparece só nas relações, combine com um gel pra hora.':qd==='diaadia'?' Como o desconforto aparece no dia a dia, o hidratante é mesmo o centro do cuidado.':''}${fq==='relacao'?' Você pensou em usar só na hora, mas hidratante funciona melhor em uso contínuo, algumas vezes por semana.':''}${peleTxt}${natTxt}`;
 
-    if(c2.includes('dor')){ main('hidratacao',hidrWhy('Dor ou desconforto na relação costuma ter a ver com pouca lubrificação ou com a musculatura pélvica. Começamos pelo hidratante íntimo, que trata a secura na base e deixa a região mais confortável.')); comp('gel-neutro','Pra hora da relação, um gel neutro e sem perfume tira o atrito.'); comp('pelvica','Dilatadores e exercitadores ajudam a musculatura a relaxar e a ganhar controle, de preferência com orientação de fisioterapeuta pélvica.'); R.avisos.push(AVISO_DOR); }
-    else if(c2.includes('secura')||fase||saude||med){ if(qd==='relacao'&&!fase&&!saude){ main('gel-neutro',`A secura aparece só nas relações, então o primeiro cuidado é um gel neutro pra hora: tira o atrito, não tem cheiro nem efeito.${peleTxt}${natTxt}`); comp('hidratacao','Se a secura se repetir, o hidratante íntimo trata na base, em uso contínuo.'); } else { main('hidratacao',hidrWhy(`Secura se trata na base, não só na hora. O hidratante íntimo é de uso contínuo e devolve conforto no dia a dia.${ctx}`)); comp('gel-neutro','Pra hora da relação, um gel neutro e sem perfume complementa o hidratante.'); } if(c2.includes('pelvico')||c1.includes('pelvico')) comp('pelvica','Pra musculatura pélvica: exercitadores, pompoarismo e materiais educativos.'); else if(c2.includes('sensivel')||pele==='sensivel') comp('higiene','Com a região sensível, um sabonete íntimo suave e sem perfume faz diferença.'); }
+    if(c2.includes('dor')){ main('hidratacao',hidrWhy('Dor ou desconforto na relação costuma ter a ver com pouca lubrificação ou com a musculatura pélvica. O hidratante íntimo entra pra tratar a secura na base e deixar a região mais confortável.'),hidrItens); comp('gel-neutro','Pra hora da relação, um gel neutro e sem perfume tira o atrito.'); comp('pelvica','Dilatadores e exercitadores ajudam a musculatura a relaxar e a ganhar controle, de preferência com orientação de fisioterapeuta pélvica.'); R.avisos.push(AVISO_DOR); }
+    else if(c2.includes('secura')||fase||saude||med){ if(qd==='relacao'&&!fase&&!saude){ main('gel-neutro',`A secura aparece só nas relações, então o primeiro cuidado é um gel neutro pra hora: tira o atrito, não tem cheiro nem efeito.${peleTxt}${natTxt}`); comp('hidratacao','Se a secura se repetir, o hidratante íntimo trata na base, em uso contínuo.'); } else { main('hidratacao',hidrWhy(`Secura se trata na base, não só na hora. O hidratante íntimo é de uso contínuo e devolve conforto no dia a dia.${ctx}`),hidrItens); comp('gel-neutro','Pra hora da relação, um gel neutro e sem perfume complementa o hidratante.'); } if(c2.includes('pelvico')||c1.includes('pelvico')) comp('pelvica','Pra musculatura pélvica: exercitadores, pompoarismo e materiais educativos.'); else if(c2.includes('sensivel')||pele==='sensivel') comp('higiene','Com a região sensível, um sabonete íntimo suave e sem perfume faz diferença.'); }
     else if(c2.includes('pelvico')||c1.includes('pelvico')){ main('pelvica','Você quer cuidar do assoalho pélvico. Esta categoria reúne exercitadores, pompoarismo, dilatadores e materiais pra conhecer o próprio corpo. Escape de xixi, sensação de peso e menos controle melhoram com treino.'); if(c1.includes('hidratacao')||fq==='diario') comp('hidratacao','Hidratante íntimo de uso contínuo pro conforto do dia a dia.'); if(c1.includes('higiene')) comp('higiene','Sabonetes próprios pra região, pro dia a dia.'); }
     else if(c2.includes('sensivel')||c2.includes('odor')){ main('higiene',`${c2.includes('odor')?'Você quer se sentir mais tranquila com a higiene.':'Com a região sensível ou irritada, o primeiro cuidado é a higiene certa.'} Sabonetes íntimos suaves, com pH adequado e sem perfume forte.${natTxt}`); comp('hidratacao','Hidratante íntimo acalma e protege a região no dia a dia.'); if(c2.includes('sensivel')) R.avisos.push('Se a irritação for frequente ou vier com corrimento, vale uma avaliação com ginecologista antes de testar produtos.'); }
     else if(c1.includes('conforto')){ main('gel-neutro',`Você quer mais conforto nas relações. Um gel neutro tira o atrito, não tem cheiro nem efeito e combina com tudo, inclusive preservativo.${peleTxt}${natTxt}`); comp('hidratacao','Se o desconforto se repete, o hidratante íntimo trata a secura na base.'); }
-    else if(c1.includes('hidratacao')||fq==='diario'){ main('hidratacao',hidrWhy('Você quer hidratar a região íntima. Hidratante é de uso contínuo, como um creme pra pele, e é diferente do lubrificante, que é pra hora.')); if(c1.includes('higiene')) comp('higiene','Sabonetes próprios pra região completam a rotina.'); if(c1.includes('cosmeticos')) comp('cosmeticos','Óleos, séruns e perfumes íntimos pra complementar.'); }
+    else if(c1.includes('hidratacao')||fq==='diario'){ main('hidratacao',hidrWhy('Você quer hidratar a região íntima. Hidratante é de uso contínuo, como um creme pra pele, e é diferente do lubrificante, que é pra hora.'),hidrItens); if(c1.includes('higiene')) comp('higiene','Sabonetes próprios pra região completam a rotina.'); if(c1.includes('cosmeticos')) comp('cosmeticos','Óleos, séruns e perfumes íntimos pra complementar.'); }
     else if(c1.includes('higiene')){ main('higiene',`Você quer cuidar da higiene íntima. Sabonetes e produtos próprios pra região, com pH adequado, pro dia a dia.${peleTxt}${natTxt}`); if(c1.includes('cosmeticos')) comp('cosmeticos','Óleos, séruns e perfumes íntimos pra complementar.'); else comp('hidratacao','Hidratação de uso contínuo completa a rotina.'); }
     else if(c1.includes('cosmeticos')){ main('cosmeticos',`Você quer cosméticos íntimos. Perfumes, óleos, cremes e séruns pensados e testados pra região, com segurança de uso.${peleTxt}`); comp('higiene','Um sabonete íntimo próprio é a base da rotina.'); }
-    else { main('hidratacao',hidrWhy('Você quer conhecer as possibilidades do cuidado íntimo. O melhor ponto de partida é a hidratação: é o cuidado que mais gente precisa e menos gente conhece.')); comp('higiene','Sabonetes próprios pra região são o básico da rotina.'); comp('pelvica','Pra conhecer o próprio corpo e a musculatura pélvica.'); }
+    else { main('hidratacao',hidrWhy('Você quer conhecer as possibilidades do cuidado íntimo. O melhor ponto de partida é a hidratação: é o cuidado que mais gente precisa e menos gente conhece.'),hidrItens); comp('higiene','Sabonetes próprios pra região são o básico da rotina.'); comp('pelvica','Pra conhecer o próprio corpo e a musculatura pélvica.'); }
     if(pj==='simples') comp('vib-comecar','Você quer incluir algo de prazer: os vibradores mais simples e versáteis ficam aqui.');
     if(pj==='dois') comp('vib-dois','Você quer incluir algo pra usar a dois: os pensados pro casal ficam aqui.');
     if(saude&&!R.avisos.length) R.avisos.push(AVISO_SAUDE);
@@ -819,7 +856,7 @@ function montar(a){
     if((a2.includes('vibracao')||sen==='vibracao')&&a1!=='nunca') main('anal-vib',`Você quer vibração e estímulo anal. Esta categoria reúne plugs com motor e estimuladores pensados pra região.${fTxt} ${casaTxt}`);
     else if(a2.includes('conforto')&&!a2.includes('plugs')&&!a2.includes('vibracao')&&sen!=='pressao') main('anal-gel','Você quer mais conforto. Os géis anais são mais espessos e duradouros que os comuns, e alguns têm relaxante suave, sem anestesiar, porque dor é um sinal importante.');
     else if(a2.includes('higiene')&&a2.length===1) main('anal-higiene','Você quer se sentir tranquila antes e depois. Duchas e produtos de higiene pensados pra região anal.');
-    else main('anal-plugs',(a1==='nunca'?'Pra começar, plugs pequenos, de silicone e com base larga (a base larga é obrigatória, por segurança). Esta categoria vai do menor ao maior pra você evoluir no seu ritmo.':'Plugs de diferentes tamanhos e formatos pra evoluir com conforto. Procure os de silicone e com base larga.')+fTxt+' '+casaTxt);
+    else main('anal-plugs',(a1==='nunca'?'Pra começar, plugs pequenos, de silicone e com base larga (a base larga é obrigatória, por segurança). Esta categoria vai do menor ao maior pra você evoluir no seu ritmo.':'Plugs de diferentes tamanhos e formatos pra evoluir com conforto. Procure os de silicone e com base larga.')+fTxt+' '+casaTxt,a1==='nunca'?['plugs pequenos de silicone com base larga','kits de plugs progressivos']:['kits de plugs progressivos','plugs de tamanho médio']);
     if(R.main.id!=='anal-gel') comp('anal-gel',ag==='relaxante'?'Você pediu com relaxante suave: ele relaxa sem anestesiar, porque dor é sinal importante.':ag==='tenho'?'Você já tem, mas confira se é específico pra anal: os comuns secam rápido.':'Indispensável. A região não lubrifica sozinha, e o gel anal é mais espesso e duradouro que o comum.');
     if((a1==='nunca'||pre.includes('higiene')||a2.includes('higiene'))&&R.main.id!=='anal-higiene') comp('anal-higiene','Pra se sentir tranquila antes e depois.');
     if((a2.includes('vibracao')||sen==='vibracao'||sen==='ambos')&&R.main.id!=='anal-vib') comp('anal-vib','Quando quiser mais sensação, os com vibração ficam aqui.');
@@ -837,7 +874,7 @@ function montar(a){
     if(delicado){ main('massagem','Velas de massagem, óleos e sais de banho. É presente de cuidado, bonito de abrir e sem nada que constranja.'); comp('cosmeticos','Perfumes e óleos íntimos completam o clima de cuidado.'); if(cu.includes('humor')) comp('jogos','A pessoa curte humor: um jogo leve acompanha bem.'); }
     else if(c==='divertido'){ main('jogos','Cartas, dados e tabuleiros de casal. Quebram o gelo, fazem rir e deixam o convite por conta do jogo.'); comp('massagem','Uma vela de massagem acompanha bem.'); if(up==='comigo'||q==='casal') comp('vib-dois','Se quiserem dar um passo além, os brinquedos pra usar a dois ficam aqui.'); }
     else if(c==='ousado'){ if(q==='parceiro'||(up==='sozinha'&&q==='parceiro')) main('vib-peniano','Pra ele, com classe: anéis e produtos pensados pro corpo masculino, e boa parte também estimula a parceira.'); else if(up==='sozinha'&&(q==='amiga'||q==='parceira')) main(i==='algum'?'vib-externo':'vib-comecar',i==='algum'?'Ela já tem intimidade: um sugador ou vibrador externo de qualidade é o presente ousado que agrada.':'Pra ela usar sozinha e começar bem: os vibradores mais simples e versáteis.'); else main('vib-dois','Ousado e elegante: vibradores pensados pra usar a dois, que os dois sentem ou um controla.'); if(cu.includes('tech')) comp('vib-dois','A pessoa curte tecnologia: os com controle por app ficam nesta categoria.'); comp('aces-dominar','Uma venda ou um kit de fantasia dá o tom ousado sem exagero.'); if(i!=='algum') comp('gel-neutro','Todo brinquedo pede um gel. Vai junto no presente.'); }
-    else { main('kits','Combinação pronta, pensada pra funcionar junto. É o presente que não erra, principalmente pra quem está começando.'); if(q==='amiga'||up==='sozinha') comp('vib-comecar','Se quiser algo além do kit, os vibradores mais simples e versáteis ficam aqui.'); if(cu.includes('bemestar')) comp('massagem','A pessoa curte bem-estar: uma vela de massagem acompanha bem.'); else if(cu.includes('humor')) comp('jogos','A pessoa curte humor: um jogo leve acompanha bem.'); }
+    else { main('kits','Combinação pronta, pensada pra funcionar junto. É o presente que não erra, ainda mais pra quem está começando.'); if(q==='amiga'||up==='sozinha') comp('vib-comecar','Se quiser algo além do kit, os vibradores mais simples e versáteis ficam aqui.'); if(cu.includes('bemestar')) comp('massagem','A pessoa curte bem-estar: uma vela de massagem acompanha bem.'); else if(cu.includes('humor')) comp('jogos','A pessoa curte humor: um jogo leve acompanha bem.'); }
   }
 
   /* ---- SÓ CURIOSIDADE ---- */
@@ -851,11 +888,18 @@ function montar(a){
     else if(e4==='cuidar'||cur.includes('cuidado')){ main('massagem','Pra começar pelo cuidado e bem-estar: velas de massagem, óleos e sais de banho.'); comp('cosmeticos','Óleos, séruns e perfumes íntimos completam o cuidado.'); comp('hidratacao','E o cuidado que mais gente precisa e menos gente conhece: hidratante íntimo.'); }
     else if(e4==='kit'){ main('kits','Um kit pronto: combinação já pensada pra funcionar junto, sem risco de errar.'); comp('vib-comecar','Se quiser escolher você mesma, os mais simples ficam aqui.'); }
     else { main('massagem','Você prefere não começar por brinquedo. Velas de massagem e óleos são o começo mais sensorial e sem pressão.'); comp('jogos','Pra brincar e rir, cartas e dados que quebram o gelo.'); }
+    if(e4==='kit') rec('kits','Você pediu um kit pronto: combinação já pensada pra funcionar junto, sem risco de errar.');
     if(cur.includes('corpo')) comp('pelvica','Pra entender melhor o seu corpo: materiais educativos e exercitadores ficam aqui.');
     momentoComps();
   }
 
   if(!R.recs.length) rec('vib-comecar','O caminho mais simples pra começar.');
+  const PAD={vibrador:[['gel-neutro','Todo vibrador pede um gel neutro: tira o atrito e protege o silicone.'],['higiene','Limpador de brinquedo e sabonete íntimo mantêm tudo seguro.'],['kits','Se preferir não montar sozinha, os kits já vêm combinados.']],
+    cuidado:[['higiene','Sabonetes próprios pra região são a base da rotina.'],['hidratacao','Hidratação de uso contínuo completa qualquer rotina de cuidado.'],['cosmeticos','Óleos, séruns e perfumes íntimos complementam o cuidado.']],
+    anal:[['anal-higiene','Pra se sentir tranquila antes e depois.'],['anal-gel','Indispensável: a região não lubrifica sozinha.'],['kits','Kits de iniciação trazem plug e gel combinados.']],
+    presente:[['massagem','Uma vela de massagem acompanha bem qualquer presente.'],['jogos','Um jogo leve quebra o gelo.'],['kits','Combinações prontas que não erram.']],
+    curiosa:[['gel-neutro','Todo começo pede um gel neutro.'],['massagem','Clima e toque são um começo sem pressão.'],['jogos','Pra brincar e rir, sem compromisso.']]};
+  for(const [id,why] of (PAD[p==='conforto'?'cuidado':p]||PAD.curiosa)){ if(R.recs.length>=3) break; rec(id,why); }
   if(!R.intro) R.intro='Pelas suas respostas, esse é o melhor ponto de partida.';
   return R;
 }
@@ -866,8 +910,8 @@ function montar(a){
 let answers={}; let idx=-1;
 const view=document.getElementById('view'), btnBack=document.getElementById('btnBack');
 const visible=()=>SCREENS.filter(s=>!s.when||s.when(answers));
-try{const saved=JSON.parse(sessionStorage.getItem('itscool-quiz-v21')||'null'); if(saved){answers=saved.answers||{}; idx=saved.idx??-1;}}catch(e){}
-const persist=()=>{try{sessionStorage.setItem('itscool-quiz-v21',JSON.stringify({answers,idx}))}catch(e){}};
+try{const saved=JSON.parse(sessionStorage.getItem('itscool-quiz-v22')||'null'); if(saved){answers=saved.answers||{}; idx=saved.idx??-1;}}catch(e){}
+const persist=()=>{try{sessionStorage.setItem('itscool-quiz-v22',JSON.stringify({answers,idx}))}catch(e){}};
 
 function render(){
   persist();
@@ -941,13 +985,14 @@ function recCard(d,i){
   return `<article class="rec"><div class="band ${c.band}"><span class="cat">${c.nome}</span><span class="n">0${i+1}</span>${ART[d.art]||ART.caixa}</div>
     <div class="body"><h2>${d.nome}</h2><p class="desc">${d.desc}</p>
     <div class="porque"><b>Por que pra você</b><p>${d.why}</p></div>
+    ${d.itens&&d.itens.length?`<div class="itens"><b>O que encaixa no seu perfil aqui</b><ul>${d.itens.map(x=>`<li>${x}</li>`).join('')}</ul></div>`:''}
     <a class="btn primary" href="${link(d.slug)}" target="_blank" rel="noopener">Ver os produtos</a></div></article>`;
 }
 function resultado(R){
   const n=R.recs.length;
   let h=`<div class="rwrap"><div class="rhead"><div class="step">Seu match</div><h1>A gente <i>entendeu</i> o que você procura.</h1><p>${R.intro}</p></div>`;
   R.avisos.forEach(t=>{h+=`<div class="warn">${t}</div>`});
-  h+=`<div class="lbl" style="text-align:center;justify-content:center">${n===1?'Nossa indicação':'Nossas indicações'}</div>`;
+  h+=`<div class="lbl" style="text-align:center;justify-content:center">Categorias mais indicadas pra você</div>`;
   h+=`<div class="recs ${n<=2?'two':''}">${R.recs.map(recCard).join('')}</div>`;
   if(R.sale) h+=`<p class="note" style="text-align:center">Você pediu custo-benefício: vale conferir também a seção <a href="${link('sale')}" target="_blank" rel="noopener" style="color:var(--cereja);font-weight:600">Sale</a>, filtrando pelas categorias indicadas.</p>`;
   h+=`<div class="rfoot"><button class="btn soft" onclick="refazer()">Refazer o quiz</button></div>`;
