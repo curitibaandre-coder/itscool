@@ -173,7 +173,7 @@ h1 i{font-style:italic;color:var(--terra)}
     <a class="logo" href="#" onclick="refazer();return false" aria-label="it's COOL, prazer e bem-estar íntimo"><img src="logo.png?v=1" alt="it's COOL"></a>
     <button class="btn ghost" id="btnBack" type="button">Voltar</button>
   </header>
-  <div class="stamp">versão 22 · categorias e tipos de produto</div>
+  <div class="stamp">versão 23 · géis a dois</div>
   <main id="view"></main>
 </div>
 
@@ -483,11 +483,13 @@ const SCREENS=[
     ['remoto','Um controla, o outro sente','Controle remoto ou por app, perto ou longe.'],
     ['sem','Sem brinquedo por agora','Prefiro começar por jogos, clima ou gel.'],
   ]},
-  {id:'d3',type:'single',q:'Querem incluir um <i>gel</i>?',sub:'Eles mudam muito a experiência, e todo brinquedo pede um.',when:isDois,opts:[
+  {id:'d3',type:'multi',two:true,exclusive:['nao'],q:'Querem incluir <i>géis</i>?',sub:'Eles mudam muito a experiência, e todo brinquedo pede um. Pode marcar quantos fizerem sentido.',when:isDois,opts:[
     ['neutro','Neutro, só pra deslizar melhor','Sem cheiro, sem efeito. Combina com tudo.'],
     ['termico','Com sensação térmica','Esquenta, refresca ou faz quente e frio.'],
     ['retardar','Pra prolongar a relação','Diminui um pouco a sensibilidade dele por um tempo.'],
     ['estimulos','Com formigamento ou pulsação','Acrescenta sensação além do deslizamento.'],
+    ['agua','Pra usar no banho','Mantém o deslizamento mesmo com água.'],
+    ['duradouro','Mais duradouro','Pra não ficar reaplicando.'],
     ['nao','Não agora','Dá pra incluir depois. Todo brinquedo pede um.'],
   ]},
   {id:'abertura',type:'single',q:'Como vocês estão pra <i>experimentar</i> coisas novas?',when:isDois,opts:[
@@ -768,7 +770,7 @@ function montar(a){
 
   /* ---- A DOIS ---- */
   else if(p==='dois'){
-    const d1=a.d1||[], gostam=a.gostam||[], qx=a.queixa||[], foco=a.foco||'tanto', d5=a.d5||'', d2=a.d2||'', d3=a.d3||'', ab=a.abertura||'', pr=a.prioDois||[];
+    const d1=a.d1||[], gostam=a.gostam||[], qx=a.queixa||[], foco=a.foco||'tanto', d5=a.d5||'', d2=a.d2||'', d3l=(a.d3||[]).filter(x=>x!=='nao'), ab=a.abertura||'', pr=a.prioDois||[];
     const quer=[]; if(d1.includes('sensacoes')) quer.push('novas sensações durante a relação'); if(d1.includes('rotina')) quer.push('sair da rotina'); if(d1.includes('fantasias')) quer.push('explorar fantasias'); if(d1.includes('conforto')) quer.push('mais conforto'); if(d1.includes('clima')) quer.push('clima e toque'); if(d1.includes('descobrir')) quer.push('descobrir algo novo');
     const qTxt=[]; if(qx.includes('rotina')) qTxt.push('caiu na rotina'); if(qx.includes('atrito')) qTxt.push('falta lubrificação'); if(qx.includes('rapido')) qTxt.push('ele termina antes do que gostariam'); if(qx.includes('orgasmo')) qTxt.push('ela tem dificuldade de chegar ao orgasmo na relação'); if(qx.includes('vergonha')) qTxt.push('dá vergonha de propor novidades'); if(qx.includes('tempo')) qTxt.push('falta tempo');
     const abTxt={abertos:' Vocês topam quase tudo, então dá pra ir direto ao ponto.',calma:' Vocês querem ir com calma, então a indicação é um passo de cada vez.',desigual:' Como um está mais animado que o outro, priorizamos o que convida sem assustar.',primeira:' Como é a primeira conversa sobre isso, priorizamos o que ajuda a conversar antes de fazer.'}[ab]||'';
@@ -792,12 +794,14 @@ function montar(a){
       }
     }
     // géis: várias razões, uma indicação ampla
-    const gelMotivos=[]; if(qx.includes('atrito')||d1.includes('conforto')) gelMotivos.push('tirar o atrito'); if(qx.includes('rapido')) gelMotivos.push('ajudar ele a durar mais (os retardantes)'); if(d3==='termico'||d3==='estimulos'||d1.includes('sensacoes')) gelMotivos.push('trazer sensações novas (térmicos e de formigamento)');
-    if(d3&&d3!=='nao'||gelMotivos.length||querVib){
-      const alvo=d3==='retardar'&&!gelMotivos.some(x=>x.includes('sensações'))?'gel-retardar':d3==='termico'&&gelMotivos.length<2?'gel-termico':d3==='estimulos'&&gelMotivos.length<2?'gel-estimulos':d3==='neutro'&&gelMotivos.length<2?'gel-neutro':'geis';
+    const gelMotivos=[]; if(qx.includes('atrito')||d1.includes('conforto')||d3l.includes('neutro')) gelMotivos.push('tirar o atrito'); if(qx.includes('rapido')||d3l.includes('retardar')) gelMotivos.push('ajudar ele a durar mais (os retardantes)'); if(d3l.includes('termico')||d3l.includes('estimulos')||d1.includes('sensacoes')) gelMotivos.push('trazer sensações novas (térmicos e de formigamento)'); if(d3l.includes('agua')) gelMotivos.push('manter o deslizamento no banho'); if(d3l.includes('duradouro')) gelMotivos.push('durar mais sem reaplicar');
+    if(d3l.length||gelMotivos.length||querVib){
+      const uni={neutro:'gel-neutro',termico:'gel-termico',retardar:'gel-retardar',estimulos:'gel-estimulos',agua:'gel-agua',duradouro:'gel-resistente'};
+      const alvo=(d3l.length===1&&gelMotivos.length<=1)?uni[d3l[0]]:'geis';
       const base=gelMotivos.length?`Pelo que vocês contaram, os géis entram pra ${lista(gelMotivos)}.`:'Todo brinquedo pede um gel, e eles mudam muito a experiência.';
-      const extra=alvo==='geis'?' Nesta categoria tem neutros, térmicos, com formigamento, pra água e retardantes: dá pra montar mais de um momento com eles.'+(qx.includes('rapido')?' Comecem pelo retardante.':''):alvo==='gel-retardar'?' Ele diminui um pouco a sensibilidade dele por um tempo, sem anestesiar.':alvo==='gel-termico'?' Esquenta, refresca ou faz quente e frio.':alvo==='gel-estimulos'?' Formigamento e pulsação além do deslizamento.':' Sem cheiro e sem efeito, combina com tudo.';
-      rec(alvo,base+extra);
+      const extra=alvo==='geis'?' Nesta categoria tem neutros, térmicos, com formigamento, pra água, duradouros e retardantes: dá pra montar mais de um momento com eles.'+(qx.includes('rapido')?' Comecem pelo retardante.':''):alvo==='gel-retardar'?' Ele diminui um pouco a sensibilidade dele por um tempo, sem anestesiar.':alvo==='gel-termico'?' Esquenta, refresca ou faz quente e frio.':alvo==='gel-estimulos'?' Formigamento e pulsação além do deslizamento.':alvo==='gel-agua'?' Mantém o deslizamento mesmo com água.':alvo==='gel-resistente'?' Dura mais, sem reaplicar.':' Sem cheiro e sem efeito, combina com tudo.';
+      const itensGel=alvo==='geis'?d3l.map(x=>({neutro:'géis neutros',termico:'géis térmicos',retardar:'géis retardantes',estimulos:'géis com formigamento',agua:'géis pra água',duradouro:'géis de longa duração'})[x]).concat(qx.includes('rapido')&&!d3l.includes('retardar')?['géis retardantes']:[]):undefined;
+      rec(alvo,base+extra,itensGel&&itensGel.length?itensGel:undefined);
     }
     // jogos
     if(d1.includes('rotina')||qx.includes('rotina')||qx.includes('vergonha')||d1.includes('descobrir')||ab==='primeira'||gostam.includes('brincar')){
@@ -910,8 +914,8 @@ function montar(a){
 let answers={}; let idx=-1;
 const view=document.getElementById('view'), btnBack=document.getElementById('btnBack');
 const visible=()=>SCREENS.filter(s=>!s.when||s.when(answers));
-try{const saved=JSON.parse(sessionStorage.getItem('itscool-quiz-v22')||'null'); if(saved){answers=saved.answers||{}; idx=saved.idx??-1;}}catch(e){}
-const persist=()=>{try{sessionStorage.setItem('itscool-quiz-v22',JSON.stringify({answers,idx}))}catch(e){}};
+try{const saved=JSON.parse(sessionStorage.getItem('itscool-quiz-v23')||'null'); if(saved){answers=saved.answers||{}; idx=saved.idx??-1;}}catch(e){}
+const persist=()=>{try{sessionStorage.setItem('itscool-quiz-v23',JSON.stringify({answers,idx}))}catch(e){}};
 
 function render(){
   persist();
