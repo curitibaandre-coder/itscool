@@ -171,7 +171,7 @@ h1 i{font-style:italic;color:var(--terra)}
     <a class="logo" href="#" onclick="refazer();return false" aria-label="it's COOL, prazer e bem-estar íntimo"><img src="logo.png?v=1" alt="it's COOL"></a>
     <button class="btn ghost" id="btnBack" type="button">Voltar</button>
   </header>
-  <div class="stamp">versão 24 · tela inicial</div>
+  <div class="stamp">versão 25 · fluxo vibrador enxuto</div>
   <main id="view"></main>
 </div>
 
@@ -405,31 +405,16 @@ const SCREENS=[
     ['pequeno','Tamanho pequeno','Cabe na bolsa, ninguém percebe.'],
     ['tanto','Tanto faz, me surpreende','A gente indica pelo que você contou até aqui.'],
   ]},
-  {id:'parceria',type:'single',q:'Você também está buscando produtos de prazer pra usar com a <i>parceria</i>?',when:isVib,opts:[
-    ['mim','Não, esse é só pra mim','Uso individual, no meu ritmo.'],
-    ['levar','Sim, quero poder levar este vibrador pra relação','Então um formato que caiba entre os dois faz diferença.'],
-    ['alem','Sim, e quero também algo pensado pra usar a dois','Além deste vibrador, algo que a parceria participe.'],
-    ['sem','Não tenho parceria no momento','A indicação fica focada em você.'],
+  {id:'momento',type:'multi',two:true,exclusive:['nenhuma'],q:'Alguma dessas <i>queixas</i> faz parte do seu momento?',sub:'Só ajuda a gente a indicar com mais cuidado. Pode marcar várias.',when:isVib,opts:[
+    ['secura','Sinto secura ou falta de lubrificação','A gente inclui um cuidado junto com o prazer.'],
+    ['dor','Sinto dor ou desconforto nas relações','Indicamos com mais calma, e o que ajuda no conforto.'],
+    ['saude','Passei por mudanças na saúde que afetaram minha vida íntima','Tratamento, cirurgia, medicação ou outra situação. Sem detalhes.'],
+    ['fase','Menopausa, gravidez, pós-parto ou amamentação','Fases em que a lubrificação muda, e tem cuidado pra isso.'],
+    ['nenhuma','Nenhuma dessas','A indicação segue pelo que você contou.'],
   ]},
-  {id:'acessorios',type:'multi',two:true,exclusive:['nao'],q:'Quer incluir mais algum <i>acessório de prazer</i> junto?',sub:'Lubrificantes são muito indicados na compra de um vibrador: tiram o atrito, protegem o silicone e deixam a sensação mais confortável. Pode marcar mais de um.',when:isVib,opts:[
-    ['gelneutro','Gel lubrificante neutro','Sem cheiro e sem efeito. O básico que combina com qualquer vibrador.'],
-    ['gelsensacao','Gel com sensação','Térmico (quente ou frio) ou com formigamento.'],
-    ['gelagua','Gel pra usar na água','Mantém o deslizamento no banho.'],
-    ['jogos','Jogos ou cartas','Pra sair do automático, sozinha ou a dois.'],
-    ['massagem','Óleo ou vela de massagem','Pra criar clima antes.'],
-    ['nao','Não agora','Dá pra incluir depois. A gente só lembra do gel no resultado.'],
-  ]},
-  {id:'cuidadoVib',type:'multi',two:true,exclusive:['nao'],q:'Quer incluir algum <i>cuidado íntimo</i> junto?',sub:'Prazer também é cuidado. Esses produtos cuidam da região e do brinquedo no dia a dia. Pode marcar mais de um.',when:isVib,opts:[
-    ['higiene','Higiene íntima','Sabonete próprio pra região, com pH adequado.'],
-    ['limpeza','Limpeza do brinquedo','Limpador específico pra silicone. Brinquedo limpo dura anos e não irrita.'],
-    ['hidratante','Hidratante íntimo','De uso contínuo, trata a secura na base.'],
-    ['cosmeticos','Cosméticos íntimos','Óleos, séruns e perfumes pensados pra região.'],
-    ['pelvico','Conhecer meu corpo e o assoalho pélvico','Exercitadores, pompoarismo, materiais educativos.'],
-    ['nao','Não agora','Dá pra incluir depois.'],
-  ]},
-  Q_MOMENTO(isVib),
   {id:'interesses',type:'multi',two:true,exclusive:['nao'],q:'Você também tem <i>outros interesses</i> nesse momento?',sub:'Pode marcar mais de um. A gente sugere outras categorias junto com o vibrador.',when:isVib,opts:[
-    ['apimentar','Apimentar e trazer novidade pra relação','Algo pra usar a dois ou pra sair da rotina.'],
+    ['cuidado','Ver produtos de cosméticos e de cuidado íntimo','Higiene, hidratação, óleos, séruns e perfumes íntimos.'],
+    ['relacao','Ver outros produtos pensados em aumentar o prazer na relação íntima','Pra usar a dois: vibradores de casal, anéis, jogos, géis com sensação.'],
     ['novos','Testar produtos novos e diferentes','Sensações que ainda não conheço.'],
     ['autocuidado','Momentos de autocuidado sozinha','Massagem, banho, clima só pra mim.'],
     ['corpo','Conhecer melhor meu corpo','Materiais educativos, espelho, assoalho pélvico.'],
@@ -712,13 +697,13 @@ function montar(a){
     const filtros=[];
     if(uso.includes('banho')||rec.includes('agua')) filtros.push('à prova d\'água');
     if(rec.includes('recarregavel')) filtros.push('recarregável');
-    if(rec.includes('controle')||par==='alem') filtros.push('com controle remoto ou app');
+    if(rec.includes('controle')) filtros.push('com controle remoto ou app');
     if(rec.includes('modos')||intz==='medio') filtros.push('com vários modos');
     if(rec.includes('pequeno')||uso.includes('fora')) filtros.push('pequeno, com trava de viagem');
     if(intz==='intenso') filtros.push('potente'); if(intz==='suave') filtros.push('de intensidade regulável, começando no suave');
     const filtroTxt=filtros.length?` Dentro da categoria, procure um ${lista(filtros)}.`:'';
     const intensTxt={suave:' Você gosta de começar devagar, então vale um com intensidade regulável.',medio:' Você gosta de variar, então vale um com vários modos.',intenso:' Você quer potência, então pule os de entrada.',naosei:''}[intz]||'';
-    const usoTxt=(uso.includes('relacao')||par==='levar')?' Você também quer usar durante a relação, então um formato que caiba entre os dois faz diferença.':'';
+    const usoTxt=uso.includes('relacao')?' Você também quer usar durante a relação, então um formato que caiba entre os dois faz diferença.':'';
     const gelId=uso.includes('banho')?'gel-agua':'gel-neutro';
     const gelWhy=uso.includes('banho')?'Você vai usar no banho: este gel mantém o deslizamento mesmo com água, o neutro comum sai.':null;
 
@@ -755,8 +740,8 @@ function montar(a){
     if(cv.includes('cosmeticos')) comp('cosmeticos','Você pediu cosméticos íntimos: óleos, séruns e perfumes pensados pra região.');
     if(cv.includes('pelvico')) comp('pelvica','Você quer conhecer o corpo e o assoalho pélvico: exercitadores, pompoarismo e materiais educativos.');
     // parceria e outros interesses
-    if((par==='alem'||inter.includes('apimentar'))&&R.main.id!=='vib-dois') comp('vib-dois',par==='alem'?'Você quer também algo pensado pra usar a dois: aqui ficam os que a parceria participa, inclusive com controle remoto.':'Pra apimentar a relação: vibradores pensados pra usar a dois, que os dois sentem ou um controla.');
-    if(inter.includes('apimentar')&&!ac.includes('jogos')) comp('jogos','Pra trazer novidade pra relação sem pressão: jogos e cartas fazem o convite por vocês.');
+    if(inter.includes('relacao')){ if(R.main.id!=='vib-dois') comp('vib-dois','Você quer também aumentar o prazer na relação: aqui ficam os vibradores pensados pra usar a dois, que os dois sentem ou um controla.'); comp('geis','Pra relação, os géis térmicos e de formigamento trazem sensação nova pros dois, e o retardante ajuda ele a durar mais.',['géis térmicos','géis com formigamento','géis retardantes']); comp('jogos','Pra trazer novidade pra relação sem pressão: jogos e cartas fazem o convite por vocês.'); }
+    if(inter.includes('cuidado')){ comp('cosmeticos','Você quer ver cosméticos íntimos: óleos, séruns e perfumes pensados pra região.'); comp('hidratacao','E no cuidado íntimo, o hidratante de uso contínuo é o que mais gente precisa e menos gente conhece.'); comp('higiene','Sabonete íntimo e limpador de brinquedo completam o cuidado.'); }
     if(inter.includes('novos')&&!['vib-sensacoes','vib-comecar'].includes(R.main.id)) comp('vib-sensacoes','Você quer testar sensações diferentes: aqui ficam os de estimulação dupla e de outras áreas.');
     if(inter.includes('autocuidado')&&!ac.includes('massagem')) comp('massagem','Pra momentos de autocuidado sozinha: velas, óleos de massagem e sais de banho.');
     if(inter.includes('corpo')&&!cv.includes('pelvico')) comp('pelvica','Pra conhecer melhor o seu corpo: materiais educativos, espelho e exercitadores.');
@@ -912,8 +897,8 @@ function montar(a){
 let answers={}; let idx=-1;
 const view=document.getElementById('view'), btnBack=document.getElementById('btnBack');
 const visible=()=>SCREENS.filter(s=>!s.when||s.when(answers));
-try{const saved=JSON.parse(sessionStorage.getItem('itscool-quiz-v23')||'null'); if(saved){answers=saved.answers||{}; idx=saved.idx??-1;}}catch(e){}
-const persist=()=>{try{sessionStorage.setItem('itscool-quiz-v23',JSON.stringify({answers,idx}))}catch(e){}};
+try{const saved=JSON.parse(sessionStorage.getItem('itscool-quiz-v25')||'null'); if(saved){answers=saved.answers||{}; idx=saved.idx??-1;}}catch(e){}
+const persist=()=>{try{sessionStorage.setItem('itscool-quiz-v25',JSON.stringify({answers,idx}))}catch(e){}};
 
 function render(){
   persist();
