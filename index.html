@@ -26,7 +26,7 @@ html,body{margin:0;background:var(--bege);color:var(--ink);font-family:var(--san
 body.res .bg .mao{opacity:.04}
 @media (max-width:900px){.bg .mao{width:70vw;right:-20vw;top:auto;bottom:-10vh;transform:rotate(-8deg)}}
 
-.app{position:relative;z-index:1;max-width:1100px;margin:0 auto;min-height:100vh;display:flex;flex-direction:column;padding:16px 22px 48px}
+.app{position:relative;z-index:1;max-width:1240px;margin:0 auto;min-height:100vh;display:flex;flex-direction:column;padding:16px 22px 48px}
 header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:10px;min-height:64px}
 .logo{display:block;line-height:0}
 .logo img{height:64px;width:auto;display:block}
@@ -95,8 +95,10 @@ h1 i{font-style:italic;color:var(--terra)}
 .hero .cta{display:inline-flex;width:auto;flex:none;padding:18px 30px;margin:0 auto;font-size:.86rem}
 
 /* resultado */
-.recs{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));margin-bottom:26px}
+.recs{display:grid;gap:14px;grid-template-columns:repeat(var(--n,3),minmax(0,1fr));margin-bottom:26px}
 .recs.two{max-width:760px;margin-left:auto;margin-right:auto}
+@media (max-width:1000px){.recs{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:620px){.recs{grid-template-columns:1fr}}
 .rec{background:var(--white);border:1px solid var(--line);border-radius:22px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 14px 40px rgba(120,60,50,.08)}
 .rec .band{height:120px;display:grid;place-items:center;position:relative}
 .rec .band svg{width:84px;height:84px}
@@ -113,6 +115,7 @@ h1 i{font-style:italic;color:var(--terra)}
 .rec .itens ul{margin:0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:6px}
 .rec .itens li{background:var(--bege);border-radius:999px;padding:4px 10px;font-size:.78rem;color:var(--cinza)}
 .rec .btn{margin-top:auto;font-size:.74rem;padding:14px 18px}
+@media (min-width:1001px){.recs[style*="--n:4"] .rec h2,.recs[style*="--n:5"] .rec h2{font-size:1.1rem}.recs[style*="--n:4"] .rec .body,.recs[style*="--n:5"] .rec .body{padding:14px 14px 16px;gap:8px}.recs[style*="--n:4"] .rec .desc,.recs[style*="--n:5"] .rec .desc,.recs[style*="--n:4"] .rec .porque,.recs[style*="--n:5"] .rec .porque{font-size:.8rem}.recs[style*="--n:5"] .rec .band{height:96px}.recs[style*="--n:5"] .rec .band svg{width:64px;height:64px}.recs[style*="--n:4"] .rec .btn,.recs[style*="--n:5"] .rec .btn{font-size:.66rem;padding:12px 10px}.recs[style*="--n:5"] .rec .itens li{font-size:.72rem}}
 .rmain{background:var(--white);border:1px solid var(--line);border-radius:24px;overflow:hidden;display:grid;box-shadow:0 14px 40px rgba(120,60,50,.1);margin-bottom:26px}
 @media (min-width:760px){.rmain{grid-template-columns:300px 1fr}}
 .rmain .band{min-height:180px;display:grid;place-items:center;position:relative}
@@ -127,7 +130,7 @@ h1 i{font-style:italic;color:var(--terra)}
 .rmain .btn{align-self:flex-start;flex:none;margin-top:6px}
 .xcard .cat{display:block;font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:var(--terra);font-weight:600;margin-bottom:2px}
 .warn{text-align:left}
-.rwrap{max-width:1000px;width:100%;margin:8px auto 0}
+.rwrap{max-width:1200px;width:100%;margin:8px auto 0}
 .rhead{text-align:center;max-width:720px;margin:10px auto 26px}
 .rhead h1{font-size:clamp(1.9rem,4.6vw,2.6rem)}
 .rhead p{color:var(--muted);margin:0;font-size:.98rem}
@@ -171,7 +174,7 @@ h1 i{font-style:italic;color:var(--terra)}
     <a class="logo" href="#" onclick="refazer();return false" aria-label="it's COOL, prazer e bem-estar íntimo"><img src="logo.png?v=1" alt="it's COOL"></a>
     <button class="btn ghost" id="btnBack" type="button">Voltar</button>
   </header>
-  <div class="stamp">versão 25 · fluxo vibrador enxuto</div>
+  <div class="stamp">versão 26 · até 5 categorias em linha</div>
   <main id="view"></main>
 </div>
 
@@ -415,7 +418,8 @@ const SCREENS=[
   {id:'interesses',type:'multi',two:true,exclusive:['nao'],q:'Você também tem <i>outros interesses</i> nesse momento?',sub:'Pode marcar mais de um. A gente sugere outras categorias junto com o vibrador.',when:isVib,opts:[
     ['cuidado','Ver produtos de cosméticos e de cuidado íntimo','Higiene, hidratação, óleos, séruns e perfumes íntimos.'],
     ['relacao','Ver outros produtos pensados em aumentar o prazer na relação íntima','Pra usar a dois: vibradores de casal, anéis, jogos, géis com sensação.'],
-    ['novos','Testar produtos novos e diferentes','Sensações que ainda não conheço.'],
+    ['kits','Conhecer kits e combinações de produtos pensadas por nós','Combinações prontas pra começar, pra cuidar ou pra usar a dois.'],
+    ['promos','Ver as promos que estão rolando na its','Produtos de todas as categorias com preço especial.'],
     ['autocuidado','Momentos de autocuidado sozinha','Massagem, banho, clima só pra mim.'],
     ['corpo','Conhecer melhor meu corpo','Materiais educativos, espelho, assoalho pélvico.'],
     ['anal','Explorar o prazer anal','Com calma, começando pelo menor e com gel próprio.'],
@@ -673,7 +677,7 @@ const lista=arr=>arr.length<=1?arr.join(''):arr.slice(0,-1).join(', ')+' e '+arr
 function montar(a){
   const p=pathOf(a);
   const R={intro:'',recs:[],avisos:[]};
-  const rec=(id,why,itens)=>{if(!R.recs.some(c=>c.id===id)&&R.recs.length<6) R.recs.push({...DEST[id],why,itens:itens||ITENS[id]||[]})};
+  const rec=(id,why,itens)=>{if(!R.recs.some(c=>c.id===id)&&R.recs.length<5) R.recs.push({...DEST[id],why,itens:itens||ITENS[id]||[]})};
   const main=rec, comp=rec;
   Object.defineProperty(R,'main',{get(){return R.recs[0]||null}});
   Object.defineProperty(R,'comps',{get(){return R.recs.slice(1)}});
@@ -742,7 +746,8 @@ function montar(a){
     // parceria e outros interesses
     if(inter.includes('cuidado')){ comp('cosmeticos','Você quer ver cosméticos íntimos: óleos, séruns e perfumes pensados pra região.'); comp('hidratacao','E no cuidado íntimo, o hidratante de uso contínuo é o que mais gente precisa e menos gente conhece.'); if(!inter.includes('relacao')) comp('higiene','Sabonete íntimo e limpador de brinquedo completam o cuidado.'); }
     if(inter.includes('relacao')){ if(R.main.id!=='vib-dois') comp('vib-dois','Você quer também aumentar o prazer na relação: aqui ficam os vibradores pensados pra usar a dois, que os dois sentem ou um controla.'); comp('geis','Pra relação, os géis térmicos e de formigamento trazem sensação nova pros dois, e o retardante ajuda ele a durar mais.',['géis térmicos','géis com formigamento','géis retardantes']); if(!inter.includes('cuidado')) comp('jogos','Pra trazer novidade pra relação sem pressão: jogos e cartas fazem o convite por vocês.'); }
-    if(inter.includes('novos')&&!['vib-sensacoes','vib-comecar'].includes(R.main.id)) comp('vib-sensacoes','Você quer testar sensações diferentes: aqui ficam os de estimulação dupla e de outras áreas.');
+    if(inter.includes('kits')) comp('kits','Você quer conhecer os kits: combinações que a gente montou pra funcionar juntas, pra começar, pra cuidar ou pra usar a dois.');
+    if(inter.includes('promos')) comp('sale','Você quer ver as promos: tudo que está com preço especial agora, de todas as categorias.');
     if(inter.includes('autocuidado')&&!ac.includes('massagem')) comp('massagem','Pra momentos de autocuidado sozinha: velas, óleos de massagem e sais de banho.');
     if(inter.includes('corpo')&&!cv.includes('pelvico')) comp('pelvica','Pra conhecer melhor o seu corpo: materiais educativos, espelho e exercitadores.');
     if(inter.includes('anal')) comp('anal-plugs','Você quer explorar o prazer anal: comece pelos plugs pequenos, sempre com gel anal.');
@@ -897,8 +902,8 @@ function montar(a){
 let answers={}; let idx=-1;
 const view=document.getElementById('view'), btnBack=document.getElementById('btnBack');
 const visible=()=>SCREENS.filter(s=>!s.when||s.when(answers));
-try{const saved=JSON.parse(sessionStorage.getItem('itscool-quiz-v25')||'null'); if(saved){answers=saved.answers||{}; idx=saved.idx??-1;}}catch(e){}
-const persist=()=>{try{sessionStorage.setItem('itscool-quiz-v25',JSON.stringify({answers,idx}))}catch(e){}};
+try{const saved=JSON.parse(sessionStorage.getItem('itscool-quiz-v26')||'null'); if(saved){answers=saved.answers||{}; idx=saved.idx??-1;}}catch(e){}
+const persist=()=>{try{sessionStorage.setItem('itscool-quiz-v26',JSON.stringify({answers,idx}))}catch(e){}};
 
 function render(){
   persist();
@@ -980,7 +985,7 @@ function resultado(R){
   let h=`<div class="rwrap"><div class="rhead"><div class="step">Seu match</div><h1>A gente <i>entendeu</i> o que você procura.</h1><p>${R.intro}</p></div>`;
   R.avisos.forEach(t=>{h+=`<div class="warn">${t}</div>`});
   h+=`<div class="lbl" style="text-align:center;justify-content:center">Categorias mais indicadas pra você</div>`;
-  h+=`<div class="recs ${n<=2?'two':''}">${R.recs.map(recCard).join('')}</div>`;
+  h+=`<div class="recs ${n<=2?'two':''}" style="--n:${n}">${R.recs.map(recCard).join('')}</div>`;
   if(R.sale) h+=`<p class="note" style="text-align:center">Você pediu custo-benefício: vale conferir também a seção <a href="${link('sale')}" target="_blank" rel="noopener" style="color:var(--cereja);font-weight:600">Sale</a>, filtrando pelas categorias indicadas.</p>`;
   h+=`<div class="rfoot"><button class="btn soft" onclick="refazer()">Refazer o quiz</button></div>`;
   h+=`<details class="debug"><summary>Ver a lógica (pra quem está construindo)</summary><pre>${JSON.stringify({caminho:pathOf(answers),respostas:answers},null,1)}</pre></details></div>`;
