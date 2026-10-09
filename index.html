@@ -174,7 +174,7 @@ h1 i{font-style:italic;color:var(--terra)}
     <a class="logo" href="#" onclick="refazer();return false" aria-label="it's COOL, prazer e bem-estar íntimo"><img src="logo.png?v=1" alt="it's COOL"></a>
     <button class="btn ghost" id="btnBack" type="button">Voltar</button>
   </header>
-  <div class="stamp">versão 28 · fluxo anal</div>
+  <div class="stamp">versão 29 · presente experiente</div>
   <main id="view"></main>
 </div>
 
@@ -604,7 +604,7 @@ const SCREENS=[
     ['completo','Um kit completo','Combinação pronta, sem risco de errar.'],
   ]},
   {id:'p3',type:'single',q:'Essa pessoa já tem <i>intimidade</i> com produtos íntimos?',when:isPres,opts:[
-    ['nunca','Acho que nunca usou','A indicação fica simples e fácil de incluir.'],['algum','Já tem algum','Dá pra ir além do básico.'],['naosei','Não sei','Vou considerar iniciante, por segurança.'],
+    ['nunca','Acho que nunca usou','A indicação fica simples e fácil de incluir.'],['algum','Já tem algum','Dá pra ir um pouco além do básico.'],['experiente','Já tem bastante experiência','Sabe do que gosta. A indicação pode ser mais específica e mais potente.'],['naosei','Não sei','Vou considerar iniciante, por segurança.'],
   ]},
   {id:'curte',type:'multi',max:2,two:true,exclusive:['naosei'],q:'O que essa pessoa <i>curte</i>?',sub:'Até dois.',when:isPres,opts:[
     ['bemestar','Cuidado, bem-estar, autocuidado','Velas, óleos, cosméticos.'],['humor','Humor e brincadeira','Jogos e cartas.'],['sensualidade','Sensualidade e clima','Clima, toque, algo pra usar a dois.'],['tech','Novidades e tecnologia','Produtos com app ou controle remoto.'],['naosei','Não sei bem','A gente indica pelo clima do presente.'],
@@ -837,12 +837,12 @@ function montar(a){
     const q=a.p1||'parceira', c=a.p2||'completo', i=a.p3||'naosei', oc=a.ocasiao||'', cu=a.curte||[], intm=a.intimidadeCom||'', up=a.usoPres||'', emb=a.embalagem||'';
     const quem={parceira:'sua parceira',parceiro:'seu parceiro',amiga:'sua amiga',casal:'o casal'}[q];
     const ocTxt={aniversario:' de aniversário',data:' pra data de vocês',cha:' de chá ou despedida',semmotivo:', sem motivo'}[oc]||'';
-    R.intro=`Um presente${ocTxt}, ${({delicado:'delicado e de cuidado',divertido:'leve e divertido',ousado:'ousado, com classe',completo:'completo'})[c]}, pra ${quem}.${i==='nunca'||i==='naosei'?' Como a pessoa provavelmente nunca usou nada, a indicação é fácil de incluir e sem constrangimento.':''}${intm==='delicada'?' Como a relação de vocês pede cuidado, deixamos de lado qualquer coisa que constranja.':''}${emb==='sim'?' Procure a opção de embalagem pra presente na finalização.':''}`;
+    R.intro=`Um presente${ocTxt}, ${({delicado:'delicado e de cuidado',divertido:'leve e divertido',ousado:'ousado, com classe',completo:'completo'})[c]}, pra ${quem}.${i==='nunca'||i==='naosei'?' Como a pessoa provavelmente nunca usou nada, a indicação é fácil de incluir e sem constrangimento.':i==='experiente'?' Como a pessoa já tem bastante experiência, a indicação vai além do básico: produtos mais específicos e mais potentes.':''}${intm==='delicada'?' Como a relação de vocês pede cuidado, deixamos de lado qualquer coisa que constranja.':''}${emb==='sim'?' Procure a opção de embalagem pra presente na finalização.':''}`;
     const delicado=c==='delicado'||intm==='delicada';
     if(delicado){ main('massagem','Velas de massagem, óleos e sais de banho. É presente de cuidado, bonito de abrir e sem nada que constranja.'); comp('cosmeticos','Perfumes e óleos íntimos completam o clima de cuidado.'); if(cu.includes('humor')) comp('jogos','A pessoa curte humor: um jogo leve acompanha bem.'); }
-    else if(c==='divertido'){ main('jogos','Cartas, dados e tabuleiros de casal. Quebram o gelo, fazem rir e deixam o convite por conta do jogo.'); comp('massagem','Uma vela de massagem acompanha bem.'); if(up==='comigo'||q==='casal') comp('vib-dois','Se quiserem dar um passo além, os brinquedos pra usar a dois ficam aqui.'); }
-    else if(c==='ousado'){ if(q==='parceiro'||(up==='sozinha'&&q==='parceiro')) main('vib-peniano','Pra ele, com classe: anéis e produtos pensados pro corpo masculino, e boa parte também estimula a parceira.'); else if(up==='sozinha'&&(q==='amiga'||q==='parceira')) main(i==='algum'?'vib-externo':'vib-comecar',i==='algum'?'Ela já tem intimidade: um sugador ou vibrador externo de qualidade é o presente ousado que agrada.':'Pra ela usar sozinha e começar bem: os vibradores mais simples e versáteis.'); else main('vib-dois','Ousado e elegante: vibradores pensados pra usar a dois, que os dois sentem ou um controla.'); if(cu.includes('tech')) comp('vib-dois','A pessoa curte tecnologia: os com controle por app ficam nesta categoria.'); comp('aces-dominar','Uma venda ou um kit de fantasia dá o tom ousado sem exagero.'); if(i!=='algum') comp('gel-neutro','Todo brinquedo pede um gel. Vai junto no presente.'); }
-    else { main('kits','Combinação pronta, pensada pra funcionar junto. É o presente que não erra, ainda mais pra quem está começando.'); if(q==='amiga'||up==='sozinha') comp('vib-comecar','Se quiser algo além do kit, os vibradores mais simples e versáteis ficam aqui.'); if(cu.includes('bemestar')) comp('massagem','A pessoa curte bem-estar: uma vela de massagem acompanha bem.'); else if(cu.includes('humor')) comp('jogos','A pessoa curte humor: um jogo leve acompanha bem.'); }
+    else if(c==='divertido'){ if(i==='experiente') comp('aces-dominar','Pra quem já tem experiência, um kit de fantasia leve combina com o clima divertido.'); main('jogos','Cartas, dados e tabuleiros de casal. Quebram o gelo, fazem rir e deixam o convite por conta do jogo.'); comp('massagem','Uma vela de massagem acompanha bem.'); if(up==='comigo'||q==='casal') comp('vib-dois','Se quiserem dar um passo além, os brinquedos pra usar a dois ficam aqui.'); }
+    else if(c==='ousado'){ if(q==='parceiro'||(up==='sozinha'&&q==='parceiro')) main('vib-peniano','Pra ele, com classe: anéis e produtos pensados pro corpo masculino, e boa parte também estimula a parceira.'); else if(up==='sozinha'&&(q==='amiga'||q==='parceira')) main(i==='experiente'?'vib-sensacoes':i==='algum'?'vib-externo':'vib-comecar',i==='experiente'?'Ela já tem bastante experiência: um vibrador de estimulação dupla ou com pulsação é o presente que surpreende quem já conhece o básico.':i==='algum'?'Ela já tem intimidade: um sugador ou vibrador externo de qualidade é o presente ousado que agrada.':'Pra ela usar sozinha e começar bem: os vibradores mais simples e versáteis.',i==='experiente'?['vibradores de dupla estimulação (rabbit)','sugadores premium com pulsação']:undefined); else main('vib-dois','Ousado e elegante: vibradores pensados pra usar a dois, que os dois sentem ou um controla.'); if(cu.includes('tech')) comp('vib-dois','A pessoa curte tecnologia: os com controle por app ficam nesta categoria.'); comp('aces-dominar','Uma venda ou um kit de fantasia dá o tom ousado sem exagero.'); if(i==='experiente') comp('gel-estimulos','Pra quem já tem experiência, um gel com formigamento ou pulsação é a novidade que acompanha bem.'); else if(i!=='algum') comp('gel-neutro','Todo brinquedo pede um gel. Vai junto no presente.'); }
+    else { main('kits',i==='experiente'?'Combinação pronta, pensada pra funcionar junto. Pra quem já tem experiência, procure os kits a dois e os mais completos.':'Combinação pronta, pensada pra funcionar junto. É o presente que não erra, ainda mais pra quem está começando.',i==='experiente'?['kits a dois','kits completos']:undefined); if(i==='experiente') comp('vib-sensacoes','Como a pessoa já tem experiência, os vibradores de estimulação dupla e de outras áreas são o passo além do kit.'); if(q==='amiga'||up==='sozinha') comp('vib-comecar','Se quiser algo além do kit, os vibradores mais simples e versáteis ficam aqui.'); if(cu.includes('bemestar')) comp('massagem','A pessoa curte bem-estar: uma vela de massagem acompanha bem.'); else if(cu.includes('humor')) comp('jogos','A pessoa curte humor: um jogo leve acompanha bem.'); }
   }
 
   /* ---- SÓ CURIOSIDADE ---- */
@@ -878,8 +878,8 @@ function montar(a){
 let answers={}; let idx=-1;
 const view=document.getElementById('view'), btnBack=document.getElementById('btnBack');
 const visible=()=>SCREENS.filter(s=>!s.when||s.when(answers));
-try{const saved=JSON.parse(sessionStorage.getItem('itscool-quiz-v28')||'null'); if(saved){answers=saved.answers||{}; idx=saved.idx??-1;}}catch(e){}
-const persist=()=>{try{sessionStorage.setItem('itscool-quiz-v28',JSON.stringify({answers,idx}))}catch(e){}};
+try{const saved=JSON.parse(sessionStorage.getItem('itscool-quiz-v29')||'null'); if(saved){answers=saved.answers||{}; idx=saved.idx??-1;}}catch(e){}
+const persist=()=>{try{sessionStorage.setItem('itscool-quiz-v29',JSON.stringify({answers,idx}))}catch(e){}};
 
 function render(){
   persist();
