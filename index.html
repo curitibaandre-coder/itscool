@@ -174,7 +174,7 @@ h1 i{font-style:italic;color:var(--terra)}
     <a class="logo" href="#" onclick="refazer();return false" aria-label="it's COOL, prazer e bem-estar íntimo"><img src="logo.png?v=1" alt="it's COOL"></a>
     <button class="btn ghost" id="btnBack" type="button">Voltar</button>
   </header>
-  <div class="stamp">versão 27 · fluxo a dois</div>
+  <div class="stamp">versão 28 · fluxo anal</div>
   <main id="view"></main>
 </div>
 
@@ -575,12 +575,6 @@ const SCREENS=[
     ['higiene','Higiene e preparação','Pra se sentir tranquila antes e depois.'],
     ['naosei','Não sei, me mostra por onde começar','A gente monta o começo mais seguro.'],
   ]},
-  {id:'analSensacao',type:'single',q:'Que <i>sensação</i> te chama mais?',when:isAnal,opts:[
-    ['pressao','Pressão e preenchimento','A sensação do plug, parado no lugar.'],
-    ['vibracao','Vibração','Movimento e estímulo contínuo.'],
-    ['ambos','As duas','Plug e vibração, cada um na sua hora.'],
-    ['naosei','Não sei ainda','Começar pelo plug costuma ser o caminho.'],
-  ]},
   {id:'preocupa',type:'multi',two:true,exclusive:['nada'],q:'O que mais te <i>preocupa</i>?',sub:'Pode marcar mais de um. A gente responde no resultado.',when:isAnal,opts:[
     ['dor','Sentir dor','Com gel certo, tamanho certo e tempo certo, não dói.'],
     ['higiene','Higiene','Tem produto pra isso e a preparação é simples.'],
@@ -595,14 +589,6 @@ const SCREENS=[
     ['naosei','Não sei a diferença, me indica','A gente explica no resultado.'],
   ]},
   Q_CASA(isAnal),
-  {id:'a3',type:'multi',max:2,two:true,exclusive:['tanto'],q:'O que é <i>mais importante</i> pra você?',sub:'Até duas.',when:isAnal,opts:[
-    ['pequeno','Tamanho pequeno','Começar devagar.'],
-    ['controle','Controle remoto ou por app','Pra brincar a dois.'],
-    ['agua','À prova d\'água','Pra lavar fácil.'],
-    ['custo','Bom custo-benefício','Quero começar sem gastar muito.'],
-    ['tanto','Tanto faz, me surpreende','A gente indica pelo que você contou até aqui.'],
-  ]},
-  Q_MOMENTO(isAnal),
 
   /* ---------- PRESENTE (8 perguntas) ---------- */
   {id:'p1',type:'single',two:true,q:'Pra quem é o <i>presente</i>?',when:isPres,opts:[
@@ -892,8 +878,8 @@ function montar(a){
 let answers={}; let idx=-1;
 const view=document.getElementById('view'), btnBack=document.getElementById('btnBack');
 const visible=()=>SCREENS.filter(s=>!s.when||s.when(answers));
-try{const saved=JSON.parse(sessionStorage.getItem('itscool-quiz-v27')||'null'); if(saved){answers=saved.answers||{}; idx=saved.idx??-1;}}catch(e){}
-const persist=()=>{try{sessionStorage.setItem('itscool-quiz-v27',JSON.stringify({answers,idx}))}catch(e){}};
+try{const saved=JSON.parse(sessionStorage.getItem('itscool-quiz-v28')||'null'); if(saved){answers=saved.answers||{}; idx=saved.idx??-1;}}catch(e){}
+const persist=()=>{try{sessionStorage.setItem('itscool-quiz-v28',JSON.stringify({answers,idx}))}catch(e){}};
 
 function render(){
   persist();
