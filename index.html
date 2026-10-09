@@ -101,6 +101,13 @@ h1 i{font-style:italic;color:var(--terra)}
 @media (max-width:620px){.recs{grid-template-columns:1fr}}
 .rec{background:var(--white);border:1px solid var(--line);border-radius:22px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 14px 40px rgba(120,60,50,.08)}
 .rec .band{height:120px;display:grid;place-items:center;position:relative}
+.rec .band.foto{background:#efe3d6;height:170px;overflow:hidden}
+.rec .band.foto>img{width:100%;height:100%;object-fit:cover;display:block}
+.rec .band.foto .n{color:var(--cereja);text-shadow:0 0 6px rgba(255,255,255,.9)}
+.rec .band.foto .thumbs{position:absolute;right:10px;bottom:10px;display:flex;gap:6px}
+.rec .band.foto .thumbs img{width:40px;height:40px;object-fit:cover;border-radius:10px;border:2px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.15)}
+@media (min-width:1001px){.recs[style*="--n:5"] .rec .band.foto{height:130px}}
+
 .rec .band svg{width:84px;height:84px}
 .rec .band .cat{position:absolute;top:12px;left:12px;font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;background:rgba(255,255,255,.88);color:var(--cereja);border-radius:999px;padding:4px 10px}
 .rec .band .n{position:absolute;top:8px;right:14px;font-family:var(--serif);font-size:1.5rem;color:rgba(255,255,255,.9)}
@@ -174,7 +181,7 @@ h1 i{font-style:italic;color:var(--terra)}
     <a class="logo" href="#" onclick="refazer();return false" aria-label="it's COOL, prazer e bem-estar íntimo"><img src="logo.png?v=1" alt="it's COOL"></a>
     <button class="btn ghost" id="btnBack" type="button">Voltar</button>
   </header>
-  <div class="stamp">versão 32</div>
+  <div class="stamp">versão 33 · fotos reais</div>
   <main id="view"></main>
 </div>
 
@@ -292,6 +299,20 @@ const ITENS={
   'anal-higiene':['duchas higiênicas','lenços','sabonetes suaves'],
   'kits':['kits pra começar','kits a dois','kits de cuidado','kits presente'],
   'sale':['produtos de todas as categorias com preço especial'],
+};
+
+
+/* fotos reais por categoria (caminhos relativos à pasta fotos/). Quando o catálogo estiver
+   cadastrado, é só acrescentar aqui: a primeira foto vira a capa do card, as demais aparecem
+   como miniaturas. Categoria sem foto continua usando a ilustração. */
+const FOTOS={
+  'massagem':['fotos/vela-intt.jpg'],
+  'higiene':['fotos/sabonete-intt.jpg'],
+  'gel-neutro':['fotos/lubrificante-lubin.jpg'],
+  'geis':['fotos/lubrificante-lubin.jpg'],
+  'vib-externo':['fotos/vibrador-paname.jpg'],
+  'vib-dois':['fotos/vibrador-paname.jpg'],
+  'vib-comecar':['fotos/vibrador-paname.jpg'],
 };
 
 /* ============================================================
@@ -1011,7 +1032,9 @@ function refazer(){answers={}; idx=-1; render();}
 
 function recCard(d,i){
   const c=CAT[d.cat];
-  return `<article class="rec"><div class="band ${c.band}"><span class="cat">${c.nome}</span><span class="n">0${i+1}</span>${ART[d.art]||ART.caixa}</div>
+  const fotos=FOTOS[d.id]||[];
+  const band=fotos.length?`<div class="band foto"><img src="${fotos[0]}" alt="${d.nome}" loading="lazy">${fotos.length>1?`<div class="thumbs">${fotos.slice(1,4).map(f=>`<img src="${f}" alt="" loading="lazy">`).join('')}</div>`:''}<span class="cat">${c.nome}</span><span class="n">0${i+1}</span></div>`:`<div class="band ${c.band}"><span class="cat">${c.nome}</span><span class="n">0${i+1}</span>${ART[d.art]||ART.caixa}</div>`;
+  return `<article class="rec">${band}
     <div class="body"><h2>${d.nome}</h2><p class="desc">${d.desc}</p>
     <div class="porque"><b>Por que pra você</b><p>${d.why}</p></div>
     ${d.itens&&d.itens.length?`<div class="itens"><b>O que encaixa no seu perfil aqui</b><ul>${d.itens.map(x=>`<li>${x}</li>`).join('')}</ul></div>`:''}
