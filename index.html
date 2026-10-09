@@ -174,7 +174,7 @@ h1 i{font-style:italic;color:var(--terra)}
     <a class="logo" href="#" onclick="refazer();return false" aria-label="it's COOL, prazer e bem-estar íntimo"><img src="logo.png?v=1" alt="it's COOL"></a>
     <button class="btn ghost" id="btnBack" type="button">Voltar</button>
   </header>
-  <div class="stamp">versão 26 · até 5 categorias em linha</div>
+  <div class="stamp">versão 27 · fluxo a dois</div>
   <main id="view"></main>
 </div>
 
@@ -427,7 +427,7 @@ const SCREENS=[
   ]},
 
   /* ---------- A DOIS (9 perguntas) ---------- */
-  {id:'d1',type:'multi',max:2,two:true,q:'O que vocês gostariam de <i>acrescentar</i> aos momentos a dois?',sub:'Até duas. É sobre vontade, não sobre o que está faltando.',when:isDois,opts:[
+  {id:'d1',type:'multi',max:3,two:true,q:'O que vocês gostariam de <i>acrescentar</i> aos momentos a dois?',sub:'Até três. É sobre vontade, não sobre o que está faltando.',when:isDois,opts:[
     ['sensacoes','Novas sensações durante a relação','Algo que os dois sintam, ou que um sinta enquanto o outro participa.'],
     ['rotina','Sair da rotina e brincar','Cartas, dados, desafios. Rir junto também é intimidade.'],
     ['fantasias','Explorar fantasias e jogos de poder','Vendas, algemas, restrição. Sempre consensual e combinado.'],
@@ -463,7 +463,7 @@ const SCREENS=[
     ['simples','Já usamos algo simples','Óleo, gel, um jogo, um brinquedo básico.'],
     ['intimidade','Já temos intimidade com brinquedos','Podemos ir além do básico.'],
   ]},
-  {id:'d2',type:'single',q:'Se fosse incluir um <i>brinquedo</i>, qual ideia agrada mais?',when:isDois,opts:[
+  {id:'d2',type:'multi',max:2,two:true,exclusive:['sem'],q:'Se fosse incluir um <i>brinquedo</i>, qual ideia agrada mais?',sub:'Até duas.',when:isDois,opts:[
     ['juntos','Algo que os dois sintam durante a penetração','Vibradores de casal e anéis vibratórios ficam no lugar e estimulam os dois.'],
     ['ela','Estímulo pra ela durante a relação','Por fora, no clitóris, enquanto a relação acontece.'],
     ['ele','Estímulo pra ele','Anéis e produtos pensados pro corpo masculino.'],
@@ -748,7 +748,7 @@ function montar(a){
 
   /* ---- A DOIS ---- */
   else if(p==='dois'){
-    const d1=a.d1||[], gostam=a.gostam||[], qx=a.queixa||[], foco=a.foco||'tanto', d5=a.d5||'', d2=a.d2||'', d3l=(a.d3||[]).filter(x=>x!=='nao'), ab=a.abertura||'', pr=a.prioDois||[];
+    const d1=a.d1||[], gostam=a.gostam||[], qx=a.queixa||[], foco=a.foco||'tanto', d5=a.d5||'', d2l=(a.d2||[]), d2=d2l.includes('sem')?'sem':(d2l.includes('remoto')?'remoto':d2l.includes('juntos')?'juntos':d2l.includes('ela')?'ela':d2l.includes('ele')&&d2l.length===1?'ele':d2l.includes('ele')?'juntos':d2l[0]||''), d3l=(a.d3||[]).filter(x=>x!=='nao'), ab=a.abertura||'', pr=a.prioDois||[];
     const quer=[]; if(d1.includes('sensacoes')) quer.push('novas sensações durante a relação'); if(d1.includes('rotina')) quer.push('sair da rotina'); if(d1.includes('fantasias')) quer.push('explorar fantasias'); if(d1.includes('conforto')) quer.push('mais conforto'); if(d1.includes('clima')) quer.push('clima e toque'); if(d1.includes('descobrir')) quer.push('descobrir algo novo');
     const qTxt=[]; if(qx.includes('rotina')) qTxt.push('caiu na rotina'); if(qx.includes('atrito')) qTxt.push('falta lubrificação'); if(qx.includes('rapido')) qTxt.push('ele termina antes do que gostariam'); if(qx.includes('orgasmo')) qTxt.push('ela tem dificuldade de chegar ao orgasmo na relação'); if(qx.includes('vergonha')) qTxt.push('dá vergonha de propor novidades'); if(qx.includes('tempo')) qTxt.push('falta tempo');
     const abTxt={abertos:' Vocês topam quase tudo, então dá pra ir direto ao ponto.',calma:' Vocês querem ir com calma, então a indicação é um passo de cada vez.',desigual:' Como um está mais animado que o outro, priorizamos o que convida sem assustar.',primeira:' Como é a primeira conversa sobre isso, priorizamos o que ajuda a conversar antes de fazer.'}[ab]||'';
@@ -758,17 +758,17 @@ function montar(a){
     const gostTxt=gostam.includes('penetracao')?' Como vocês gostam de penetração, um que fique no lugar durante a relação encaixa no que já funciona.':gostam.includes('oral')?' Como vocês gostam de sexo oral, um vibrador de casal pequeno também entra bem nas preliminares.':'';
 
     // vibradores a dois
-    const querVib=d1.includes('sensacoes')||qx.includes('orgasmo')||(d2&&d2!=='sem')||foco==='dois';
+    const querVib=d1.includes('sensacoes')||qx.includes('orgasmo')||(d2l.length&&d2!=='sem')||foco==='dois';
     if(querVib){
-      if(d2==='ele') rec('vib-peniano',`Vocês querem estímulo pra ele. Anéis penianos e produtos pensados pro corpo masculino, e boa parte deles também estimula a parceira durante a relação.${qx.includes('rapido')?' Os anéis ainda ajudam ele a durar mais.':''}${fTxt}`);
-      else {
+      if(d2l.includes('ele')) rec('vib-peniano',`Vocês querem estímulo pra ele. Anéis penianos e produtos pensados pro corpo masculino, e boa parte deles também estimula a parceira durante a relação.${qx.includes('rapido')?' Os anéis ainda ajudam ele a durar mais.':''}${fTxt}`);
+      if(d2!=='ele'&&d2!=='sem') {
         let w='';
         if(qx.includes('orgasmo')) w=`Vocês contaram que ela tem dificuldade de chegar ao orgasmo na relação. É muito comum, porque a maioria precisa de estímulo por fora, no clitóris. Aqui ficam anéis vibratórios e vibradores de casal que estimulam o clitóris sem atrapalhar a penetração.`;
         else if(d2==='remoto') w='Um controla, o outro sente. Aqui ficam os vibradores de casal com controle remoto ou por app, pra brincar de perto ou de longe.';
         else if(d2==='ela') w='Vocês querem estímulo pra ela durante a relação: anéis vibratórios e vibradores de casal que estimulam o clitóris sem atrapalhar a penetração.';
         else if(d2==='juntos'||foco==='dois') w='Vocês querem algo que os dois sintam durante a penetração. É isso que esta categoria reúne: vibradores de casal e anéis vibratórios que ficam no lugar e estimulam os dois.';
         else w='Vocês querem novas sensações durante a relação. Aqui ficam os vibradores pensados pra usar a dois: alguns os dois sentem, outros um controla e o outro sente.';
-        rec('vib-dois',w+gostTxt+(qx.includes('rapido')?' Os anéis vibratórios também ajudam ele a durar mais.':'')+fTxt,d2==='remoto'?['vibradores com controle remoto','vibradores com app']:(qx.includes('orgasmo')||d2==='ela'||qx.includes('rapido'))?['anéis vibratórios','vibradores de casal em C ou U']:['vibradores de casal em C ou U','anéis vibratórios']);
+        rec('vib-dois',w+gostTxt+(qx.includes('rapido')?' Os anéis vibratórios também ajudam ele a durar mais.':'')+fTxt,d2l.includes('remoto')&&d2l.length>1?['vibradores com controle remoto','vibradores de casal em C ou U','anéis vibratórios']:d2==='remoto'?['vibradores com controle remoto','vibradores com app']:(qx.includes('orgasmo')||d2==='ela'||qx.includes('rapido'))?['anéis vibratórios','vibradores de casal em C ou U']:['vibradores de casal em C ou U','anéis vibratórios']);
       }
     }
     // géis: várias razões, uma indicação ampla
@@ -892,8 +892,8 @@ function montar(a){
 let answers={}; let idx=-1;
 const view=document.getElementById('view'), btnBack=document.getElementById('btnBack');
 const visible=()=>SCREENS.filter(s=>!s.when||s.when(answers));
-try{const saved=JSON.parse(sessionStorage.getItem('itscool-quiz-v26')||'null'); if(saved){answers=saved.answers||{}; idx=saved.idx??-1;}}catch(e){}
-const persist=()=>{try{sessionStorage.setItem('itscool-quiz-v26',JSON.stringify({answers,idx}))}catch(e){}};
+try{const saved=JSON.parse(sessionStorage.getItem('itscool-quiz-v27')||'null'); if(saved){answers=saved.answers||{}; idx=saved.idx??-1;}}catch(e){}
+const persist=()=>{try{sessionStorage.setItem('itscool-quiz-v27',JSON.stringify({answers,idx}))}catch(e){}};
 
 function render(){
   persist();
