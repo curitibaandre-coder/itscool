@@ -159,8 +159,8 @@ h1 i{font-style:italic;color:var(--terra)}
 .xcard span{display:block;font-size:.8rem;color:var(--muted);margin-top:2px}
 .xcard a{flex:none;font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--cereja);text-decoration:none;border-bottom:1.5px solid var(--cereja);padding-bottom:1px;white-space:nowrap}
 .lbl{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);font-weight:600;margin:6px 0 12px}
-.rfoot{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:8px}
-.rfoot .btn{flex:0 1 320px}
+.rfoot{display:flex;flex-direction:column;align-items:center;gap:12px;margin-top:8px}
+.rfoot .btn{flex:none;width:min(100%,320px)}
 .debug{margin-top:26px;font-size:.76rem;color:var(--muted)}
 .debug summary{cursor:pointer;font-weight:600}
 .debug pre{background:var(--bege);padding:10px;border-radius:10px;overflow-x:auto;font-size:.7rem;line-height:1.4}
@@ -174,7 +174,7 @@ h1 i{font-style:italic;color:var(--terra)}
     <a class="logo" href="#" onclick="refazer();return false" aria-label="it's COOL, prazer e bem-estar íntimo"><img src="logo.png?v=1" alt="it's COOL"></a>
     <button class="btn ghost" id="btnBack" type="button">Voltar</button>
   </header>
-  <div class="stamp">versão 31</div>
+  <div class="stamp">versão 32</div>
   <main id="view"></main>
 </div>
 
@@ -1024,7 +1024,7 @@ function resultado(R){
   h+=`<div class="lbl" style="text-align:center;justify-content:center">Categorias mais indicadas pra você</div>`;
   h+=`<div class="recs ${n<=2?'two':''}" style="--n:${n}">${R.recs.map(recCard).join('')}</div>`;
   if(R.sale) h+=`<p class="note" style="text-align:center">Você pediu custo-benefício: vale conferir também a seção <a href="${link('sale')}" target="_blank" rel="noopener" style="color:var(--cereja);font-weight:600">Sale</a>, filtrando pelas categorias indicadas.</p>`;
-  h+=`<div class="rfoot"><button class="btn soft" onclick="refazer()">Refazer o quiz</button></div>`;
+  h+=`<div class="rfoot"><button class="btn soft" onclick="refazer()">Refazer o quiz</button><a class="btn primary" href="${URL_SITE}" target="_blank" rel="noopener">Voltar ao site</a></div>`;
   h+=`<details class="debug"><summary>Ver a lógica (pra quem está construindo)</summary><pre>${JSON.stringify({caminho:pathOf(answers),respostas:answers},null,1)}</pre></details></div>`;
   return h;
 }
