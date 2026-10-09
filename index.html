@@ -729,28 +729,18 @@ function montar(a){
       R.intro=`Pelas suas respostas, ${expTxt} e ainda não sabe que tipo de estímulo prefere. Então o caminho é começar pelo simples e versátil.${intensTxt}${usoTxt}`;
     }
     momentoComps();
-    // acessórios de prazer que ela pediu
-    const pediuGel=ac.some(x=>x.startsWith('gel'));
-    if(ac.includes('gelagua')||(ac.includes('gelneutro')&&uso.includes('banho'))) comp('gel-agua','Você vai usar no banho: este gel mantém o deslizamento mesmo com água, o neutro comum sai.');
-    if(ac.includes('gelneutro')&&!uso.includes('banho')) comp('gel-neutro','Você pediu um gel neutro: tira o atrito, protege o silicone e combina com qualquer vibrador.');
-    if(ac.includes('gelsensacao')) comp('gel-termico','Você pediu gel com sensação: os térmicos e os de formigamento ficam aqui, e a maioria também funciona como lubrificante.');
-    if(!pediuGel&&!ac.includes('nao')&&!R.comps.some(c=>c.id.startsWith('gel'))) comp(gelId,gelWhy||'Mesmo sem pedir, vale saber: todo vibrador pede um gel. O neutro tira o atrito e protege o silicone.');
-    if(ac.includes('nao')) R.intro+=' Você deixou o gel pra depois, mas vale saber: todo vibrador pede um lubrificante neutro, que tira o atrito e protege o silicone.';
-    if(ac.includes('jogos')) comp('jogos','Você pediu jogos ou cartas: pra sair do automático, sozinha ou a dois.');
-    if(ac.includes('massagem')) comp('massagem','Você pediu óleo ou vela de massagem: pra criar clima antes.');
-    // cuidado íntimo que ela pediu
-    if(cv.includes('higiene')||cv.includes('limpeza')) comp('higiene',cv.includes('limpeza')?'Você pediu limpeza do brinquedo: o limpador de silicone fica em Higiene íntima, junto com os sabonetes próprios pra região.':'Você pediu higiene íntima: sabonetes próprios pra região, com pH adequado.');
-    if(cv.includes('hidratante')) comp('hidratacao','Você pediu hidratante íntimo: de uso contínuo, trata a secura na base.');
-    if(cv.includes('cosmeticos')) comp('cosmeticos','Você pediu cosméticos íntimos: óleos, séruns e perfumes pensados pra região.');
-    if(cv.includes('pelvico')) comp('pelvica','Você quer conhecer o corpo e o assoalho pélvico: exercitadores, pompoarismo e materiais educativos.');
-    // parceria e outros interesses
-    if(inter.includes('cuidado')){ comp('cosmeticos','Você quer ver cosméticos íntimos: óleos, séruns e perfumes pensados pra região.'); comp('hidratacao','E no cuidado íntimo, o hidratante de uso contínuo é o que mais gente precisa e menos gente conhece.'); if(!inter.includes('relacao')) comp('higiene','Sabonete íntimo e limpador de brinquedo completam o cuidado.'); }
-    if(inter.includes('relacao')){ if(R.main.id!=='vib-dois') comp('vib-dois','Você quer também aumentar o prazer na relação: aqui ficam os vibradores pensados pra usar a dois, que os dois sentem ou um controla.'); comp('geis','Pra relação, os géis térmicos e de formigamento trazem sensação nova pros dois, e o retardante ajuda ele a durar mais.',['géis térmicos','géis com formigamento','géis retardantes']); if(!inter.includes('cuidado')) comp('jogos','Pra trazer novidade pra relação sem pressão: jogos e cartas fazem o convite por vocês.'); }
-    if(inter.includes('kits')) comp('kits','Você quer conhecer os kits: combinações que a gente montou pra funcionar juntas, pra começar, pra cuidar ou pra usar a dois.');
-    if(inter.includes('promos')) comp('sale','Você quer ver as promos: tudo que está com preço especial agora, de todas as categorias.');
-    if(inter.includes('autocuidado')&&!ac.includes('massagem')) comp('massagem','Pra momentos de autocuidado sozinha: velas, óleos de massagem e sais de banho.');
-    if(inter.includes('corpo')&&!cv.includes('pelvico')) comp('pelvica','Pra conhecer melhor o seu corpo: materiais educativos, espelho e exercitadores.');
-    if(inter.includes('anal')) comp('anal-plugs','Você quer explorar o prazer anal: comece pelos plugs pequenos, sempre com gel anal.');
+    // o que ela pediu de forma explícita entra antes do gel padrão, um de cada interesse por vez
+    const grupos=[];
+    if(inter.includes('cuidado')) grupos.push([['cosmeticos','Você quer ver cosméticos íntimos: óleos, séruns e perfumes pensados pra região.'],['hidratacao','E no cuidado íntimo, o hidratante de uso contínuo é o que mais gente precisa e menos gente conhece.'],['higiene','Sabonete íntimo e limpador de brinquedo completam o cuidado.']]);
+    if(inter.includes('relacao')) grupos.push([['vib-dois','Você quer também aumentar o prazer na relação: aqui ficam os vibradores pensados pra usar a dois, que os dois sentem ou um controla.'],['geis','Pra relação, os géis térmicos e de formigamento trazem sensação nova pros dois, e o retardante ajuda ele a durar mais.',['géis térmicos','géis com formigamento','géis retardantes']],['jogos','Pra trazer novidade pra relação sem pressão: jogos e cartas fazem o convite por vocês.']]);
+    if(inter.includes('kits')) grupos.push([['kits','Você quer conhecer os kits: combinações que a gente montou pra funcionar juntas, pra começar, pra cuidar ou pra usar a dois.']]);
+    if(inter.includes('promos')) grupos.push([['sale','Você quer ver as promos: tudo que está com preço especial agora, de todas as categorias.']]);
+    if(inter.includes('autocuidado')) grupos.push([['massagem','Pra momentos de autocuidado sozinha: velas, óleos de massagem e sais de banho.']]);
+    if(inter.includes('corpo')) grupos.push([['pelvica','Pra conhecer melhor o seu corpo: materiais educativos, espelho e exercitadores.']]);
+    if(inter.includes('anal')) grupos.push([['anal-plugs','Você quer explorar o prazer anal: comece pelos plugs pequenos, sempre com gel anal.']]);
+    for(let rodada=0;rodada<3;rodada++) for(const g of grupos){ if(g[rodada]){ const [id,why,itens]=g[rodada]; if(id!==R.main.id) comp(id,why,itens); } }
+    // gel: todo vibrador pede um
+    if(!R.recs.some(c=>c.id.startsWith('gel')||c.id==='geis')) comp(gelId,gelWhy||'Todo vibrador pede um gel. O neutro tira o atrito e protege o silicone.');
     if(exp==='tenho'&&!['vib-sensacoes','vib-comecar'].includes(R.main.id)) comp('vib-sensacoes','Você quer uma sensação diferente da que já conhece: aqui ficam os de estimulação dupla e de outras áreas.');
     if(exp==='nunca'&&R.main.id!=='vib-comecar') comp('kits','Pra primeira vez, um kit traz o vibrador com o gel e evita errar na combinação.');
     if(rec.includes('custo')||(a.prio||[]).includes('custo')) R.sale=true;
