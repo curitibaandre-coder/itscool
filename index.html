@@ -41,6 +41,7 @@ header{display:flex;align-items:center;justify-content:space-between;gap:12px;ma
 h1{font-family:var(--serif);font-weight:400;font-size:clamp(1.65rem,4.4vw,2.2rem);line-height:1.15;color:var(--cereja);margin:0 0 10px;text-wrap:balance}
 h1 i{font-style:italic;color:var(--terra)}
 .sub{color:var(--muted);font-size:.95rem;margin:0 0 20px}
+.sub .qtd{display:inline-block;background:var(--cereja);color:#fff;font-weight:600;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;padding:4px 10px;border-radius:999px;margin-right:4px;vertical-align:middle}
 .opts{display:grid;gap:10px;margin:0;padding:0;list-style:none}
 @media (min-width:640px){.opts.two{grid-template-columns:1fr 1fr}.opts.icons{grid-template-columns:repeat(3,1fr)}}
 .opt{width:100%;height:100%;text-align:left;background:var(--bege-claro);border:1.5px solid var(--line);border-radius:16px;padding:13px 15px;font:inherit;color:var(--ink);cursor:pointer;display:flex;align-items:flex-start;gap:12px;transition:border-color .15s, background .15s, transform .1s, box-shadow .15s}
@@ -207,7 +208,7 @@ h1 i{font-style:italic;color:var(--terra)}
     <a class="logo" href="#" onclick="refazer();return false" aria-label="it's COOL, prazer e bem-estar íntimo"><img src="logo.png?v=1" alt="it's COOL"></a>
     <button class="btn ghost" id="btnBack" type="button">Voltar</button>
   </header>
-  <div class="stamp">versão 36</div>
+  <div class="stamp">versão 37</div>
   <main id="view"></main>
 </div>
 
@@ -1033,12 +1034,16 @@ function question(s,n,total){
     const ic=s.icons&&ICONS[v]?`<span class="icon">${ICONS[v]}</span>`:'';
     return `<li><button type="button" class="opt ${isMulti?'multi':''} ${s.icons?'ic':''} ${on?'on':''}" data-v="${v}" onclick="pick('${s.id}','${v}')"><span class="box"></span>${ic}<span class="t"><b>${l}</b>${h?`<span>${h}</span>`:''}</span></button></li>`;
   }).join('');
-  const cont=isMulti?`<div class="actions"><button class="btn primary" id="btnNext" onclick="next()" ${(cur||[]).length?'':'disabled'}>Continuar</button></div>`:'';
-  return `<div class="step">Pergunta ${n} de ${total}</div><h1>${s.q}</h1><p class="sub">${s.sub||''}</p><ul class="opts ${s.icons?'icons':(s.two?'two':'')}">${opts}</ul>${cont}`;
+  const temResposta=isMulti?(cur||[]).length>0:!!cur;
+  const cont=`<div class="actions"><button class="btn primary" id="btnNext" onclick="next()" ${temResposta?'':'disabled'}>Continuar</button></div>`;
+  const num={1:'uma',2:'duas',3:'três'};
+  const qtd=!isMulti?'Escolha uma opção':s.max?`Escolha até ${num[s.max]||s.max}`:'Marque quantas quiser';
+  const subLimpo=(s.sub||'').replace(/^(Até (uma|duas|três|dois)\.|Pode marcar (mais de um|mais de uma|várias|os dois|quantos fizerem sentido|mais de uma, ou nenhuma)\.|Escolha (uma|até três|até duas)\.)\s*/i,'').replace(/\s*(Pode marcar (mais de um|mais de uma|várias|os dois|quantos fizerem sentido|mais de uma, ou nenhuma)\.|Até (uma|duas|três|dois)\.)/gi,'').trim();
+  return `<div class="step">Pergunta ${n} de ${total}</div><h1>${s.q}</h1><p class="sub"><span class="qtd">${qtd}</span>${subLimpo?' · '+subLimpo:''}</p><ul class="opts ${s.icons?'icons':(s.two?'two':'')}">${opts}</ul>${cont}`;
 }
 function pick(id,v){
   const s=SCREENS.find(x=>x.id===id);
-  if(s.type==='single'){answers[id]=v; limpar(id); setTimeout(next,140); return;}
+  if(s.type==='single'){answers[id]=v; limpar(id); document.querySelectorAll('.opt').forEach(b=>b.classList.toggle('on',b.dataset.v===v)); const bn=document.getElementById('btnNext'); if(bn) bn.disabled=false; persist(); return;}
   let cur=[...(answers[id]||[])]; const excl=s.exclusive||[];
   if(cur.includes(v)) cur=cur.filter(x=>x!==v);
   else{ if(excl.includes(v)) cur=[v]; else cur=cur.filter(x=>!excl.includes(x)).concat(v); if(s.max&&cur.length>s.max) cur=cur.slice(-s.max); }
