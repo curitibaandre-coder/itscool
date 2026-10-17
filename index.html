@@ -88,10 +88,15 @@ h1 i{font-style:italic;color:var(--terra)}
 .hero{max-width:620px;width:100%;margin:12px auto 0;padding:28px 26px 26px;text-align:center}
 .hero h1{font-size:clamp(2rem,5vw,2.7rem);margin-bottom:12px}
 .hero .lead{color:var(--muted);margin:0 0 16px;font-size:.97rem}
-.hero .topicos{list-style:none;padding:0;margin:0 0 24px;display:grid;grid-template-columns:repeat(3,1fr);gap:10px;font-size:.82rem;line-height:1.35}
-.hero .topicos li{padding:14px 12px;border-radius:12px;font-weight:500;color:#fff;text-align:center;display:flex;align-items:center;justify-content:center}
-.hero .topicos li.c1,.hero .topicos li.c2,.hero .topicos li.c3{background:var(--rosa)}
-@media (max-width:520px){.hero .topicos{grid-template-columns:1fr}}
+.hero .onda{display:block;width:120px;height:12px;margin:2px auto 14px;color:var(--rosa)}
+.hero .topicos{list-style:none;padding:0 6px;margin:0 0 26px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;font-size:.84rem;line-height:1.35;color:var(--muted)}
+.hero .topicos li{display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;font-weight:400;padding:0;background:none}
+.hero .topicos li b{display:block;font-family:var(--serif);font-weight:400;font-size:1.05rem;color:var(--cereja);line-height:1.15}
+.hero .topicos .ic{width:44px;height:44px;border-radius:50%;background:var(--bege);display:grid;place-items:center;color:var(--terra);transform:rotate(-6deg)}
+.hero .topicos li:nth-child(2) .ic{transform:rotate(5deg);background:var(--rosa-soft);color:var(--rosa)}
+.hero .topicos li:nth-child(3) .ic{transform:rotate(-3deg);background:var(--terra-soft);color:var(--cereja)}
+.hero .topicos .ic svg{width:26px;height:26px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+@media (max-width:520px){.hero .topicos{grid-template-columns:1fr;gap:10px}.hero .topicos li{flex-direction:row;text-align:left;gap:12px}.hero .topicos li b{display:inline;font-size:.95rem}.hero .topicos .ic{flex:none;width:38px;height:38px}}
 .hero .cta{display:inline-flex;width:auto;flex:none;padding:18px 30px;margin:0 auto;font-size:.86rem}
 
 
@@ -110,8 +115,7 @@ h1 i{font-style:italic;color:var(--terra)}
   .hero .step{margin-bottom:6px}
   .hero h1{font-size:1.6rem;margin-bottom:10px}
   .hero .lead{font-size:.9rem;margin-bottom:14px}
-  .hero .topicos{gap:8px;margin-bottom:18px;font-size:.8rem}
-  .hero .topicos li{padding:11px 10px;border-radius:10px}
+  .hero .topicos{margin-bottom:18px;font-size:.8rem}
   .hero .cta{width:100%;padding:15px 16px;font-size:.78rem}
   .bg .mao{display:none}
 }
@@ -203,7 +207,7 @@ h1 i{font-style:italic;color:var(--terra)}
     <a class="logo" href="#" onclick="refazer();return false" aria-label="it's COOL, prazer e bem-estar íntimo"><img src="logo.png?v=1" alt="it's COOL"></a>
     <button class="btn ghost" id="btnBack" type="button">Voltar</button>
   </header>
-  <div class="stamp">versão 35</div>
+  <div class="stamp">versão 36</div>
   <main id="view"></main>
 </div>
 
@@ -1005,10 +1009,11 @@ function welcome(){
     <div class="step">O quiz mais cool da internet</div>
     <h1>Não sabe por onde começar? <i>Normal.</i> Quase ninguém sabe.</h1>
     <p class="lead">Responda algumas perguntas e a gente te mostra quais categorias do site combinam com o que você procura, e o que cada uma é.</p>
+    <svg class="onda" viewBox="0 0 120 12" aria-hidden="true"><path d="M2 6c10-8 20 8 30 0s20-8 30 0 20 8 30 0 16-6 26 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
     <ul class="topicos">
-      <li class="c1">Você entende antes de comprar.</li>
-      <li class="c2">Sem julgamento. Pula o que não quiser responder.</li>
-      <li class="c3">Feito pra quem nunca entrou numa loja.</li>
+      <li><span class="ic"><svg viewBox="0 0 48 48"><path d="M8 12h12a6 6 0 0 1 6 6v22a5 5 0 0 0-5-5H8z"/><path d="M40 12H28a6 6 0 0 0-6 6v22a5 5 0 0 1 5-5h13z"/></svg></span><b>Você entende</b> antes de comprar.</li>
+      <li><span class="ic"><svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="16"/><path d="M17 28c3 4 11 4 14 0"/><circle cx="18" cy="20" r="1.5"/><circle cx="30" cy="20" r="1.5"/></svg></span><b>Sem julgamento.</b> Pula o que não quiser responder.</li>
+      <li><span class="ic"><svg viewBox="0 0 48 48"><path d="M24 6c1 9 6 16 18 18-12 2-17 9-18 18-1-9-6-16-18-18 12-2 17-9 18-18z"/></svg></span><b>Feito pra quem</b> nunca entrou numa loja.</li>
     </ul>
     <button class="btn primary cta" onclick="go(0)">Responder e descobrir meus produtos</button>
   </div>`;
