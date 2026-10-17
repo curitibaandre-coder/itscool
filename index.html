@@ -121,6 +121,31 @@ h1 i{font-style:italic;color:var(--terra)}
   .bg .mao{display:none}
 }
 
+
+/* computador: pergunta inteira na tela, sem rolar */
+@media (min-width:1000px){
+  .app{min-height:0;padding-bottom:20px}
+  .qwrap{max-width:940px;margin-top:4px}
+  .qwrap .card{padding:20px 24px 18px}
+  .progress{margin-bottom:12px;height:5px}
+  .step{margin-bottom:6px;font-size:.64rem}
+  .qwrap h1{font-size:1.65rem;margin-bottom:6px}
+  .sub{margin-bottom:12px;font-size:.9rem}
+  .opts{gap:8px}
+  .opts.three{grid-template-columns:repeat(3,1fr)}
+  .opt{padding:10px 12px;border-radius:14px;gap:10px}
+  .opt .t b{font-size:.9rem}
+  .opt .t span{font-size:.78rem;margin-top:2px}
+  .opt .box{width:18px;height:18px;margin-top:2px}
+  .opts.icons .opt.ic{padding:14px 10px 12px}
+  .opts.icons .opt.ic .icon{width:36px;height:36px}
+  .actions{margin-top:14px}
+  header{min-height:56px;margin-bottom:4px}
+  .logo img{height:54px}
+  .stamp{margin:-6px 2px 4px}
+}
+.actions{position:sticky;bottom:0;padding:10px 0 2px;background:linear-gradient(180deg,rgba(255,253,251,0),var(--white) 40%);z-index:2}
+
 /* resultado */
 .recs{display:grid;gap:14px;grid-template-columns:repeat(var(--n,3),minmax(0,1fr));margin-bottom:26px}
 .recs.two{max-width:760px;margin-left:auto;margin-right:auto}
@@ -208,7 +233,7 @@ h1 i{font-style:italic;color:var(--terra)}
     <a class="logo" href="#" onclick="refazer();return false" aria-label="it's COOL, prazer e bem-estar íntimo"><img src="logo.png?v=1" alt="it's COOL"></a>
     <button class="btn ghost" id="btnBack" type="button">Voltar</button>
   </header>
-  <div class="stamp">versão 38</div>
+  <div class="stamp">versão 39</div>
   <main id="view"></main>
 </div>
 
@@ -1039,7 +1064,8 @@ function question(s,n,total){
   const num={1:'uma',2:'duas',3:'três'};
   const qtd=!isMulti?'Escolha uma opção':s.max?`Escolha até ${num[s.max]||s.max}`:'Marque quantas quiser';
   const subLimpo=(s.sub||'').replace(/^(Até (uma|duas|três|dois)\.|Pode marcar (mais de um|mais de uma|várias|os dois|quantos fizerem sentido|mais de uma, ou nenhuma)\.|Escolha (uma|até três|até duas)\.)\s*/i,'').replace(/\s*(Pode marcar (mais de um|mais de uma|várias|os dois|quantos fizerem sentido|mais de uma, ou nenhuma)\.|Até (uma|duas|três|dois)\.)/gi,'').trim();
-  return `<div class="step">Pergunta ${n} de ${total}</div><h1>${s.q}</h1><p class="sub"><span class="qtd">${qtd}</span>${subLimpo?' · '+subLimpo:''}</p><ul class="opts ${s.icons?'icons':(s.two?'two':'')}">${opts}</ul>${cont}`;
+  const cols=s.icons?'icons':(s.two?(s.opts.length>=6?'two three':'two'):'');
+  return `<div class="step">Pergunta ${n} de ${total}</div><h1>${s.q}</h1><p class="sub"><span class="qtd">${qtd}</span>${subLimpo?' · '+subLimpo:''}</p><ul class="opts ${cols}">${opts}</ul>${cont}`;
 }
 function pick(id,v){
   const s=SCREENS.find(x=>x.id===id);
