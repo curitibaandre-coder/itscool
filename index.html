@@ -153,12 +153,12 @@ h1 i{font-style:italic;color:var(--terra)}
 @media (max-width:620px){.recs{grid-template-columns:1fr}}
 .rec{background:var(--white);border:1px solid var(--line);border-radius:22px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 14px 40px rgba(120,60,50,.08)}
 .rec .band{height:120px;display:grid;place-items:center;position:relative}
-.rec .band.foto{background:#efe3d6;height:170px;overflow:hidden}
-.rec .band.foto>img{width:100%;height:100%;object-fit:cover;display:block}
+.rec .band.foto{background:#f3e7dc;height:190px;overflow:hidden}
+.rec .band.foto>img{width:100%;height:100%;object-fit:contain;object-position:center;display:block;padding:8px;box-sizing:border-box}
 .rec .band.foto .n{color:var(--cereja);text-shadow:0 0 6px rgba(255,255,255,.9)}
 .rec .band.foto .thumbs{position:absolute;right:10px;bottom:10px;display:flex;gap:6px}
 .rec .band.foto .thumbs img{width:40px;height:40px;object-fit:cover;border-radius:10px;border:2px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.15)}
-@media (min-width:1001px){.recs[style*="--n:5"] .rec .band.foto{height:130px}}
+@media (min-width:1001px){.recs[style*="--n:5"] .rec .band.foto{height:160px}}
 
 .rec .band svg{width:84px;height:84px}
 .rec .band .cat{position:absolute;top:12px;left:12px;font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;background:rgba(255,255,255,.88);color:var(--cereja);border-radius:999px;padding:4px 10px}
@@ -240,7 +240,7 @@ h1 i{font-style:italic;color:var(--terra)}
     <a class="logo" href="#" onclick="refazer();return false" aria-label="it's COOL, prazer e bem-estar íntimo"><img src="logo.png?v=1" alt="it's COOL"></a>
     <button class="btn ghost" id="btnBack" type="button">Voltar</button>
   </header>
-  <div class="stamp">versão 40 · produtos reais</div>
+  <div class="stamp">versão 41</div>
   <main id="view"></main>
 </div>
 
@@ -687,9 +687,6 @@ const SCREENS=[
   {id:'usoPres',type:'single',q:'É pra pessoa usar <i>sozinha</i> ou com alguém?',when:isPres,opts:[
     ['sozinha','Sozinha','A indicação fica em produtos individuais.'],['comigo','Comigo','Entram produtos pra usar a dois.'],['parceria','Com a parceria dela ou dele','Entram produtos pra usar a dois.'],['tanto','Tanto faz','A gente indica pelo clima e pela pessoa.'],
   ]},
-  {id:'embalagem',type:'single',q:'Quer que venha <i>embalado</i> pra presente?',when:isPres,opts:[
-    ['sim','Sim, pronto pra entregar','A gente lembra de pedir na finalização.'],['nao','Não precisa','Nossa caixa já é discreta e bonita.'],
-  ]},
 
   /* ---------- AINDA NÃO SEI (9 perguntas fixas, sem ramificação) ---------- */
   {id:'x1',type:'multi',max:2,two:true,q:'Se tivesse que escolher, o que mais te <i>chama</i> agora?',sub:'Até duas. Não precisa ser certeza, é só uma direção.',when:isExp,opts:[
@@ -941,7 +938,7 @@ function montar(a){
     const quem={parceira:'sua parceira',parceiro:'seu parceiro',amiga:'sua amiga',casal:'o casal'}[q];
     const paraQuem=q==='casal'?'pro casal':'pra '+quem;
     const ocTxt={aniversario:' de aniversário',data:' pra data de vocês',cha:' de chá ou despedida',semmotivo:', sem motivo'}[oc]||'';
-    R.intro=`Um presente${ocTxt}, ${({delicado:'delicado e de cuidado',divertido:'leve e divertido',ousado:'ousado, com classe',completo:'completo'})[c]}, ${paraQuem}.${i==='nunca'||i==='naosei'?' Como a pessoa provavelmente nunca usou nada, a indicação é fácil de incluir e sem constrangimento.':i==='experiente'?' Como a pessoa já tem bastante experiência, a indicação vai além do básico: produtos mais específicos e mais potentes.':''}${intm==='delicada'?' Como a relação de vocês pede cuidado, deixamos de lado qualquer coisa que constranja.':''}${emb==='sim'?' Procure a opção de embalagem pra presente na finalização.':''}`;
+    R.intro=`Um presente${ocTxt}, ${({delicado:'delicado e de cuidado',divertido:'leve e divertido',ousado:'ousado, com classe',completo:'completo'})[c]}, ${paraQuem}.${i==='nunca'||i==='naosei'?' Como a pessoa provavelmente nunca usou nada, a indicação é fácil de incluir e sem constrangimento.':i==='experiente'?' Como a pessoa já tem bastante experiência, a indicação vai além do básico: produtos mais específicos e mais potentes.':''}${intm==='delicada'?' Como a relação de vocês pede cuidado, deixamos de lado qualquer coisa que constranja.':''}`;
     const delicado=c==='delicado'||intm==='delicada';
     if(delicado){ main('massagem','Velas de massagem, óleos e sais de banho. É presente de cuidado, bonito de abrir e sem nada que constranja.'); comp('cosmeticos','Perfumes e óleos íntimos completam o clima de cuidado.'); if(cu.includes('humor')) comp('jogos','A pessoa curte humor: um jogo leve acompanha bem.'); }
     else if(c==='divertido'){ main('jogos','Cartas, dados e tabuleiros de casal. Quebram o gelo, fazem rir e deixam o convite por conta do jogo.'); comp('massagem','Uma vela de massagem acompanha bem.'); if(i==='experiente') comp('aces-dominar','Pra quem já tem experiência, um kit de fantasia leve combina com o clima divertido.'); if(up==='comigo'||q==='casal') comp('vib-dois','Se quiserem dar um passo além, os brinquedos pra usar a dois ficam aqui.'); }
