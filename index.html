@@ -173,6 +173,13 @@ h1 i{font-style:italic;color:var(--terra)}
 .rec .itens b{display:block;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:6px}
 .rec .itens ul{margin:0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:6px}
 .rec .itens li{background:var(--bege);border-radius:999px;padding:4px 10px;font-size:.78rem;color:var(--cinza)}
+.rec .prods b{display:block;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:6px}
+.rec .prods .lista{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+.rec .prod{display:flex;flex-direction:column;gap:4px;text-decoration:none;color:var(--ink);background:var(--bege-claro);border:1px solid var(--line);border-radius:12px;padding:5px;transition:border-color .15s,background .15s;min-width:0}
+.rec .prod:hover{border-color:var(--rosa);background:#fff}
+.rec .prod img,.rec .prod .ph{width:100%;aspect-ratio:1;border-radius:9px;object-fit:cover;background:var(--bege);display:block}
+.rec .prod .pn{font-size:.66rem;line-height:1.2;font-weight:500;color:var(--cinza);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.rec .prod .pp{font-size:.7rem;font-weight:600;color:var(--cereja);white-space:nowrap}
 .rec .btn{margin-top:auto;font-size:.74rem;padding:14px 18px}
 @media (min-width:1001px){.recs[style*="--n:4"] .rec h2,.recs[style*="--n:5"] .rec h2{font-size:1.1rem}.recs[style*="--n:4"] .rec .body,.recs[style*="--n:5"] .rec .body{padding:14px 14px 16px;gap:8px}.recs[style*="--n:4"] .rec .desc,.recs[style*="--n:5"] .rec .desc,.recs[style*="--n:4"] .rec .porque,.recs[style*="--n:5"] .rec .porque{font-size:.8rem}.recs[style*="--n:5"] .rec .band{height:96px}.recs[style*="--n:5"] .rec .band svg{width:64px;height:64px}.recs[style*="--n:4"] .rec .btn,.recs[style*="--n:5"] .rec .btn{font-size:.66rem;padding:12px 10px}.recs[style*="--n:5"] .rec .itens li{font-size:.72rem}}
 .rmain{background:var(--white);border:1px solid var(--line);border-radius:24px;overflow:hidden;display:grid;box-shadow:0 14px 40px rgba(120,60,50,.1);margin-bottom:26px}
@@ -233,7 +240,7 @@ h1 i{font-style:italic;color:var(--terra)}
     <a class="logo" href="#" onclick="refazer();return false" aria-label="it's COOL, prazer e bem-estar íntimo"><img src="logo.png?v=1" alt="it's COOL"></a>
     <button class="btn ghost" id="btnBack" type="button">Voltar</button>
   </header>
-  <div class="stamp">versão 39</div>
+  <div class="stamp">versão 40 · produtos reais</div>
   <main id="view"></main>
 </div>
 
@@ -1009,6 +1016,17 @@ function montar(a){
 /* ============================================================
    APP
    ============================================================ */
+let PRODUTOS=null;
+fetch('produtos.json?v='+Date.now()).then(r=>r.ok?r.json():null).then(j=>{PRODUTOS=j; if(document.body.classList.contains('res')) render();}).catch(()=>{});
+const linkProduto=slug=>URL_SITE+'product-page/'+slug;
+/* escolhe até 3 produtos da categoria que mais combinam com os tipos destacados no card */
+function produtosPara(d){
+  const lista=(PRODUTOS&&PRODUTOS[d.id])||[]; if(!lista.length) return [];
+  const chaves=(d.itens||[]).join(' ').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').split(/[^a-z0-9]+/).filter(w=>w.length>3&&!['para','com','sem','que','mais','uso','continuo','base','larga','simples','pequen'].includes(w)).map(w=>w.replace(/(es|s)$/,''));
+  const pont=lista.map((p,i)=>({p,i,s:chaves.reduce((n,w)=>n+(p.k.includes(w)?1:0),0)+(p.i?0.5:0)}));
+  pont.sort((a,b)=>b.s-a.s||a.i-b.i);
+  return pont.slice(0,3).map(x=>x.p);
+}
 let answers={}; let idx=-1;
 const view=document.getElementById('view'), btnBack=document.getElementById('btnBack');
 const visible=()=>SCREENS.filter(s=>!s.when||s.when(answers));
@@ -1090,12 +1108,14 @@ function refazer(){answers={}; idx=-1; render();}
 
 function recCard(d,i){
   const c=CAT[d.cat];
-  const fotos=FOTOS[d.id]||[];
+  const prods=produtosPara(d);
+  const fotos=prods.filter(p=>p.i).map(p=>p.i).slice(0,1).concat(FOTOS[d.id]||[]);
   const band=fotos.length?`<div class="band foto"><img src="${fotos[0]}" alt="${d.nome}" loading="lazy">${fotos.length>1?`<div class="thumbs">${fotos.slice(1,4).map(f=>`<img src="${f}" alt="" loading="lazy">`).join('')}</div>`:''}<span class="cat">${c.nome}</span><span class="n">0${i+1}</span></div>`:`<div class="band ${c.band}"><span class="cat">${c.nome}</span><span class="n">0${i+1}</span>${ART[d.art]||ART.caixa}</div>`;
   return `<article class="rec">${band}
     <div class="body"><h2>${d.nome}</h2><p class="desc">${d.desc}</p>
     <div class="porque"><b>Por que pra você</b><p>${d.why}</p></div>
     ${d.itens&&d.itens.length?`<div class="itens"><b>O que encaixa no seu perfil aqui</b><ul>${d.itens.map(x=>`<li>${x}</li>`).join('')}</ul></div>`:''}
+    ${prods.length?`<div class="prods"><b>Produtos que temos pra isso</b><div class="lista">${prods.map(p=>`<a class="prod" href="${linkProduto(p.s)}" target="_blank" rel="noopener">${p.i?`<img src="${p.i}" alt="" loading="lazy">`:`<span class="ph"></span>`}<span class="pn">${p.n}</span><span class="pp">R$ ${String(p.p).replace('.',',')}</span></a>`).join('')}</div></div>`:''}
     <a class="btn primary" href="${link(d.slug)}" target="_blank" rel="noopener">Ver os produtos</a></div></article>`;
 }
 function resultado(R){
