@@ -18,7 +18,7 @@ def norm(t):
     return re.sub(r'[^a-z0-9]+', ' ', t).strip()
 
 def thumb(media):
-    return f"https://static.wixstatic.com/media/{media}/v1/fill/w_480,h_480,al_c,q_85/f.jpg"
+    return f"https://static.wixstatic.com/media/{media}/v1/fit/w_480,h_480,q_85/f.jpg"
 
 medias = collections.defaultdict(list)
 for r in rows:
