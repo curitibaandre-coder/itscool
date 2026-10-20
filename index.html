@@ -240,7 +240,7 @@ h1 i{font-style:italic;color:var(--terra)}
     <a class="logo" href="#" onclick="refazer();return false" aria-label="it's COOL, prazer e bem-estar íntimo"><img src="logo.png?v=1" alt="it's COOL"></a>
     <button class="btn ghost" id="btnBack" type="button">Voltar</button>
   </header>
-  <div class="stamp">versão 42</div>
+  <div class="stamp">versão 43 · links do site</div>
   <main id="view"></main>
 </div>
 
@@ -248,8 +248,17 @@ h1 i{font-style:italic;color:var(--terra)}
 /* ============================================================
    LINKS DO SITE (trocar pelos endereços reais do Wix)
    ============================================================ */
-const URL_SITE='https://itscool.com.br/';
-const link=slug=>URL_SITE+slug;
+const URL_SITE='https://www.itscoolprazerebemestar.com.br/';
+/* páginas de categoria que existem no site (slugs do Wix). As subcategorias de vibrador
+   não têm página própria, então apontam pra Vibradores. */
+const CATURL={
+  'vib-externo':'vibradores','vib-interno':'vibradores','vib-dois':'vibradores','vib-comecar':'vibradores','vib-sensacoes':'vibradores','vib-peniano':'vibradores',
+  'geis':'géis-e-lubrificantes','gel-neutro':'géis-e-lubrificantes','gel-termico':'géis-e-lubrificantes','gel-agua':'géis-e-lubrificantes','gel-resistente':'géis-e-lubrificantes','gel-retardar':'géis-e-lubrificantes','gel-estimulos':'géis-e-lubrificantes',
+  'jogos':'jogos-e-brincadeiras','massagem':'massagem-e-experiências','aces-explorar':'para-explorar-masturbar-e-estimular','aces-dominar':'para-dominar-fantasiar-e-brincar',
+  'higiene':'higiene-íntima','cosmeticos':'cosméticos-íntimos','hidratacao':'cuidado-íntimo','pelvica':'saúde-pélvica',
+  'anal-plugs':'plug','anal-vib':'vibradores-e-estimuladores','anal-gel':'géis-e-lubrificantes-1','anal-higiene':'higiene-e-cuidados',
+  'kits':'kits','sale':'sale'};
+const link=id=>URL_SITE+'category/'+encodeURI(CATURL[id]||id);
 
 /* ============================================================
    CATEGORIAS PRINCIPAIS DO MENU
@@ -1015,7 +1024,7 @@ function montar(a){
    ============================================================ */
 let PRODUTOS=null;
 fetch('produtos.json?v='+Date.now()).then(r=>r.ok?r.json():null).then(j=>{PRODUTOS=j; if(document.body.classList.contains('res')) render();}).catch(()=>{});
-const linkProduto=slug=>URL_SITE+'product-page/'+slug;
+const linkProduto=(p,d)=>p.u||link(d.id);
 /* escolhe até 3 produtos da categoria que mais combinam com os tipos destacados no card */
 function produtosPara(d){
   const lista=(PRODUTOS&&PRODUTOS[d.id])||[]; if(!lista.length) return [];
@@ -1112,8 +1121,8 @@ function recCard(d,i){
     <div class="body"><h2>${d.nome}</h2><p class="desc">${d.desc}</p>
     <div class="porque"><b>Por que pra você</b><p>${d.why}</p></div>
     ${d.itens&&d.itens.length?`<div class="itens"><b>O que encaixa no seu perfil aqui</b><ul>${d.itens.map(x=>`<li>${x}</li>`).join('')}</ul></div>`:''}
-    ${prods.length?`<div class="prods"><b>Produtos que temos pra isso</b><div class="lista">${prods.map(p=>`<a class="prod" href="${linkProduto(p.s)}" target="_blank" rel="noopener">${p.i?`<img src="${p.i}" alt="" loading="lazy">`:`<span class="ph"></span>`}<span class="pn">${p.n}</span><span class="pp">R$ ${String(p.p).replace('.',',')}</span></a>`).join('')}</div></div>`:''}
-    <a class="btn primary" href="${link(d.slug)}" target="_blank" rel="noopener">Ver os produtos</a></div></article>`;
+    ${prods.length?`<div class="prods"><b>Produtos que temos pra isso</b><div class="lista">${prods.map(p=>`<a class="prod" href="${linkProduto(p,d)}" target="_blank" rel="noopener">${p.i?`<img src="${p.i}" alt="" loading="lazy">`:`<span class="ph"></span>`}<span class="pn">${p.n}</span><span class="pp">R$ ${String(p.p).replace('.',',')}</span></a>`).join('')}</div></div>`:''}
+    <a class="btn primary" href="${link(d.id)}" target="_blank" rel="noopener">Ver os produtos</a></div></article>`;
 }
 function resultado(R){
   const n=R.recs.length;

@@ -20,6 +20,27 @@ def norm(t):
 def thumb(media):
     return f"https://static.wixstatic.com/media/{media}/v1/fit/w_480,h_480,q_85/f.jpg"
 
+SITE = 'https://www.itscoolprazerebemestar.com.br/'
+
+def wix_slug(name):
+    """Regra do Wix pra URL de produto: minúsculo, acentos mantidos, pontuação some
+    (7,5g vira 75g; D'Água vira dágua), qualquer outro separador vira hífen."""
+    t = name.lower().strip()
+    t = re.sub(r"['’`´\",.()]", '', t)
+    t = re.sub(r'[^0-9a-zà-ÿ]+', '-', t)
+    return t.strip('-')
+
+# URLs reais de produto, do sitemap da loja (confere a regra acima e cobre exceções)
+PROD_URLS = {}
+try:
+    import urllib.request
+    xml = urllib.request.urlopen(SITE + 'store-products-sitemap.xml', timeout=30).read().decode('utf-8')
+    for u in re.findall(r'<loc>([^<]+)</loc>', xml):
+        PROD_URLS[u.rsplit('/', 1)[1]] = u
+    print('sitemap de produtos:', len(PROD_URLS), 'urls')
+except Exception as e:
+    print('sitemap indisponível, produtos sem URL própria:', e)
+
 medias = collections.defaultdict(list)
 for r in rows:
     if r['fieldType'] == 'MEDIA' and r['media']:
@@ -37,8 +58,9 @@ for r in rows:
         'cats': [norm(c).replace(' ', '-') for c in (r['categorySlugs'] or '').split(';') if c.strip()],
         'nm': norm(r['name']),
         'kw': norm(r['name'] + ' ' + (r['plainDescription'] or '')[:400]),
-        'slug': re.sub(r'\s+', '-', norm(r['name'])),
+        'slug': wix_slug(r['name']),
     })
+    prods[-1]['url'] = PROD_URLS.get(prods[-1]['slug'], '')
 
 def has(p, *cs): return any(c in p['cats'] for c in cs)
 def nome(p, *ws): return any(w in p['nm'] for w in ws)
@@ -88,8 +110,8 @@ for cid, (filtro, pontos, excl) in REGRAS.items():
         score = sum(2 for w in pontos if w in p['nm']) + sum(1 for w in pontos if w in p['kw']) + (3 if p['img'] else 0)
         lst.append((score, p))
     lst.sort(key=lambda x: (-x[0], x[1]['nome']))
-    out[cid] = [{'n': p['nome'], 'p': p['preco'], 'i': p['img'], 's': p['slug'], 'k': p['kw'][:160]} for _, p in lst[:24]]
+    out[cid] = [{'n': p['nome'], 'p': p['preco'], 'i': p['img'], 'u': p['url'], 'k': p['kw'][:160]} for _, p in lst[:24]]
     print(f"{cid:15} {len(lst):3}  " + ' | '.join(p['nome'][:38] for _, p in lst[:3]))
 
 json.dump(out, open('produtos.json', 'w', encoding='utf-8'), ensure_ascii=False, separators=(',', ':'))
-print('produtos.json gerado com', sum(len(v) for v in out.values()), 'entradas')
+print('produtos.json gerado com', sum(len(v) for v in out.values()), 'entradas;', sum(1 for v in out.values() for p in v if p['u']), 'com URL própria;', sum(1 for p in prods if not p['url']), 'produtos do CSV sem página no sitemap')
