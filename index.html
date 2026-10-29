@@ -254,13 +254,13 @@ const CATURL={
   'anal-plugs':'plug','anal-vib':'anal','anal-gel':'anal-geis-e-lubrificantes','anal-higiene':'anal',
   'kits':'kits','sale':'sale'};
 /* afina a página conforme o que a pessoa pediu: sucção vai pra Sugadores, controle a dois vai pra Controle remoto e app */
-function catSlug(id,itens){
-  const t=(itens||[]).join(' ').toLowerCase();
-  if((id==='vib-externo'||id==='vib-sensacoes')&&/sugador|pulsador/.test(t)) return 'sugadores';
-  if(id==='vib-dois'&&/controle remoto|app/.test(t)) return 'controle-remoto-e-app';
+function catSlug(id,why){
+  const t=(why||'').toLowerCase();
+  if((id==='vib-externo'||id==='vib-sensacoes')&&/sucção|pulsação de ar|sugador/.test(t)) return 'sugadores';
+  if(id==='vib-dois'&&/controle remoto|por app|um controla/.test(t)) return 'controle-remoto-e-app';
   return CATURL[id]||id;
 }
-const link=(id,itens)=>URL_SITE+'category/'+encodeURI(catSlug(id,itens));
+const link=(id,why)=>URL_SITE+'category/'+encodeURI(catSlug(id,why));
 
 /* ============================================================
    CATEGORIAS PRINCIPAIS DO MENU
@@ -1130,7 +1130,7 @@ function recCard(d,i){
     <div class="body"><h2>${d.nome}</h2>
     <div class="porque"><b>Por que pra você</b><p>${porque(d)}</p></div>
     ${prods.length?`<div class="prods"><b>O que temos pra isso</b><div class="lista">${prods.map(p=>`<a class="prod" href="${linkProduto(p,d)}" target="_blank" rel="noopener">${p.i?`<img src="${p.i}" alt="" loading="lazy">`:`<span class="ph"></span>`}<span class="pn">${p.n}</span><span class="pp">R$ ${String(p.p).replace('.',',')}</span></a>`).join('')}</div></div>`:''}
-    <a class="btn primary" href="${link(d.id,d.itens)}" target="_blank" rel="noopener">Ver os produtos</a></div></article>`;
+    <a class="btn primary" href="${link(d.id,d.why)}" target="_blank" rel="noopener">Ver os produtos</a></div></article>`;
 }
 function resultado(R){
   const n=R.recs.length;
