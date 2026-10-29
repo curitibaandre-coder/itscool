@@ -89,15 +89,11 @@ h1 i{font-style:italic;color:var(--terra)}
 .hero{max-width:620px;width:100%;margin:12px auto 0;padding:28px 26px 26px;text-align:center}
 .hero h1{font-size:clamp(2rem,5vw,2.7rem);margin-bottom:12px}
 .hero .lead{color:var(--muted);margin:0 0 16px;font-size:.97rem}
-.hero .onda{display:block;width:120px;height:12px;margin:2px auto 14px;color:var(--rosa)}
 .hero .topicos{list-style:none;padding:0 6px;margin:0 0 26px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;font-size:.84rem;line-height:1.35;color:var(--muted)}
-.hero .topicos li{display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;font-weight:400;padding:0;background:none}
+.hero .topicos li{display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center;font-weight:400;padding:0 6px;background:none;border-left:1px solid var(--line)}
+.hero .topicos li:first-child{border-left:0}
 .hero .topicos li b{display:block;font-family:var(--serif);font-weight:400;font-size:1.05rem;color:var(--cereja);line-height:1.15}
-.hero .topicos .ic{width:44px;height:44px;border-radius:50%;background:var(--bege);display:grid;place-items:center;color:var(--terra);transform:rotate(-6deg)}
-.hero .topicos li:nth-child(2) .ic{transform:rotate(5deg);background:var(--rosa-soft);color:var(--rosa)}
-.hero .topicos li:nth-child(3) .ic{transform:rotate(-3deg);background:var(--terra-soft);color:var(--cereja)}
-.hero .topicos .ic svg{width:26px;height:26px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
-@media (max-width:520px){.hero .topicos{grid-template-columns:1fr;gap:10px}.hero .topicos li{flex-direction:row;text-align:left;gap:12px}.hero .topicos li .t{flex:1}.hero .topicos li b{display:inline;font-size:.95rem;margin-right:4px}.hero .topicos .ic{flex:none;width:38px;height:38px}}
+@media (max-width:520px){.hero .topicos{grid-template-columns:1fr;gap:10px}.hero .topicos li{flex-direction:row;text-align:left;gap:0;border-left:0;border-top:1px solid var(--line);padding:8px 0 0}.hero .topicos li:first-child{border-top:0;padding-top:0}.hero .topicos li .t{flex:1}.hero .topicos li b{display:inline;font-size:.95rem;margin-right:4px}}
 .hero .cta{display:inline-flex;width:auto;flex:none;padding:18px 30px;margin:0 auto;font-size:.86rem}
 
 
@@ -240,7 +236,7 @@ h1 i{font-style:italic;color:var(--terra)}
     <a class="logo" href="#" onclick="refazer();return false" aria-label="it's COOL, prazer e bem-estar íntimo"><img src="logo.png?v=1" alt="it's COOL"></a>
     <button class="btn ghost" id="btnBack" type="button">Voltar</button>
   </header>
-  <div class="stamp">versão 43 · links do site</div>
+  <div class="stamp">versão 44</div>
   <main id="view"></main>
 </div>
 
@@ -1059,11 +1055,10 @@ function welcome(){
     <div class="step">O quiz mais cool da internet</div>
     <h1>Não sabe por onde começar? <i>Normal.</i> Quase ninguém sabe.</h1>
     <p class="lead">Responda algumas perguntas e a gente te mostra quais categorias do site combinam com o que você procura, e o que cada uma é.</p>
-    <svg class="onda" viewBox="0 0 120 12" aria-hidden="true"><path d="M2 6c10-8 20 8 30 0s20-8 30 0 20 8 30 0 16-6 26 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
     <ul class="topicos">
-      <li><span class="ic"><svg viewBox="0 0 48 48"><path d="M8 12h12a6 6 0 0 1 6 6v22a5 5 0 0 0-5-5H8z"/><path d="M40 12H28a6 6 0 0 0-6 6v22a5 5 0 0 1 5-5h13z"/></svg></span><span class="t"><b>Você entende</b> antes de comprar.</span></li>
-      <li><span class="ic"><svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="16"/><path d="M17 28c3 4 11 4 14 0"/><circle cx="18" cy="20" r="1.5"/><circle cx="30" cy="20" r="1.5"/></svg></span><span class="t"><b>Sem julgamento.</b> Pula o que não quiser responder.</span></li>
-      <li><span class="ic"><svg viewBox="0 0 48 48"><path d="M24 6c1 9 6 16 18 18-12 2-17 9-18 18-1-9-6-16-18-18 12-2 17-9 18-18z"/></svg></span><span class="t"><b>Feito pra quem</b> nunca entrou numa loja.</span></li>
+      <li><span class="t"><b>Você entende</b> antes de comprar.</span></li>
+      <li><span class="t"><b>Sem julgamento.</b> Pula o que não quiser responder.</span></li>
+      <li><span class="t"><b>Feito pra quem</b> nunca entrou numa loja.</span></li>
     </ul>
     <button class="btn primary cta" onclick="go(0)">Responder e descobrir meus produtos</button>
   </div>`;
@@ -1118,10 +1113,9 @@ function recCard(d,i){
   const fotos=prods.filter(p=>p.i).map(p=>p.i).slice(0,1).concat(FOTOS[d.id]||[]);
   const band=fotos.length?`<div class="band foto"><img src="${fotos[0]}" alt="${d.nome}" loading="lazy">${fotos.length>1?`<div class="thumbs">${fotos.slice(1,4).map(f=>`<img src="${f}" alt="" loading="lazy">`).join('')}</div>`:''}<span class="cat">${c.nome}</span><span class="n">0${i+1}</span></div>`:`<div class="band ${c.band}"><span class="cat">${c.nome}</span><span class="n">0${i+1}</span>${ART[d.art]||ART.caixa}</div>`;
   return `<article class="rec">${band}
-    <div class="body"><h2>${d.nome}</h2><p class="desc">${d.desc}</p>
+    <div class="body"><h2>${d.nome}</h2>
     <div class="porque"><b>Por que pra você</b><p>${d.why}</p></div>
-    ${d.itens&&d.itens.length?`<div class="itens"><b>O que encaixa no seu perfil aqui</b><ul>${d.itens.map(x=>`<li>${x}</li>`).join('')}</ul></div>`:''}
-    ${prods.length?`<div class="prods"><b>Produtos que temos pra isso</b><div class="lista">${prods.map(p=>`<a class="prod" href="${linkProduto(p,d)}" target="_blank" rel="noopener">${p.i?`<img src="${p.i}" alt="" loading="lazy">`:`<span class="ph"></span>`}<span class="pn">${p.n}</span><span class="pp">R$ ${String(p.p).replace('.',',')}</span></a>`).join('')}</div></div>`:''}
+    ${prods.length?`<div class="prods"><b>Produtos mais indicados no site</b><div class="lista">${prods.map(p=>`<a class="prod" href="${linkProduto(p,d)}" target="_blank" rel="noopener">${p.i?`<img src="${p.i}" alt="" loading="lazy">`:`<span class="ph"></span>`}<span class="pn">${p.n}</span><span class="pp">R$ ${String(p.p).replace('.',',')}</span></a>`).join('')}</div></div>`:''}
     <a class="btn primary" href="${link(d.id)}" target="_blank" rel="noopener">Ver os produtos</a></div></article>`;
 }
 function resultado(R){
