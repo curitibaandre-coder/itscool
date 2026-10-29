@@ -257,7 +257,7 @@ const CATURL={
 function catSlug(id,why){
   const t=(why||'').toLowerCase();
   if((id==='vib-externo'||id==='vib-sensacoes')&&/sucção|pulsação de ar|sugador/.test(t)) return 'sugadores';
-  if(id==='vib-dois'&&/controle remoto|por app|um controla/.test(t)) return 'controle-remoto-e-app';
+  if(id==='vib-dois'&&/controle remoto|por app/.test(t)) return 'controle-remoto-e-app';
   return CATURL[id]||id;
 }
 const link=(id,why)=>URL_SITE+'category/'+encodeURI(catSlug(id,why));
