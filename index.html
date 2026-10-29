@@ -236,7 +236,7 @@ h1 i{font-style:italic;color:var(--terra)}
     <a class="logo" href="#" onclick="refazer();return false" aria-label="it's COOL, prazer e bem-estar íntimo"><img src="logo.png?v=1" alt="it's COOL"></a>
     <button class="btn ghost" id="btnBack" type="button">Voltar</button>
   </header>
-  <div class="stamp">versão 44</div>
+  <div class="stamp">versão 45</div>
   <main id="view"></main>
 </div>
 
@@ -1115,7 +1115,7 @@ function recCard(d,i){
   return `<article class="rec">${band}
     <div class="body"><h2>${d.nome}</h2>
     <div class="porque"><b>Por que pra você</b><p>${d.why}</p></div>
-    ${prods.length?`<div class="prods"><b>Produtos mais indicados no site</b><div class="lista">${prods.map(p=>`<a class="prod" href="${linkProduto(p,d)}" target="_blank" rel="noopener">${p.i?`<img src="${p.i}" alt="" loading="lazy">`:`<span class="ph"></span>`}<span class="pn">${p.n}</span><span class="pp">R$ ${String(p.p).replace('.',',')}</span></a>`).join('')}</div></div>`:''}
+    ${prods.length?`<div class="prods"><b>O que temos pra isso</b><div class="lista">${prods.map(p=>`<a class="prod" href="${linkProduto(p,d)}" target="_blank" rel="noopener">${p.i?`<img src="${p.i}" alt="" loading="lazy">`:`<span class="ph"></span>`}<span class="pn">${p.n}</span><span class="pp">R$ ${String(p.p).replace('.',',')}</span></a>`).join('')}</div></div>`:''}
     <a class="btn primary" href="${link(d.id)}" target="_blank" rel="noopener">Ver os produtos</a></div></article>`;
 }
 function resultado(R){
