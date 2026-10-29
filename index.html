@@ -236,7 +236,7 @@ h1 i{font-style:italic;color:var(--terra)}
     <a class="logo" href="#" onclick="refazer();return false" aria-label="it's COOL, prazer e bem-estar íntimo"><img src="logo.png?v=1" alt="it's COOL"></a>
     <button class="btn ghost" id="btnBack" type="button">Voltar</button>
   </header>
-  <div class="stamp">versão 45</div>
+  <div class="stamp">versão 46</div>
   <main id="view"></main>
 </div>
 
@@ -1107,6 +1107,14 @@ function next(){idx=Math.min(idx+1,visible().length-1); render();}
 btnBack.onclick=()=>{idx=Math.max(-1,idx-1); render();};
 function refazer(){answers={}; idx=-1; render();}
 
+/* "Por que pra você" com tamanho parecido em todos os cards: curto demais ganha a descrição
+   da categoria; longo demais é cortado no fim de uma frase. */
+function porque(d){
+  let t=(d.why||'').trim();
+  if(t.length<120&&d.desc){ t=(t?t.replace(/\.?$/,'. '):'')+d.desc; }
+  if(t.length>300){ const corte=t.lastIndexOf('. ',300); t=corte>120?t.slice(0,corte+1):t.slice(0,297).replace(/\s+\S*$/,'')+'...'; }
+  return t;
+}
 function recCard(d,i){
   const c=CAT[d.cat];
   const prods=produtosPara(d);
@@ -1114,7 +1122,7 @@ function recCard(d,i){
   const band=fotos.length?`<div class="band foto"><img src="${fotos[0]}" alt="${d.nome}" loading="lazy">${fotos.length>1?`<div class="thumbs">${fotos.slice(1,4).map(f=>`<img src="${f}" alt="" loading="lazy">`).join('')}</div>`:''}<span class="cat">${c.nome}</span><span class="n">0${i+1}</span></div>`:`<div class="band ${c.band}"><span class="cat">${c.nome}</span><span class="n">0${i+1}</span>${ART[d.art]||ART.caixa}</div>`;
   return `<article class="rec">${band}
     <div class="body"><h2>${d.nome}</h2>
-    <div class="porque"><b>Por que pra você</b><p>${d.why}</p></div>
+    <div class="porque"><b>Por que pra você</b><p>${porque(d)}</p></div>
     ${prods.length?`<div class="prods"><b>O que temos pra isso</b><div class="lista">${prods.map(p=>`<a class="prod" href="${linkProduto(p,d)}" target="_blank" rel="noopener">${p.i?`<img src="${p.i}" alt="" loading="lazy">`:`<span class="ph"></span>`}<span class="pn">${p.n}</span><span class="pp">R$ ${String(p.p).replace('.',',')}</span></a>`).join('')}</div></div>`:''}
     <a class="btn primary" href="${link(d.id)}" target="_blank" rel="noopener">Ver os produtos</a></div></article>`;
 }
