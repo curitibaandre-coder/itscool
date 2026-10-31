@@ -110,7 +110,7 @@ REGRAS = {
     'hidratacao':    (lambda p: nome(p, 'hidrat', 'hialur') and nome(p, 'vaginal', 'intim', 'hialur', 'aloe') and not nome(p, 'anal', 'cabel', 'virilha'), ['hidratante', 'vaginal', 'hialur', 'aloe'], []),
     'pelvica':       (lambda p: has(p, 'saude-pelvica'), ['pompoar', 'cones', 'dilatador', 'bolas', 'condutor'], []),
     'anal-plugs':    (lambda p: has(p, 'plug'), ['plug', 'pequeno', 'iniciante', 'kit'], []),
-    'anal-vib':      (lambda p: has(p, 'anal') and nome(p, 'vibra', 'estimulador', 'tailand') and not nome(p, 'gel', 'beijo'), ['vibra', 'tailand', 'bolas'], []),
+    'anal-vib':      (lambda p: has(p, 'plug') and nome(p, 'vibra', 'vibro', 'controle'), ['vibra', 'vibro', 'controle'], []),
     'anal-gel':      (lambda p: has(p, 'anal-geis-e-lubrificantes') and not nome(p, 'kit'), ['facilitador', 'dessensib', 'hialur', 'anal', 'lubrificante'], ['beijo', 'comest', 'yummy', 'porta dos fundos']),
     'anal-higiene':  (lambda p: has(p, 'anal-higiene-e-cuidados'), ['ducha', 'higieniz', 'hidratante'], []),
     'kits':          (lambda p: has(p, 'kits'), ['kit'], []),
