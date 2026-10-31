@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>it's COOL · Qual é o seu match?</title>
 <link rel="icon" href="simbolo.png?v=1">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,7 +19,7 @@ html,body{margin:0;background:var(--bege);color:var(--ink);font-family:var(--san
 .topbar{background:var(--cereja);color:#fff;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;text-align:center;padding:7px 12px;display:flex;justify-content:center;gap:22px;flex-wrap:wrap;position:relative;z-index:2;font-weight:500}
 .topbar span::after{content:"·";margin-left:22px;opacity:.7}
 .topbar span:last-child::after{content:""}
-.bg{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;transition:opacity .4s}
+.bg{position:fixed;top:0;left:0;right:0;height:100vh;height:100lvh;z-index:0;pointer-events:none;overflow:hidden;transition:opacity .4s}
 .bg .b1{position:absolute;right:-12vw;top:-14vh;width:min(62vw,900px);height:110vh;background:var(--terra);opacity:.14;border-radius:46% 54% 42% 58%/58% 42% 58% 42%}
 .bg .b2{position:absolute;left:-16vw;bottom:-30vh;width:min(50vw,700px);height:70vh;background:var(--rosa);opacity:.16;border-radius:55% 45% 50% 50%/45% 55% 45% 55%}
 .bg .mao{position:absolute;right:4vw;top:50%;transform:translateY(-50%) rotate(-8deg);width:min(38vw,540px);aspect-ratio:1;background:url("simbolo.png?v=1") center/contain no-repeat;opacity:.08}
@@ -81,6 +81,7 @@ h1 i{font-style:italic;color:var(--terra)}
 .btn:focus-visible{outline:3px solid var(--terra-soft);outline-offset:2px}
 .note{font-size:.82rem;color:var(--muted);margin-top:10px}
 .hidden{display:none!important}
+.stamp{visibility:hidden!important;height:0!important;margin:0!important;overflow:hidden}
 .fade{animation:fade .28s ease}
 @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 @media (prefers-reduced-motion:reduce){.fade{animation:none}.progress i{transition:none}}
@@ -236,7 +237,7 @@ h1 i{font-style:italic;color:var(--terra)}
     <a class="logo" href="#" onclick="refazer();return false" aria-label="it's COOL, prazer e bem-estar íntimo"><img src="logo.png?v=1" alt="it's COOL"></a>
     <button class="btn ghost" id="btnBack" type="button">Voltar</button>
   </header>
-  <div class="stamp">versão 49</div>
+  <div class="stamp">versão 50</div>
   <main id="view"></main>
 </div>
 

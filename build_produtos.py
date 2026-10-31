@@ -10,7 +10,7 @@ deste arquivo pra funcionar: sem ele, o resultado mostra só as categorias.
 """
 import csv, io, json, re, sys, unicodedata, collections
 
-src = sys.argv[1] if len(sys.argv) > 1 else r"C:\Users\André Pereira\Downloads\catalog_products (4).csv"
+src = sys.argv[1] if len(sys.argv) > 1 else r"C:\Users\André Pereira\Downloads\catalog_products (5).csv"
 rows = list(csv.DictReader(io.StringIO(open(src, 'rb').read().decode('utf-8-sig'))))
 
 def norm(t):
